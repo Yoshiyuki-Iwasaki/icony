@@ -14,7 +14,11 @@ class PostController extends Controller
      */
     public function index()
     {
+        //投稿取得
         $posts = Post::all();
+        // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
+        $posts->load('category','user');
+        // view側で$post変数を使用可能にする。
         return view('posts.index',['posts' => $posts]);
     }
 
@@ -45,9 +49,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
+        $posts->load('category','user');
+        // view側で$post変数を使用可能にする。
+        return view('posts.show',['posts' => $posts]);
     }
 
     /**

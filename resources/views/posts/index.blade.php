@@ -18,8 +18,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{$post->title}}</h5>
+                                <p class="card-title">カテゴリー: {{$post->category->category_name}}</p>
+                                <p class="card-title">投稿者: {{$post->user->name}}</p>
                                 <p class="card-text">{{$post->content}}</p>
-                                <a href="#" class="btn btn-primary">Card link</a>
+                                <a href="{{route('posts.show',$post->id)}}" class="btn btn-primary">詳細</a>
                             </div>
                         </div>
                     @endforeach

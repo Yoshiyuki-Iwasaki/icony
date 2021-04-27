@@ -15,10 +15,11 @@ use App\Http\Controllers\HomeController; # don't forgot to add this
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'PostController@index')->name('posts.index');
+Route::resource('/posts', 'PostController', ['except' => ['index']]);

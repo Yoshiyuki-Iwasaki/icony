@@ -15,12 +15,22 @@ class PostController extends Controller
      */
     public function index()
     {
-        //投稿取得
-        $posts = Post::all();
-        // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
-        $posts->load('category','user');
-        // view側で$post変数を使用可能にする。
-        return view('posts.index',['posts' => $posts]);
+        $q = \Request::query();
+        if(isset($q['category_id'])) {
+            //投稿取得
+            $posts = Post::latest()->where('category_id', $q['category_id'])->get();
+            // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
+            $posts->load('category','user');
+            // view側で$post変数を使用可能にする。
+            return view('posts.index',['posts' => $posts]);
+        } else {
+            //投稿取得
+            $posts = Post::latest()->get();
+            // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
+            $posts->load('category','user');
+            // view側で$post変数を使用可能にする。
+            return view('posts.index',['posts' => $posts]);
+        }
     }
 
     /**

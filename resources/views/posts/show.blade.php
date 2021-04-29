@@ -12,10 +12,27 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">{{$post->title}}</h5>
-            <p class="card-title">カテゴリー: {{$post->category->category_name}}</p>
-            <p class="card-title">投稿者: {{$post->user->name}}</p>
+            <p class="card-title">カテゴリー: <a href="{{route('posts.index', ['category_id' => $post->category_id])}}">{{$post->category->category_name}}</a></p>
+            <p class="card-title">投稿者: <a href="{{route('users.show', $post->user_id)}}">{{$post->user->name}}</a></p>
             <p class="card-text">{{$post->content}}</p>
         </div>
+    </div>
+
+    <div class="p-3">
+        <p class="card-title">コメント一覧</p>
+        @foreach ($post->comments as $comment )
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">{{$comment->comment}}</p>
+                    <p class="card-text">投稿者:
+                        <a href="{{ route('users.show', $comment->user->id)}}">
+                            {{$comment->user->name}}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        @endforeach
+        <a href="{{route('comments.create', ['post_id' => $post->id])}}" class="btn btn-primary">コメントする</a>
     </div>
 </div>
 @endsection

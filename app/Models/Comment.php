@@ -15,4 +15,10 @@ class Comment extends Model
     protected $fillable = [
         'user_id','post_id','comment'
     ];
+
+    // user_nameをPost側で取得できるようにする
+    public function user(){
+        // 投稿は１つのカテゴリーに属する
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

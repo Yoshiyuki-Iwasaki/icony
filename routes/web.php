@@ -22,4 +22,6 @@ use App\Http\Controllers\HomeController; # don't forgot to add this
 Auth::routes();
 
 Route::get('/', 'PostController@index')->name('posts.index');
+
 Route::resource('/posts', 'PostController', ['except' => ['index']]);
+Route::resource('/users', 'UserController');

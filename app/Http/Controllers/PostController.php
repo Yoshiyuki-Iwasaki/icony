@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
 
 class PostController extends Controller
 {
@@ -18,14 +19,14 @@ class PostController extends Controller
         $q = \Request::query();
         if(isset($q['category_id'])) {
             //投稿取得
-            $posts = Post::latest()->where('category_id', $q['category_id'])->get();
+            $posts = Post::latest()->where('category_id', $q['category_id'])->paginate(5);
             // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
             $posts->load('category','user');
             // view側で$post変数を使用可能にする。
             return view('posts.index',['posts' => $posts]);
         } else {
             //投稿取得
-            $posts = Post::latest()->get();
+            $posts = Post::latest()->paginate(5);
             // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
             $posts->load('category','user');
             // view側で$post変数を使用可能にする。
@@ -104,5 +105,18 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request) {
+        $posts = Post::where('title', 'like', "%{$request->search}%")
+        ->orWhere('content', 'like', "%{$request->search}%")
+        ->paginate(5);
+
+        $search_result = $request->search.'の検索機能'.count($posts).'件';
+
+        return view('posts.index',[
+            'posts' => $posts,
+            'search_result' => $search_result
+        ]);
     }
 }

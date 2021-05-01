@@ -119,7 +119,8 @@ class PostController extends Controller
 
         return view('posts.index',[
             'posts' => $posts,
-            'search_result' => $search_result
+            'search_result' => $search_result,
+            'search_query' => $request->search
         ]);
     }
 }

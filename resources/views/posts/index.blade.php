@@ -54,6 +54,10 @@
             </div>
         </div>
     @endforeach
+    @if(@isset($category_id))
+    {{ $posts->appends(['category_id' => $category_id])->links('vendor.pagination.semantic-ui') }}
+    @else
     {{ $posts->links('vendor.pagination.semantic-ui') }}
+    @endif
 </div>
 @endsection

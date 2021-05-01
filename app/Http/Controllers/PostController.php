@@ -23,7 +23,10 @@ class PostController extends Controller
             // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
             $posts->load('category','user');
             // view側で$post変数を使用可能にする。
-            return view('posts.index',['posts' => $posts]);
+            return view('posts.index',[
+                'posts' => $posts,
+                'category_id' => $q['category_id'],
+                ]);
         } else {
             //投稿取得
             $posts = Post::latest()->paginate(5);
@@ -112,7 +115,7 @@ class PostController extends Controller
         ->orWhere('content', 'like', "%{$request->search}%")
         ->paginate(5);
 
-        $search_result = $request->search.'の検索機能'.count($posts).'件';
+        $search_result = $request->search.'の検索機能'.$posts->total().'件';
 
         return view('posts.index',[
             'posts' => $posts,

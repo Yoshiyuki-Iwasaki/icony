@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Tag;
 use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
 
 class PostController extends Controller
@@ -21,17 +22,27 @@ class PostController extends Controller
             //投稿取得
             $posts = Post::latest()->where('category_id', $q['category_id'])->paginate(5);
             // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
-            $posts->load('category','user');
+            $posts->load('category','user','tags');
             // view側で$post変数を使用可能にする。
             return view('posts.index',[
                 'posts' => $posts,
                 'category_id' => $q['category_id'],
                 ]);
+        }elseif(isset($q['tag_name'])) {
+            //投稿取得
+            $posts = Post::latest()->where('content', 'like', "%{$q['tag_name']}%")->paginate(5);
+            // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
+            $posts->load('category','user','tags');
+            // view側で$post変数を使用可能にする。
+            return view('posts.index',[
+                'posts' => $posts,
+                'tag_name' => $q['tag_name'],
+                ]);
         } else {
             //投稿取得
             $posts = Post::latest()->paginate(5);
             // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
-            $posts->load('category','user');
+            $posts->load('category','user','tags');
             // view側で$post変数を使用可能にする。
             return view('posts.index',['posts' => $posts]);
         }
@@ -63,7 +74,20 @@ class PostController extends Controller
             $post->title = $request->title;
             $filename = $request->file('image')->store('public/image');
             $post->image = basename($filename);
+
+            // contentからtagを取り出す
+            preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠]+)/u', $request->content, $match);
+            $tags = [];
+            foreach($match[1] as $tag) {
+                $found = Tag::firstOrCreate(['tag_name' => $tag]);
+                array_push($tags, $found);
+            }
+            $tags_ids =[];
+            foreach($tags as $tag) {
+                array_push($tags_ids, $tag['id']);
+            }
             $post->save();
+            $post->tags()->attach($tags_ids);
         }
         return redirect('/');
     }

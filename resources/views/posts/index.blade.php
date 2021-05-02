@@ -46,6 +46,12 @@
                     カテゴリー:
                     <a href="{{route('posts.index', ['category_id' => $post->category_id])}}">{{$post->category->category_name}}</a>
                 </p>
+                <p class="card-title">
+                    Tag:
+                    @foreach ($post->tags as $tag )
+                        <a href="{{route('posts.index', ['tag_name' => $tag->tag_name])}}">#{{$tag->tag_name}}</a>
+                    @endforeach
+                </p>
                 <p class="card-title">投稿者:
                     <a href="{{route('users.show', $post->user_id)}}">{{$post->user->name}}</a>
                 </p>
@@ -56,6 +62,8 @@
     @endforeach
     @if(@isset($category_id))
     {{ $posts->appends(['category_id' => $category_id])->links('vendor.pagination.semantic-ui') }}
+    @elseif(@isset($tag_name))
+    {{ $posts->appends(['tag_name' => $tag_name])->links('vendor.pagination.semantic-ui') }}
     @elseif(@isset($search_query))
     {{ $posts->appends(['search' => $search_query])->links('vendor.pagination.semantic-ui') }}
     @else

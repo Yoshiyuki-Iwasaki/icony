@@ -13,7 +13,7 @@ class Post extends Model
      * @var array
     */
     protected $fillable = [
-        'user_id','category_id','content', 'title'
+        'user_id','category_id','content', 'title', 'image'
     ];
 
     // Category_nameをPost側で取得できるようにする

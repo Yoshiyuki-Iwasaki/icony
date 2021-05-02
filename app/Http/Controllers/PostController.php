@@ -55,10 +55,16 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $post = new Post;
-        // model内で$fillableに指定している項目のみ保存の対象としている。
-        $input = $request->only($post->getFillable());
-        $post = $post->create($input);
+        if($request->file('image')->isValid()) {
+            $post = new Post;
+            $post->user_id = $request->user_id;
+            $post->category_id = $request->category_id;
+            $post->content = $request->content;
+            $post->title = $request->title;
+            $filename = $request->file('image')->store('public/image');
+            $post->image = basename($filename);
+            $post->save();
+        }
         return redirect('/');
     }
 

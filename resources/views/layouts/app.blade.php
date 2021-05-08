@@ -56,6 +56,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="http://127.0.0.1:8000/users/{{Auth::id()}}" class="dropdown-item">マイページ</a>
+                                    <a href="#" class="dropdown-item">ユーザー情報編集</a>
                                     <a href="{{route('posts.create')}}" class="dropdown-item">新規投稿</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

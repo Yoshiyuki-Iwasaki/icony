@@ -50,9 +50,11 @@
                                 </span>
                             </form>
                         </li>
+                        @auth
                         <li class="nav-item">
                             <a href="{{route('posts.create')}}" class="btn btn-primary">新規投稿</a>
                         </li>
+                        @endauth
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

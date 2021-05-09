@@ -1,30 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card-body">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h5 class="card-title">検索フォーム</h5>
-                <div id="custom-search-input">
-                    <div class="input-group col-md-12">
-                        <form action="{{route('posts.search')}}" method="get">
-                            {{csrf_field()}}
-                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" name="search" />
-                            <span class="input-group-btn" style="position:relative;top:-37px;left:153px;">
-                                <button class="btn btn-info" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </span>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="card-header">Board</div>
 
 @isset($search_result)

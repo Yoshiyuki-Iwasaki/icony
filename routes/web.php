@@ -25,5 +25,6 @@ Route::get('/', 'PostController@index')->name('posts.index');
 Route::get('/posts/search', 'PostController@search')->name('posts.search');
 
 Route::resource('/posts', 'PostController', ['except' => ['index']]);
-Route::resource('/users', 'UserController');
+Route::get('/users/show/{id}', 'UserController@show')->name('users.show');
+Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
 Route::resource('/comments', 'CommentController')->middleware('auth');

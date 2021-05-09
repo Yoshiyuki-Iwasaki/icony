@@ -14,22 +14,19 @@
                         </div>
                     @endif
 
-                    @foreach ($user->posts as $post)
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{$post->title}}</h5>
-                                <p class="card-title">
-                                    カテゴリー:
-                                    <a href="{{route('posts.index', ['category_id' => $post->category_id])}}">{{$post->category->category_name}}</a>
-                                </p>
-                                <p class="card-title">投稿者:
-                                    <a href="{{route('users.show', $post->user_id)}}">{{$post->user->name}}</a>
-                                </p>
-                                <p class="card-text">{{$post->content}}</p>
-                                <a href="{{route('posts.show',$post->id)}}" class="btn btn-primary">詳細</a>
-                            </div>
-                        </div>
-                    @endforeach
+                    <form method="POST" action="{{route('users.update',$user->id)}}">
+                        @csrf
+                        氏名
+                        <input type="text" name="name" value="{{$user->name}}">
+                        <br>
+                        紹介文
+                        <input type="url" name="url" value="{{$user->introduction}}">
+                        <br>
+                        メールアドレス
+                        <input type="email" name="email" value="{{$user->email}}">
+                        <br>
+                        <input class="btn btn-info" type="submit" value="更新する">
+                    </form>
                 </div>
             </div>
         </div>

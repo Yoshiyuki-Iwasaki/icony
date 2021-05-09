@@ -31,6 +31,16 @@
 <h5 class="card-title">{{$search_result}}</h5>
 @endisset
 
+@isset($category_result)
+    <?php $counter = 0;?>
+    @foreach ($posts as $post)
+        @if ($counter == 0)
+            <h5 class="card-title">{{$post->category->category_name}}の検索機能{{$posts->total()}}件</h5>
+        @endif
+        <?php $counter++; ?>
+    @endforeach
+@endisset
+
 <div class="card-body">
     @if (session('status'))
         <div class="alert alert-success" role="alert">

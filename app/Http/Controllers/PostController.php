@@ -15,7 +15,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $q = \Request::query();
         if(isset($q['category_id'])) {
@@ -23,9 +23,12 @@ class PostController extends Controller
             $posts = Post::latest()->where('category_id', $q['category_id'])->paginate(5);
             // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
             $posts->load('category','user','tags');
+
+            $category_result = $request->category.'の検索機能'.$posts->total().'件';
             // view側で$post変数を使用可能にする。
             return view('posts.index',[
                 'posts' => $posts,
+                'category_result' => $category_result,
                 'category_id' => $q['category_id'],
                 ]);
         }elseif(isset($q['tag_name'])) {

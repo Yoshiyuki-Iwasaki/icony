@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card-header">{{$user->name}}の投稿</div>
+<div class="card-header">{{$user->name}}</div>
 
 <div class="card-body">
     @if (session('status'))
@@ -9,6 +9,17 @@
             {{ session('status') }}
         </div>
     @endif
+    <p>紹介文: {{$user->introduction}}</p>
+    <p>メールアドレス: {{$user->email}}</p>
+    <form method="GET" action="{{route('users.edit',$user->id)}}">
+        @csrf
+        <input class="btn btn-info" type="submit" value="アカウント編集">
+    </form>
+
+    <form method="POST" action="{{route('users.destroy',['id'=>$user->id])}}" id="delete_{{$user->id}}">
+        @csrf
+        <a href="#" class="btn btn-danger" data-id="{{$user->id}}" onclick="deletePost(this);">アカウント削除</a>
+    </form>
 
     @foreach ($user->posts as $post)
         <div class="card">
@@ -26,15 +37,15 @@
             </div>
         </div>
     @endforeach
-
-    <form method="GET" action="{{route('users.edit',$user->id)}}">
-        @csrf
-        <input class="btn btn-info" type="submit" value="変更する">
-    </form>
-
-    {{-- <form method="POST" action="{{route('users.destroy',['id'=>$user->id])}}" id="delete_{{$user->id}}">
-        @csrf
-        <a href="#" class="btn btn-danger" data-id="{{$user->id}}" onclick="deletePost(this);">削除する</a>
-    </form> --}}
 </div>
+
+<script>
+    function deletePost(e){
+        'use strict';
+        if(confirm('本当に削除していいですか？')){
+            document.getElementById('delete_' + e.dataset.id).submit();
+        }
+    }
+</script>
+
 @endsection

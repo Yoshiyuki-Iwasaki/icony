@@ -89,6 +89,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = User::find($id);
+        $contact->delete();
+        return redirect('/');
     }
 }

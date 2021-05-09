@@ -20,7 +20,7 @@
                         <input type="text" name="name" value="{{$user->name}}">
                         <br>
                         紹介文
-                        <input type="url" name="url" value="{{$user->introduction}}">
+                        <input type="text" name="introduction" value="{{$user->introduction}}">
                         <br>
                         メールアドレス
                         <input type="email" name="email" value="{{$user->email}}">

@@ -17,7 +17,7 @@
             <p class="card-text">{{$post->content}}</p>
             <img src="{{asset('storage/image/'.$post->image)}}" alt="">
             <a href="#" class="btn btn-primary">編集する</a>
-            <a href="#" class="btn btn-danger" data-id="{{$contact->id}}" onclick="deletePost(this);">削除する</a>
+            <a href="#" class="btn btn-danger">削除する</a>
         </div>
     </div>
 

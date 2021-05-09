@@ -21,9 +21,13 @@ use App\Http\Controllers\HomeController; # don't forgot to add this
 
 Auth::routes();
 
+Route::resource('/posts', 'PostController', ['except' => ['index','edit','destroy','update']]);
 Route::get('/', 'PostController@index')->name('posts.index');
+Route::post('/posts/destroy/{id}', 'PostController@destroy')->name('posts.destroy');
+Route::post('/posts/update/{id}', 'PostController@update')->name('posts.update');
+Route::get('/posts/edit/{id}', 'PostController@edit')->name('posts.edit');
+
 Route::get('/posts/search', 'PostController@search')->name('posts.search');
-Route::resource('/posts', 'PostController', ['except' => ['index']]);
 
 Route::resource('/users', 'UserController', ['except' => ['edit','destroy','update']]);
 Route::post('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');

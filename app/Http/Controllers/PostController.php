@@ -117,7 +117,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -129,7 +130,30 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->file('image')->isValid()) {
+            $post = new Post;
+            $post->user_id = $request->user_id;
+            $post->category_id = $request->category_id;
+            $post->content = $request->content;
+            $post->title = $request->title;
+            $filename = $request->file('image')->store('public/image');
+            $post->image = basename($filename);
+
+            // contentからtagを取り出す
+            preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠]+)/u', $request->content, $match);
+            $tags = [];
+            foreach($match[1] as $tag) {
+                $found = Tag::firstOrCreate(['tag_name' => $tag]);
+                array_push($tags, $found);
+            }
+            $tags_ids =[];
+            foreach($tags as $tag) {
+                array_push($tags_ids, $tag['id']);
+            }
+            $post->save();
+            $post->tags()->attach($tags_ids);
+        }
+        return redirect('/');
     }
 
     /**
@@ -140,7 +164,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('/');
     }
 
     public function search(Request $request) {

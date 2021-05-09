@@ -15,7 +15,6 @@
         @csrf
         <input class="btn btn-info" type="submit" value="アカウント編集">
     </form>
-
     <form method="POST" action="{{route('users.destroy',['id'=>$user->id])}}" id="delete_{{$user->id}}">
         @csrf
         <a href="#" class="btn btn-danger" data-id="{{$user->id}}" onclick="deletePost(this);">アカウント削除</a>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Auth;
 class UserController extends Controller
 {
     /**
@@ -46,9 +46,21 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user->load('posts');
-        return view('users.show',
-            ['user' => $user]
+        $userAuth = Auth::id();
+        $user->load('posts','followUsers','follows');
+        $defaultCount = count($user->follows);
+        dd($user);
+        $defaultFollowed = $user->follows->where('id', $userAuth)->first();
+        if($defaultFollowed) {
+            $defaultFollowed == true;
+        } else {
+            $defaultFollowed == false;
+        }
+        return view('users.show',[
+            'user' => $user,
+            'defaultFollowed' => $defaultFollowed,
+            'defaultCount' => $defaultCount,
+            ]
         );
     }
 

@@ -35,3 +35,7 @@ Route::post('/users/update/{id}', 'UserController@update')->name('users.update')
 Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
 
 Route::resource('/comments', 'CommentController')->middleware('auth');
+
+
+Route::post('/users/{user}/follow', 'FollowUserController@follow');
+Route::post('/users/{user}/unfollow', 'FollowUserController@unfollow');

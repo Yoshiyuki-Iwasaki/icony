@@ -9,11 +9,11 @@
             {{ session('status') }}
         </div>
     @endif
-    <follow-component
-    :user-id = "{{ json_encode($user->id) }}"
-    :default-Followed = "{{ json_encode($defaultFollowed) }}"
-    :default-Count = "{{ json_encode($defaultCount) }}"
-    ></follow-component>
+    <follow
+    :user-id="{{ json_encode($user->id) }}"
+    :default-Followed="{{ json_encode($defaultFollowed) }}"
+    :default-Count="{{ json_encode($defaultCount) }}"
+    ></follow>
     <p>紹介文: {{$user->introduction}}</p>
     <p>メールアドレス: {{$user->email}}</p>
     <form method="GET" action="{{route('users.edit',$user->id)}}">
@@ -43,13 +43,13 @@
     @endforeach
 </div>
 
-<script>
+{{-- <script>
     function deletePost(e){
         'use strict';
         if(confirm('本当に削除していいですか？')){
             document.getElementById('delete_' + e.dataset.id).submit();
         }
     }
-</script>
+</script> --}}
 
 @endsection

@@ -48,9 +48,8 @@ class UserController extends Controller
     {
         $userAuth = Auth::id();
         $user->load('posts','followUsers','follows');
-        $defaultCount = count($user->follows);
-        dd($user);
-        $defaultFollowed = $user->follows->where('id', $userAuth)->first();
+        $defaultCount = count($user->followUsers);
+        $defaultFollowed = $user->followUsers->where('id', $userAuth)->first();
         if($defaultFollowed) {
             $defaultFollowed == true;
         } else {

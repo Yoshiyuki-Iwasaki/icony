@@ -25,7 +25,7 @@ export default {
     data() {
         return {
             followed: false,
-            followCount: 0,
+            followCount: 0
         };
     },
     created() {
@@ -39,11 +39,11 @@ export default {
 
             axios
                 .post(url)
-                .then((response) => {
+                .then(response => {
                     this.followed = true;
                     this.followCount = response.data.followCount;
                 })
-                .catch((error) => {
+                .catch(error => {
                     alert(error);
                 });
         },
@@ -52,14 +52,14 @@ export default {
 
             axios
                 .post(url)
-                .then((response) => {
+                .then(response => {
                     this.followed = false;
                     this.followCount = response.data.followCount;
                 })
-                .catch((error) => {
+                .catch(error => {
                     alert(error);
                 });
-        },
-    },
+        }
+    }
 };
 </script>

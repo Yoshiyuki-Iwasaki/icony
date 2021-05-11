@@ -44,7 +44,7 @@ export default {
                     this.followCount = response.data.followCount;
                 })
                 .catch(error => {
-                    alert(error);
+                    console.log(error);
                 });
         },
         unfollow(userId) {

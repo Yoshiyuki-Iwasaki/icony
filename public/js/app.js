@@ -1922,7 +1922,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.followed = true;
         _this.followCount = response.data.followCount;
       })["catch"](function (error) {
-        alert(error);
+        console.log(error);
       });
     },
     unfollow: function unfollow(userId) {

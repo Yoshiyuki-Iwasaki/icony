@@ -15,10 +15,6 @@ use App\Http\Controllers\HomeController; # don't forgot to add this
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
 
 Route::resource('/posts', 'PostController', ['except' => ['index','edit','destroy','update']]);
@@ -36,6 +32,5 @@ Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
 
 Route::resource('/comments', 'CommentController')->middleware('auth');
 
-
-Route::post('/users/{user}/follow', 'FollowUserController@follow');
-Route::post('/users/{user}/unfollow', 'FollowUserController@unfollow');
+Route::post('/users/{id}/follow', 'FollowUserController@follow');
+Route::post('/users/{id}/unfollow', 'FollowUserController@unfollow');

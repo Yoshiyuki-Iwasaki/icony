@@ -17,22 +17,27 @@ use App\Http\Controllers\HomeController; # don't forgot to add this
 
 Auth::routes();
 
+// posts
 Route::resource('/posts', 'PostController', ['except' => ['index','edit','destroy','update']]);
 Route::get('/', 'PostController@index')->name('posts.index');
 Route::post('/posts/destroy/{id}', 'PostController@destroy')->name('posts.destroy');
 Route::post('/posts/update/{id}', 'PostController@update')->name('posts.update');
 Route::get('/posts/edit/{id}', 'PostController@edit')->name('posts.edit');
-
 Route::get('/posts/search', 'PostController@search')->name('posts.search');
 
+// users
 Route::resource('/users', 'UserController', ['except' => ['edit','destroy','update']]);
 Route::post('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');
 Route::post('/users/update/{id}', 'UserController@update')->name('users.update');
 Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
-
-Route::resource('/comments', 'CommentController')->middleware('auth');
-
 Route::post('/users/{id}/follow', 'FollowUserController@follow');
 Route::post('/users/{id}/unfollow', 'FollowUserController@unfollow');
 
+// comments
+Route::resource('/comments', 'CommentController')->middleware('auth');
+
+// admin
 Route::get('/admin', 'AdminController@index')->name('admin');
+
+// news
+Route::get('/news', 'NewsController@index')->name('news.index');

@@ -14,7 +14,27 @@ class NewsController extends Controller
      */
     public function index()
     {
-    $allNews = News::latest()->paginate(5);
-    return view('news.index',['allNews' => $allNews]);
+        $allNews = News::latest()->paginate(5);
+        return view('news.index',['allNews' => $allNews]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('news.create');
+    }
+
+    public function store(Request $request)
+    {
+        $news = new News;
+        $news->content = $request->content;
+        $news->created_at = $request->created_at;
+        $news->save();
+        return redirect('/news');
+    }
+
 }

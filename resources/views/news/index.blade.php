@@ -9,9 +9,10 @@
         </div>
     @endif
 
+    <a href="{{route('news.create')}}" class="btn btn-primary">お知らせ追加</a>
     @foreach ($allNews as $news)
     <div>
-        {{-- <p>{{$news->created_at}}</p> --}}
+        <p>{{$news->created_at}}</p>
         <p>{{$news->content}}</p>
     </div>
     @endforeach

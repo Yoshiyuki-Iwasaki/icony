@@ -16,6 +16,7 @@
         >
             <i class="mr-1 fas fa-user-check"></i>フォロー中
         </button>
+        <p>フォロワー数: {{ followCount }}</p>
     </span>
 </template>
 

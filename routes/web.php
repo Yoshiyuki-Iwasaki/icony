@@ -34,3 +34,5 @@ Route::resource('/comments', 'CommentController')->middleware('auth');
 
 Route::post('/users/{id}/follow', 'FollowUserController@follow');
 Route::post('/users/{id}/unfollow', 'FollowUserController@unfollow');
+
+Route::get('/admin', 'AdminController@index')->name('admin');

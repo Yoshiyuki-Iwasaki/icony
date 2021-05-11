@@ -24,6 +24,14 @@ class User extends Authenticatable
         'password',
     ];
 
+       /**
+     * The attributes that are gureded
+     * @var array
+     */
+    protected $guarded = [
+        'role'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

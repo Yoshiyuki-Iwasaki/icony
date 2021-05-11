@@ -1901,6 +1901,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["userId", "defaultFollowed", "defaultCount"],
   data: function data() {
@@ -37648,7 +37649,9 @@ var render = function() {
             _c("i", { staticClass: "mr-1 fas fa-user-check" }),
             _vm._v("フォロー中\n    ")
           ]
-        )
+        ),
+    _vm._v(" "),
+    _c("p", [_vm._v("フォロー数: " + _vm._s(_vm.followCount))])
   ])
 }
 var staticRenderFns = []

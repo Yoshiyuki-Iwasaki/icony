@@ -32,6 +32,8 @@ class FollowUsersTable extends Migration
     public function down()
     {
         Schema::table('follow_users', function (Blueprint $table) {
+            Schema::dropIfExists('posts');
+            Schema::dropIfExists('post_tag');
         });
     }
 }

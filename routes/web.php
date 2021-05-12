@@ -18,7 +18,7 @@ use App\Http\Controllers\HomeController; # don't forgot to add this
 Auth::routes();
 
 // posts
-Route::resource('/posts', 'PostController', ['except' => ['index','edit','destroy','update']]);
+Route::resource('/posts', 'PostController', ['except' => ['index','edit','destroy','update','search']]);
 Route::get('/', 'PostController@index')->name('posts.index');
 Route::post('/posts/destroy/{id}', 'PostController@destroy')->name('posts.destroy');
 Route::post('/posts/update/{id}', 'PostController@update')->name('posts.update');
@@ -43,3 +43,8 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/news', 'NewsController@index')->name('news.index');
 Route::resource('/news', 'NewsController', ['except' => ['index','edit','destroy','update']]);
 Route::post('/news/destroy/{id}', 'NewsController@destroy')->name('news.destroy');
+
+// category
+Route::get('/category', 'CategoryController@index')->name('category.index');
+Route::resource('/category', 'CategoryController', ['except' => ['index','edit','destroy','update']]);
+Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');

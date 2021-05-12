@@ -42,3 +42,4 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 // news
 Route::get('/news', 'NewsController@index')->name('news.index');
 Route::resource('/news', 'NewsController', ['except' => ['index','edit','destroy','update']]);
+Route::post('/news/destroy/{id}', 'NewsController@destroy')->name('news.destroy');

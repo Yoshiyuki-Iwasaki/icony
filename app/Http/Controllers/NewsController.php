@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Models\User;
 
 class NewsController extends Controller
 {
@@ -14,8 +15,13 @@ class NewsController extends Controller
      */
     public function index()
     {
+
+        $users = User::latest();
         $allNews = News::latest()->paginate(5);
-        return view('news.index',['allNews' => $allNews]);
+        return view('news.index',[
+            'allNews' => $allNews,
+            'users' => $users
+        ]);
     }
 
     /**

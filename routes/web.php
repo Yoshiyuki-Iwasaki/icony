@@ -45,3 +45,8 @@ Route::post('/news/destroy/{id}', 'NewsController@destroy')->name('news.destroy'
 Route::get('/category', 'CategoryController@index')->name('category.index');
 Route::resource('/category', 'CategoryController', ['except' => ['index','edit','destroy','update']]);
 Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
+
+// request
+Route::get('/request', 'RequestController@index')->name('request.index');
+Route::resource('/request', 'RequestController', ['except' => ['index','edit','destroy','update']]);
+Route::post('/request/destroy/{id}', 'RequestController@destroy')->name('request.destroy');

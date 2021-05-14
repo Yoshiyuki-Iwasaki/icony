@@ -80,7 +80,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         // Postモデル内のcategoryメソッドとUserモデル内のuserメソッドをloadする
-        $post->load('category','user','comments.user');
+        $post->load('category','user',);
         // view側で$post変数を使用可能にする。
         return view('posts.show',['post' => $post]);
     }

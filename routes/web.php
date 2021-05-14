@@ -33,9 +33,6 @@ Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
 Route::post('/users/{id}/follow', 'FollowUserController@follow');
 Route::post('/users/{id}/unfollow', 'FollowUserController@unfollow');
 
-// comments
-Route::resource('/comments', 'CommentController')->middleware('auth');
-
 // admin
 Route::get('/admin', 'AdminController@index')->name('admin');
 

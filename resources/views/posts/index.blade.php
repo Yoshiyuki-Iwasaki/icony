@@ -24,7 +24,7 @@
         </div>
     @endif
 
-    <a class="btn btn-primary" href="http://127.0.0.1:8002/category">Category一覧へ</a>
+    <a class="btn btn-primary" href="http://127.0.0.1:8000/category">Category一覧へ</a>
 
     @foreach ($posts as $post)
         <div class="card">
@@ -33,12 +33,6 @@
                 <p class="card-title">
                     カテゴリー:
                     <a href="{{route('posts.index', ['category_id' => $post->category_id])}}">{{$post->category->category_name}}</a>
-                </p>
-                <p class="card-title">
-                    Tag:
-                    @foreach ($post->tags as $tag )
-                        <a href="{{route('posts.index', ['tag_name' => $tag->tag_name])}}">#{{$tag->tag_name}}</a>
-                    @endforeach
                 </p>
                 <p class="card-title">投稿者:
                     <a href="{{route('users.show', $post->user_id)}}">{{$post->user->name}}</a>

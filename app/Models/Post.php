@@ -32,9 +32,4 @@ class Post extends Model
         // 投稿は１つのカテゴリーに属する
         return $this->hasMany(Comment::class,'post_id','id');
     }
-
-    public function tags(){
-        // 投稿は１つのカテゴリーに属する
-        return $this->belongsToMany(Tag::class);
-    }
 }

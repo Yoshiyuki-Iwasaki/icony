@@ -17,14 +17,17 @@
     ></follow>
     <p>紹介文: {{$user->introduction}}</p>
     <p>メールアドレス: {{$user->email}}</p>
-    <form method="GET" action="{{route('users.edit',$user->id)}}">
-        @csrf
-        <input class="btn btn-info" type="submit" value="アカウント編集">
-    </form>
-    <form method="POST" action="{{route('users.destroy',['id'=>$user->id])}}" id="delete_{{$user->id}}">
-        @csrf
-        <a href="#" class="btn btn-danger" data-id="{{$user->id}}" onclick="deletePost(this);">アカウント削除</a>
-    </form>
+
+    @if(Auth::id() === $user->id)
+        <form method="GET" action="{{route('users.edit',$user->id)}}">
+            @csrf
+            <input class="btn btn-info" type="submit" value="アカウント編集">
+        </form>
+        <form method="POST" action="{{route('users.destroy',['id'=>$user->id])}}" id="delete_{{$user->id}}">
+            @csrf
+            <a href="#" class="btn btn-danger" data-id="{{$user->id}}" onclick="deletePost(this);">アカウント削除</a>
+        </form>
+    @endif
 
     @foreach ($user->posts as $post)
         <div class="card">

@@ -64,8 +64,6 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
             $post->content = $request->content;
             $post->title = $request->title;
-            $filename = $request->file('image')->store('public/image');
-            $post->image = basename($filename);
             $post->save();
         }
         return redirect('/');
@@ -112,8 +110,6 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
             $post->content = $request->content;
             $post->title = $request->title;
-            $filename = $request->file('image')->store('public/image');
-            $post->image = basename($filename);
             $post->save();
         }
         return redirect('/');

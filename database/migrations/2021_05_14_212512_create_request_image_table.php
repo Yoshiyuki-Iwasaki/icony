@@ -13,7 +13,7 @@ class CreateRequestImageTable extends Migration
      */
     public function up()
     {
-        Schema::create('request_image', function (Blueprint $table) {
+        Schema::create('requests_image', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('url');
@@ -32,6 +32,6 @@ class CreateRequestImageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('request_image');
+        Schema::dropIfExists('requests_image');
     }
 }

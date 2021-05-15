@@ -10,6 +10,7 @@
         </div>
     @endif
     <follow
+    :myuser-id="{{ json_encode(Auth::id()) }}"
     :user-id="{{ json_encode($user->id) }}"
     :default-Followed="{{ json_encode($defaultFollowed) }}"
     :default-Count="{{ json_encode($defaultCount) }}"

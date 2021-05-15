@@ -1,28 +1,30 @@
 <template>
     <span class="float-right">
-        <button
-            v-if="!followed"
-            type="button"
-            class="btn-sm shadow-none border border-primary p-2"
-            @click="follow(userId)"
-        >
-            <i class="mr-1 fas fa-user-plus"></i>フォロー
-        </button>
-        <button
-            v-else
-            type="button"
-            class="btn-sm shadow-none border border-primary p-2 bg-primary text-white"
-            @click="unfollow(userId)"
-        >
-            <i class="mr-1 fas fa-user-check"></i>フォロー中
-        </button>
+        <div v-if="myuserId != userId">
+            <button
+                v-if="!followed"
+                type="button"
+                class="btn-sm shadow-none border border-primary p-2"
+                @click="follow(userId)"
+            >
+                <i class="mr-1 fas fa-user-plus"></i>フォロー
+            </button>
+            <button
+                v-else
+                type="button"
+                class="btn-sm shadow-none border border-primary p-2 bg-primary text-white"
+                @click="unfollow(userId)"
+            >
+                <i class="mr-1 fas fa-user-check"></i>フォロー中
+            </button>
+        </div>
         <p>フォロワー数: {{ followCount }}</p>
     </span>
 </template>
 
 <script>
 export default {
-    props: ["userId", "defaultFollowed", "defaultCount"],
+    props: ["myuserId", "userId", "defaultFollowed", "defaultCount"],
     data() {
         return {
             followed: false,

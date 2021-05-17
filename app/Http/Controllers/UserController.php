@@ -47,7 +47,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $userAuth = Auth::id();
-        $user->load('posts','followUsers','follows');
+        $user->load('orders','followUsers','follows');
         $defaultCount = count($user->followUsers);
         $defaultFollowed = $user->followUsers->where('id', $userAuth)->first();
         if($defaultFollowed) {

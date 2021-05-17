@@ -51,8 +51,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts(){
-        return $this->hasMany(\App\Models\Post::class,'user_id','id');
+    public function orders(){
+        return $this->hasMany(\App\Models\Order::class,'requested_user_id','id');
     }
 
      // フォロワー→フォロー

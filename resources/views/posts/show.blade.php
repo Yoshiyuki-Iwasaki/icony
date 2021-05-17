@@ -11,6 +11,7 @@
 
     <div class="card">
         <div class="card-body">
+            {{$post}}
             <h5 class="card-title">{{$post->title}}</h5>
             <p class="card-title">カテゴリー: <a href="{{route('posts.index', ['category_id' => $post->category_id])}}">{{$post->category->category_name}}</a></p>
             <p class="card-title">投稿者: <a href="{{route('users.show', $post->user_id)}}">{{$post->user->name}}</a></p>

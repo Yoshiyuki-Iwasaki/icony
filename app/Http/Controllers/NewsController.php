@@ -38,7 +38,6 @@ class NewsController extends Controller
     {
         $news = new News;
         $news->content = $request->content;
-        $news->created_at = $request->created_at;
         $news->save();
         return redirect('/news');
     }

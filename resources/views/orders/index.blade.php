@@ -12,21 +12,23 @@
 
     <div class="card">
         <div class="card-header">送信リクエスト</div>
-        @foreach ($requests as $request)
-            @if(Auth::id() == $request->requesting_user_id)
+        @foreach ($orders as $order)
+            @if(Auth::id() == $order->requesting_user_id)
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-text">{{$request->content}}</p>
+                        <p class="card-text">{{$order->content}}</p>
+                        <a href="{{route('orders.show',$order->id)}}" class="btn btn-primary">詳細</a>
                     </div>
                 </div>
             @endif
         @endforeach
         <div class="card-header">受信リクエスト</div>
-        @foreach ($requests as $request)
-            @if(Auth::id() == $request->requested_user_id)
+        @foreach ($orders as $order)
+            @if(Auth::id() == $order->requested_user_id)
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-text">{{$request->content}}</p>
+                        <p class="card-text">{{$order->content}}</p>
+                        <a href="{{route('orders.show',$order->id)}}" class="btn btn-primary">詳細</a>
                     </div>
                 </div>
             @endif

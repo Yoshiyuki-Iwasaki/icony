@@ -17,7 +17,7 @@
     ></follow>
     <p>紹介文: {{$user->introduction}}</p>
     <p>メールアドレス: {{$user->email}}</p>
-
+    <a href="{{route('orders.create',['user'=>$user->id])}}" class="btn btn-info">新規リクエスト</a>
     @if(Auth::id() === $user->id)
         <form method="GET" action="{{route('users.edit',$user->id)}}">
             @csrf

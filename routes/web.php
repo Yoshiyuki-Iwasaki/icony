@@ -46,7 +46,8 @@ Route::get('/category', 'CategoryController@index')->name('category.index');
 Route::resource('/category', 'CategoryController', ['except' => ['index','edit','destroy','update']]);
 Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
 
-// request
-Route::get('/request', 'RequestController@index')->name('request.index');
-Route::resource('/request', 'RequestController', ['except' => ['index','edit','destroy','update']]);
-Route::post('/request/destroy/{id}', 'RequestController@destroy')->name('request.destroy');
+// order
+Route::get('/orders', 'OrderController@index')->name('orders.index');
+Route::resource('/orders', 'OrderController', ['except' => ['index','show','edit','destroy','update']]);
+Route::post('/orders/destroy/{order}', 'OrderController@destroy')->name('orders.destroy');
+Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');

@@ -14,7 +14,7 @@ class RequestsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('requests')->insert([
+        DB::table('orders')->insert([
             [
                 'id' => 4,
                 'requested_user_id' => 1,

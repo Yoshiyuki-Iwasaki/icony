@@ -3,21 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Requests;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth; //追加
 
-class RequestController extends Controller
+class OrderController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $requests = Requests::latest()->paginate(5);
-        return view('request.index',['requests' => $requests]);
+        $orders = Order::latest()->paginate(5);
+        $orders->load('user');
+        return view('orders.index',['orders' => $orders]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('request.create');
+        $user = $request->user;
+        return view('orders.create', compact('user'));
     }
+
 
         /**
      * Store a newly created resource in storage.
@@ -27,6 +30,13 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
+        $order = new Order;
+        $order->requested_user_id = $request->requested_user_id;
+        $order->requesting_user_id = $request->requesting_user_id;
+        // $order->category_id = $request->category_id;
+        $order->content = $request->content;
+        $order->save();
+        return redirect('/orders');
     }
 
     /**
@@ -35,8 +45,9 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(App\Models\Request $request)
+    public function show(Order $order)
     {
+        return view('orders.show',['order' => $order]);
     }
 
     /**
@@ -69,5 +80,8 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
+        $news = Requests::find($id);
+        $news->delete();
+        return redirect('/request');
     }
 }

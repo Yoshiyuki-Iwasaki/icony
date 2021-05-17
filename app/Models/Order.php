@@ -20,6 +20,6 @@ class Order extends Model
     // user_nameをPost側で取得できるようにする
     public function user(){
         // 投稿は１つのカテゴリーに属する
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class,'requesting_user_id');
     }
 }

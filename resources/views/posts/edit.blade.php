@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('posts.update', $order)}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="exampleInputEmail1">title</label>

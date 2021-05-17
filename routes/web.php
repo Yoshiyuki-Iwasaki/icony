@@ -17,9 +17,11 @@ use App\Http\Controllers\HomeController; # don't forgot to add this
 
 Auth::routes();
 
+Route::resource('/', 'HomeController');
+
 // posts
 Route::resource('/posts', 'PostController', ['except' => ['index','edit','destroy','update','search']]);
-Route::get('/', 'PostController@index')->name('posts.index');
+Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::post('/posts/destroy/{id}', 'PostController@destroy')->name('posts.destroy');
 Route::post('/posts/update/{id}', 'PostController@update')->name('posts.update');
 Route::get('/posts/edit/{id}', 'PostController@edit')->name('posts.edit');
@@ -42,12 +44,13 @@ Route::resource('/news', 'NewsController', ['except' => ['index','edit','destroy
 Route::post('/news/destroy/{id}', 'NewsController@destroy')->name('news.destroy');
 
 // category
-Route::get('/category', 'CategoryController@index')->name('category.index');
 Route::resource('/category', 'CategoryController', ['except' => ['index','edit','destroy','update']]);
 Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 // order
+Route::resource('/orders', 'OrderController', ['except' => ['index','show','edit','update','destroy']]);
 Route::get('/orders', 'OrderController@index')->name('orders.index');
-Route::resource('/orders', 'OrderController', ['except' => ['index','show','edit','destroy','update']]);
 Route::post('/orders/destroy/{order}', 'OrderController@destroy')->name('orders.destroy');
+Route::get('/orders/edit/{order}', 'OrderController@edit')->name('orders.edit');
+Route::post('/orders/update/{order}', 'OrderController@update')->name('orders.update');
 Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');

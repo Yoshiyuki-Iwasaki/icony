@@ -24,8 +24,6 @@
         </div>
     @endif
 
-    <a class="btn btn-primary" href="http://127.0.0.1:8000/category">Category一覧へ</a>
-
     @foreach ($posts as $post)
         <div class="card">
             <div class="card-body">

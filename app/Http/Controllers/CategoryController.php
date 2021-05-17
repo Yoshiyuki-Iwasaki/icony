@@ -7,19 +7,6 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-        /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        $allCategory = Category::latest()->paginate(5);
-        return view('category.index',[
-            'allCategory' => $allCategory,
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *

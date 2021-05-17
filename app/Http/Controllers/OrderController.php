@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Http\Requests\OrderRequests;
 use Illuminate\Support\Facades\Auth; //追加
 
 class OrderController extends Controller
@@ -47,6 +48,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        $order->load('user');
         return view('orders.show',['order' => $order]);
     }
 
@@ -58,6 +60,8 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
+        $order = Order::find($id);
+        return view('orders.edit', ['order' => $order]);
     }
 
     /**
@@ -67,9 +71,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(OrderRequests $request, Order $order)
     {
-
+        $order->update($request->all());
+        return redirect('/orders');
     }
 
     /**
@@ -80,8 +85,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $news = Requests::find($id);
+        $news = Order::find($id);
         $news->delete();
-        return redirect('/request');
+        return redirect('/orders');
     }
 }

@@ -17,7 +17,6 @@
     ></follow>
     <p>紹介文: {{$user->introduction}}</p>
     <p>メールアドレス: {{$user->email}}</p>
-    <a href="{{route('orders.create',['user'=>$user->id])}}" class="btn btn-info">新規リクエスト</a>
     @if(Auth::id() === $user->id)
         <form method="GET" action="{{route('users.edit',$user->id)}}">
             @csrf
@@ -27,6 +26,8 @@
             @csrf
             <a href="#" class="btn btn-danger" data-id="{{$user->id}}" onclick="deletePost(this);">アカウント削除</a>
         </form>
+    @else
+        <a href="{{route('orders.create',['user'=>$user->id])}}" class="btn btn-info">新規リクエスト</a>
     @endif
 
     @foreach ($user->orders as $order)
@@ -41,14 +42,5 @@
         </div>
     @endforeach
 </div>
-
-{{-- <script>
-    function deletePost(e){
-        'use strict';
-        if(confirm('本当に削除していいですか？')){
-            document.getElementById('delete_' + e.dataset.id).submit();
-        }
-    }
-</script> --}}
 
 @endsection

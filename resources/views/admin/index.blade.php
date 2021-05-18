@@ -13,7 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    adminです。
+                        <admin-tab
+                        :categories="{{ json_encode($categories) }}"
+                        :users="{{ json_encode($users) }}"
+                        :orders="{{ json_encode($orders) }}"
+                        :news="{{ json_encode($news) }}"
+                        ></admin-tab>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::latest()->paginate(5);
-        $orders->load('user');
+        $orders->load('category','user');
         return view('orders.index',['orders' => $orders]);
     }
 
@@ -48,7 +48,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order->load('user');
+        $order->load('category','user');
         return view('orders.show',['order' => $order]);
     }
 

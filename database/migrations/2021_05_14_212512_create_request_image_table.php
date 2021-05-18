@@ -32,6 +32,6 @@ class CreateRequestImageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_image');
+        Schema::dropIfExists('orders_image');
     }
 }

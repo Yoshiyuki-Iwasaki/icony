@@ -23,17 +23,12 @@
             <form action="{{route('orders.store')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="exampleInputEmail1">title</label>
-                    <input name="title" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title">
-                </div>
-
-                <div class="form-group">
                     <label for="exampleFormControlSelect1">category</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="category_id">
                         <option selected=""></option>
-                        <option value="1">book</option>
-                        <option value="2">cafe</option>
-                        <option value="3">travel</option>
+                        <option value="12">book</option>
+                        <option value="13">cafe</option>
+                        <option value="14">travel</option>
                     </select>
                 </div>
 

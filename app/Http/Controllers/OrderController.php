@@ -34,7 +34,7 @@ class OrderController extends Controller
         $order = new Order;
         $order->requested_user_id = $request->requested_user_id;
         $order->requesting_user_id = $request->requesting_user_id;
-        // $order->category_id = $request->category_id;
+        $order->category_id = $request->category_id;
         $order->content = $request->content;
         $order->save();
         return redirect('/orders');

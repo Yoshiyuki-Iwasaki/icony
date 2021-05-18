@@ -28,8 +28,5 @@ class NewsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('news');
-        Schema::dropIfExists('comments');
-        Schema::dropIfExists('post_tag');
-        Schema::dropIfExists('tags');
     }
 }

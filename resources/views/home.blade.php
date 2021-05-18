@@ -14,7 +14,14 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    @foreach ($orders as $order)
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">{{$order->content}}</p>
+                                <a href="{{route('orders.show',$order->id)}}" class="btn btn-primary">詳細</a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

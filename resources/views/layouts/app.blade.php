@@ -72,6 +72,9 @@
                                     {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @can('isAdmin')
+                                        <a href="{{route('admin.index')}}" class="dropdown-item">admin画面</a>
+                                    @endcan
                                     <a href="http://127.0.0.1:8000/users/{{Auth::id()}}" class="dropdown-item">マイページ</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

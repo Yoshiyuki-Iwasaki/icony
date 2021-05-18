@@ -36,8 +36,9 @@ Route::post('/users/{id}/follow', 'FollowUserController@follow');
 Route::post('/users/{id}/unfollow', 'FollowUserController@unfollow');
 
 // admin
-Route::get('/admin', 'AdminController@index')->name('admin');
-
+Route::group(['middleware' => ['auth', 'can:isAdmin']], function () {
+    Route::get('/admin', 'AdminController@index')->name('admin.index');
+});
 // news
 Route::get('/news', 'NewsController@index')->name('news.index');
 Route::resource('/news', 'NewsController', ['except' => ['index','edit','destroy','update']]);

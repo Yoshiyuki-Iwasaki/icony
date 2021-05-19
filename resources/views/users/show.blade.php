@@ -15,6 +15,11 @@
     :default-Followed="{{ json_encode($defaultFollowed) }}"
     :default-Count="{{ json_encode($defaultCount) }}"
     ></follow>
+    @if($user->image == null)
+        <img src="/storage/noimage.png">
+    @else
+        <img src="{{ asset('storage/image/'.$user->image) }}">
+    @endif
     <p>紹介文: {{$user->introduction}}</p>
     <p>メールアドレス: {{$user->email}}</p>
     @if(Auth::id() === $user->id)

@@ -14,11 +14,15 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{route('users.update',$user->id)}}">
+                    <form method="POST" action="{{route('users.update',$user->id)}}" enctype="multipart/form-data">
                         @csrf
                         氏名
                         <input type="text" name="name" value="{{$user->name}}">
                         <br>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Example file input</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+                        </div>
                         紹介文
                         <input type="text" name="introduction" value="{{$user->introduction}}">
                         <br>

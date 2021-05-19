@@ -33,6 +33,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="exampleFormControlFile1">Example file input</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+                </div>
+
+                <div class="form-group">
                     <label for="exampleFormControlSelect1">Comment:</label>
                     <textarea class="form-control" name="content" id="comment" rows="5"></textarea>
                 </div>

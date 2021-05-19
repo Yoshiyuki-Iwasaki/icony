@@ -35,28 +35,32 @@
             </li>
         </ul>
 
-        <ul id="pills-tabContent">
-            <li v-if="isActive === '1'" class="tab-pane" role="tabpanel">
-                <div v-for="category of categories" v-bind:key="category.id">
-                    <p>{{ category.category_name }}</p>
-                </div>
-            </li>
-            <li v-else-if="isActive === '2'" class="tab-pane" role="tabpanel">
-                <div v-for="user of users" v-bind:key="user.id">
-                    <p>{{ user.name }}</p>
-                </div>
-            </li>
-            <li v-else-if="isActive === '3'" class="tab-pane" role="tabpanel">
-                <div v-for="news of news" v-bind:key="news.id">
-                    <p>{{ news.content }}</p>
-                </div>
-            </li>
-            <li v-else-if="isActive === '4'" class="tab-pane" role="tabpanel">
-                <div v-for="order of orders" v-bind:key="order.id">
-                    <p>{{ order.content }}</p>
-                </div>
-            </li>
-        </ul>
+        <div v-if="isActive === '1'" class="tab-pane" role="tabpanel">
+            <a href="/admin/category/create" class="btn btn-primary"
+                >新規カテゴリー作成</a
+            >
+            <div v-for="category of categories" v-bind:key="category.id">
+                <a href="/category/">{{ category.category_name }}</a>
+            </div>
+        </div>
+        <div v-else-if="isActive === '2'" class="tab-pane" role="tabpanel">
+            <div v-for="user of users" v-bind:key="user.id">
+                <a href="/user/">{{ user.name }}</a>
+            </div>
+        </div>
+        <div v-else-if="isActive === '3'" class="tab-pane" role="tabpanel">
+            <a href="/admin/news/create" class="btn btn-primary"
+                >新規ニュース作成</a
+            >
+            <div v-for="news of news" v-bind:key="news.id">
+                <a href="/news/">{{ news.name }}</a>
+            </div>
+        </div>
+        <div v-else-if="isActive === '4'" class="tab-pane" role="tabpanel">
+            <div v-for="order of orders" v-bind:key="order.id">
+                <a href="/order/">{{ order.content }}</a>
+            </div>
+        </div>
     </div>
 </template>
 

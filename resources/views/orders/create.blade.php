@@ -26,9 +26,9 @@
                     <label for="exampleFormControlSelect1">category</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="category_id">
                         <option selected=""></option>
-                        <option value="12">book</option>
-                        <option value="13">cafe</option>
-                        <option value="14">travel</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                            @endforeach
                     </select>
                 </div>
 

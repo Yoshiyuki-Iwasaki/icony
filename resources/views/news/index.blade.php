@@ -8,20 +8,10 @@
             {{ session('status') }}
         </div>
     @endif
-
-    @can('isAdmin')
-        <a href="{{route('news.create')}}" class="btn btn-primary">お知らせ追加</a>
-    @endcan
     @foreach ($allNews as $news)
     <div>
         <p>{{$news->created_at}}</p>
         <p>{{$news->content}}</p>
-        @can('isAdmin')
-            <form method="POST" action="{{route('news.destroy',$news->id)}}" id="delete_{{$news->id}}">
-                @csrf
-                <a href="#" class="btn btn-danger" data-id="{{$news->id}}" onclick="deletePost(this);">削除</a>
-            </form>
-        @endcan
     </div>
     @endforeach
 </div>

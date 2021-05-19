@@ -15,4 +15,8 @@ class Category extends Model
     protected $fillable = [
         'category_name',
     ];
+
+    public function orders(){
+        return $this->hasMany(\App\Models\Order::class,'category_id','id');
+    }
 }

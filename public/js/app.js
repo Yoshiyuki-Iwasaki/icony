@@ -1982,6 +1982,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["categories", "users", "news", "orders"],
   data: function data() {
@@ -37760,53 +37764,81 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("ul", { attrs: { id: "pills-tabContent" } }, [
-      _vm.isActive === "1"
-        ? _c(
-            "li",
-            { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
+    _vm.isActive === "1"
+      ? _c(
+          "div",
+          { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: "/admin/category/create" }
+              },
+              [_vm._v("新規カテゴリー作成")]
+            ),
+            _vm._v(" "),
             _vm._l(_vm.categories, function(category) {
               return _c("div", { key: category.id }, [
-                _c("p", [_vm._v(_vm._s(category.category_name))])
+                _c("a", { attrs: { href: "/category/" } }, [
+                  _vm._v(_vm._s(category.category_name))
+                ])
               ])
-            }),
-            0
-          )
-        : _vm.isActive === "2"
-        ? _c(
-            "li",
-            { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
-            _vm._l(_vm.users, function(user) {
-              return _c("div", { key: user.id }, [
-                _c("p", [_vm._v(_vm._s(user.name))])
+            })
+          ],
+          2
+        )
+      : _vm.isActive === "2"
+      ? _c(
+          "div",
+          { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
+          _vm._l(_vm.users, function(user) {
+            return _c("div", { key: user.id }, [
+              _c("a", { attrs: { href: "/user/" } }, [
+                _vm._v(_vm._s(user.name))
               ])
-            }),
-            0
-          )
-        : _vm.isActive === "3"
-        ? _c(
-            "li",
-            { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
+            ])
+          }),
+          0
+        )
+      : _vm.isActive === "3"
+      ? _c(
+          "div",
+          { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: "/admin/news/create" }
+              },
+              [_vm._v("新規ニュース作成")]
+            ),
+            _vm._v(" "),
             _vm._l(_vm.news, function(news) {
               return _c("div", { key: news.id }, [
-                _c("p", [_vm._v(_vm._s(news.content))])
+                _c("a", { attrs: { href: "/news/" } }, [
+                  _vm._v(_vm._s(news.name))
+                ])
               ])
-            }),
-            0
-          )
-        : _vm.isActive === "4"
-        ? _c(
-            "li",
-            { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
-            _vm._l(_vm.orders, function(order) {
-              return _c("div", { key: order.id }, [
-                _c("p", [_vm._v(_vm._s(order.content))])
+            })
+          ],
+          2
+        )
+      : _vm.isActive === "4"
+      ? _c(
+          "div",
+          { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
+          _vm._l(_vm.orders, function(order) {
+            return _c("div", { key: order.id }, [
+              _c("a", { attrs: { href: "/order/" } }, [
+                _vm._v(_vm._s(order.content))
               ])
-            }),
-            0
-          )
-        : _vm._e()
-    ])
+            ])
+          }),
+          0
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

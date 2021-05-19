@@ -38,14 +38,17 @@ Route::post('/users/{id}/unfollow', 'FollowUserController@unfollow');
 // admin
 Route::group(['middleware' => ['auth', 'can:isAdmin']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin.index');
+    Route::get('/admin/news/create/', 'NewsController@create')->name('news.create');
+    Route::get('/admin/category/create/', 'CategoryController@create')->name('category.create');
+
 });
 // news
 Route::get('/news', 'NewsController@index')->name('news.index');
-Route::resource('/news', 'NewsController', ['except' => ['index','edit','destroy','update']]);
+Route::resource('/news', 'NewsController', ['except' => ['index','create','edit','destroy','update']]);
 Route::post('/news/destroy/{id}', 'NewsController@destroy')->name('news.destroy');
 
 // category
-Route::resource('/category', 'CategoryController', ['except' => ['index','edit','destroy','update']]);
+Route::resource('/category', 'CategoryController', ['except' => ['index','create','edit','destroy','update']]);
 Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 // order

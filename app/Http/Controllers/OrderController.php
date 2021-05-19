@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Http\Requests\OrderRequests;
 use Illuminate\Support\Facades\Auth; //追加
+use App\Models\Category;
 
 class OrderController extends Controller
 {
@@ -19,7 +20,8 @@ class OrderController extends Controller
     public function create(Request $request)
     {
         $user = $request->user;
-        return view('orders.create', compact('user'));
+        $categories = Category::all();
+        return view('orders.create', compact('user','categories'));
     }
 
 

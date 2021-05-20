@@ -19,14 +19,6 @@ Auth::routes();
 
 Route::resource('/', 'HomeController');
 
-// posts
-Route::resource('/posts', 'PostController', ['except' => ['index','edit','destroy','update','search']]);
-Route::get('/posts', 'PostController@index')->name('posts.index');
-Route::post('/posts/destroy/{id}', 'PostController@destroy')->name('posts.destroy');
-Route::post('/posts/update/{id}', 'PostController@update')->name('posts.update');
-Route::get('/posts/edit/{id}', 'PostController@edit')->name('posts.edit');
-Route::get('/posts/search', 'PostController@search')->name('posts.search');
-
 // users
 Route::resource('/users', 'UserController', ['except' => ['edit','destroy','update']]);
 Route::post('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');

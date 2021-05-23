@@ -27,10 +27,10 @@
             @csrf
             <input class="btn btn-info" type="submit" value="アカウント編集">
         </form>
-        <form method="POST" action="{{route('users.destroy',['id'=>$user->id])}}" id="delete_{{$user->id}}">
+        {{-- <form method="POST" action="{{route('users.destroy',['id'=>$user->id])}}" id="delete_{{$user->id}}">
             @csrf
             <a href="#" class="btn btn-danger" data-id="{{$user->id}}" onclick="deletePost(this);">アカウント削除</a>
-        </form>
+        </form> --}}
     @else
         <a href="{{route('orders.create',['user'=>$user->id])}}" class="btn btn-info">新規リクエスト</a>
     @endif
@@ -43,7 +43,7 @@
                     <a href="{{route('users.show', $order->requesting_user_id)}}">{{$order->user->name}}</a>
                 </p>
                 <p class="card-text">{{$order->content}}</p>
-                <a href="{{route('orders.show',$order->requesting_user_id)}}" class="btn btn-primary">詳細</a>
+                <a href="{{route('orders.show',$order->id)}}" class="btn btn-primary">詳細</a>
             </div>
         </div>
     @endforeach
@@ -56,7 +56,7 @@
                     <a href="{{route('users.show', $user->id)}}">{{$user->name}}</a>
                 </p>
                 <p class="card-text">{{$order->content}}</p>
-                <a href="{{route('orders.show',$user->id)}}" class="btn btn-primary">詳細</a>
+                <a href="{{route('orders.show',$order->id)}}" class="btn btn-primary">詳細</a>
             </div>
         </div>
     @endforeach

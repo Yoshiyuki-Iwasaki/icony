@@ -37780,9 +37780,7 @@ var render = function() {
             _vm._v(" "),
             _vm._l(_vm.categories, function(category) {
               return _c("div", { key: category.id }, [
-                _c("a", { attrs: { href: "/category/" } }, [
-                  _vm._v(_vm._s(category.category_name))
-                ])
+                _c("p", [_vm._v(_vm._s(category.category_name))])
               ])
             })
           ],
@@ -37794,7 +37792,7 @@ var render = function() {
           { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
           _vm._l(_vm.users, function(user) {
             return _c("div", { key: user.id }, [
-              _c("a", { attrs: { href: "/user/" } }, [
+              _c("a", { attrs: { href: "/users/" + user.id } }, [
                 _vm._v(_vm._s(user.name))
               ])
             ])
@@ -37831,7 +37829,7 @@ var render = function() {
           { staticClass: "tab-pane", attrs: { role: "tabpanel" } },
           _vm._l(_vm.orders, function(order) {
             return _c("div", { key: order.id }, [
-              _c("a", { attrs: { href: "/order/" } }, [
+              _c("a", { attrs: { href: "/orders/" + order.id } }, [
                 _vm._v(_vm._s(order.content))
               ])
             ])

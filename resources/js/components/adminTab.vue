@@ -40,12 +40,12 @@
                 >新規カテゴリー作成</a
             >
             <div v-for="category of categories" v-bind:key="category.id">
-                <a href="/category/">{{ category.category_name }}</a>
+                <p>{{ category.category_name }}</p>
             </div>
         </div>
         <div v-else-if="isActive === '2'" class="tab-pane" role="tabpanel">
             <div v-for="user of users" v-bind:key="user.id">
-                <a href="/user/">{{ user.name }}</a>
+                <a :href="'/users/' + user.id">{{ user.name }}</a>
             </div>
         </div>
         <div v-else-if="isActive === '3'" class="tab-pane" role="tabpanel">
@@ -58,7 +58,7 @@
         </div>
         <div v-else-if="isActive === '4'" class="tab-pane" role="tabpanel">
             <div v-for="order of orders" v-bind:key="order.id">
-                <a href="/order/">{{ order.content }}</a>
+                <a :href="'/orders/' + order.id">{{ order.content }}</a>
             </div>
         </div>
     </div>

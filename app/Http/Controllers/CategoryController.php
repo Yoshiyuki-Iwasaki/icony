@@ -23,13 +23,13 @@ class CategoryController extends Controller
         $category->category_name = $request->category_name;
         $category->created_at = $request->created_at;
         $category->save();
-        return redirect('/category');
+        return redirect('/');
     }
 
     public function destroy($id)
     {
         $news = Category::find($id);
         $news->delete();
-        return redirect('/category');
+        return redirect('/');
     }
 }

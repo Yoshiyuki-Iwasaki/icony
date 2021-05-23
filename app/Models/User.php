@@ -56,6 +56,10 @@ class User extends Authenticatable
         return $this->hasMany(\App\Models\Order::class,'requested_user_id','id');
     }
 
+    public function orders_me(){
+        return $this->hasMany(\App\Models\Order::class,'requesting_user_id','id');
+    }
+
      // フォロワー→フォロー
     public function followUsers()
     {

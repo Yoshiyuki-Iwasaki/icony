@@ -20,7 +20,7 @@
                         <input type="text" name="name" value="{{$user->name}}">
                         <br>
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Example file input</label>
+                            <label for="exampleFormControlFile1">プロフィール画像</label>
                             <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
                         </div>
                         紹介文

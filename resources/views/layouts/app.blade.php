@@ -37,25 +37,10 @@
                         <li class="nav-item">
                             <a href="{{route('news.index')}}" class="btn btn-primary">お知らせ</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('orders.index')}}" class="btn btn-primary">リクエスト</a>
-                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <form action="{{route('posts.search')}}" method="get">
-                                {{csrf_field()}}
-                                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                                aria-describedby="search-addon" name="search" />
-                                <span class="input-group-btn" style="position:relative;top:-37px;left:153px;">
-                                    <button class="btn btn-info" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </span>
-                            </form>
-                        </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

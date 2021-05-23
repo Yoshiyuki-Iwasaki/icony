@@ -37,12 +37,26 @@
 
     @foreach ($user->orders as $order)
         <div class="card">
+            <p class="card-header">作品</p>
             <div class="card-body">
-                <p class="card-title">依頼者:
+                <p class="card-title">クライアント:
                     <a href="{{route('users.show', $order->requesting_user_id)}}">{{$order->user->name}}</a>
                 </p>
                 <p class="card-text">{{$order->content}}</p>
                 <a href="{{route('orders.show',$order->requesting_user_id)}}" class="btn btn-primary">詳細</a>
+            </div>
+        </div>
+    @endforeach
+
+    @foreach ($user->orders_me as $order)
+        <div class="card">
+            <p class="card-header">送信したリクエスト</p>
+            <div class="card-body">
+                <p class="card-title">クライアント:
+                    <a href="{{route('users.show', $user->id)}}">{{$user->name}}</a>
+                </p>
+                <p class="card-text">{{$order->content}}</p>
+                <a href="{{route('orders.show',$user->id)}}" class="btn btn-primary">詳細</a>
             </div>
         </div>
     @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Order;
 use Auth;
 class UserController extends Controller
 {
@@ -45,10 +46,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user, Order $order)
     {
         $userAuth = Auth::id();
-        $user->load('orders','followUsers','follows');
+        $user->load('orders','orders_me','followUsers','follows');
         $defaultCount = count($user->followUsers);
         $defaultFollowed = $user->followUsers->where('id', $userAuth)->first();
         if($defaultFollowed) {
@@ -58,6 +59,7 @@ class UserController extends Controller
         }
         return view('users.show',[
             'user' => $user,
+            'order' => $order,
             'defaultFollowed' => $defaultFollowed,
             'defaultCount' => $defaultCount,
             ]

@@ -15,6 +15,7 @@ class AddRole extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->enum('role', ['member', 'admin'])->default('member')->after('introduction');
+            $table->string('image');
         });
     }
 

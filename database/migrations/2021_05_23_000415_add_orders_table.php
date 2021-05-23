@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCategoryIdToOrdersTable extends Migration
+class AddOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddCategoryIdToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->bigInteger('category_id')->unsigned()->index()->after('content');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->string('image_id')->references('id')->on('orders_image')->onDelete('cascade')->after('content');
         });
     }
 
@@ -27,6 +26,7 @@ class AddCategoryIdToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('image_id');
         });
     }
 }

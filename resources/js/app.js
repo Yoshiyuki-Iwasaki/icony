@@ -25,7 +25,7 @@ window.Vue = require("vue").default;
 Vue.component("follow", require("./components/Follow.vue").default);
 Vue.component("adminTab", require("./components/adminTab.vue").default);
 Vue.component("orderList", require("./components/orderList.vue").default);
-Vue.component("swiper", require("./components/swiper.vue").default);
+Vue.component("v-slick", require("./components/SlickComponent.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -23,7 +23,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -79,7 +79,7 @@
         </nav>
 
         <main class="py-4">
-            <div class="container">
+            <div>
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">

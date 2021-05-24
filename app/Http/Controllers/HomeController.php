@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->paginate(5);
+        $orders = Order::all();
         $users = User::all();
         $orders->load('user');
         return view('home',[

@@ -18,8 +18,14 @@ window.Vue = require("vue").default;
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+// import VueAwesomeSwiper from "vue-awesome-swiper";
+// // import "swiper/dist/css/swiper.css";
+// Vue.use(VueAwesomeSwiper /* { default global options } */);
 Vue.component("follow", require("./components/Follow.vue").default);
 Vue.component("adminTab", require("./components/adminTab.vue").default);
+Vue.component("orderList", require("./components/orderList.vue").default);
+Vue.component("swiper", require("./components/swiper.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

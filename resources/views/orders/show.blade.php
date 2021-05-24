@@ -12,7 +12,7 @@
     <div class="card">
         <div class="card-body">
             <p class="card-text">Comment: {{$order->content}}</p>
-            <p class="card-title">カテゴリー: <a href="{{route('orders.index', ['category_id' => $order->category_id])}}">{{$order->category->category_name}}</a></p>
+            <p class="card-title">カテゴリー: <span>{{$order->category->category_name}}</span></p>
             <p class="card-text">依頼者: <a href="{{route('users.show', $order->requesting_user_id)}}">{{$order->user->name}}</a></p>
             {{-- <form method="GET" action="{{route('orders.edit',$order->id)}}">
                 @csrf
@@ -26,13 +26,13 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     function deletePost(e){
         'use strict';
         if(confirm('本当に削除していいですか？')){
             document.getElementById('delete_' + e.dataset.id).submit();
         }
     }
-</script>
+</script> --}}
 
 @endsection

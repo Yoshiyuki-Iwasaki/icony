@@ -16,7 +16,7 @@
     :default-Count="{{ json_encode($defaultCount) }}"
     ></follow>
     @if($user->image == null)
-        <img src="/storage/noimage.png">
+        <img src="/storage/image/noimage.png">
     @else
         <img src="{{ asset('storage/image/'.$user->image) }}">
     @endif

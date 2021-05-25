@@ -37,7 +37,7 @@
         <a href="{{route('orders.create',['user'=>$user->id])}}" class="btn btn-info">新規リクエスト</a>
     @endif
 
-    <div class="card">
+    <div class="card p-order">
         <p class="card-header">作品</p>
         <div class="card-body">
             <order-list
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card p-order">
         <p class="card-header">送信したリクエスト</p>
         <div class="card-body">
             <order-list

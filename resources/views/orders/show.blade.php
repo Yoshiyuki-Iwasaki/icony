@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card-header">リクエスト詳細</div>
+<div class="card-header">作品詳細</div>
 <div class="card-body">
     @if (session('status'))
         <div class="alert alert-success" role="alert">
@@ -11,8 +11,6 @@
 
     <div class="card">
         <div class="card-body">
-            <p class="card-text">Comment: {{$order->content}}</p>
-            <p class="card-title">カテゴリー: <span>{{$order->category->category_name}}</span></p>
             <figure class="user_avatar">
                 @if($order->user->image == null)
                     <img src="/storage/image/noimage.png">
@@ -21,6 +19,8 @@
                 @endif
             </figure>
             <p class="card-text">依頼者: <a href="{{route('users.show', $order->requesting_user_id)}}">{{$order->user->name}}</a></p>
+            <p class="card-title">カテゴリー: <span>{{$order->category->category_name}}</span></p>
+            <p class="card-text">Comment: {{$order->content}}</p>
             {{-- <form method="GET" action="{{route('orders.edit',$order->id)}}">
                 @csrf
                 <input class="btn btn-info" type="submit" value="リクエスト編集">

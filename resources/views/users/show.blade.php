@@ -37,31 +37,23 @@
         <a href="{{route('orders.create',['user'=>$user->id])}}" class="btn btn-info">新規リクエスト</a>
     @endif
 
-    @foreach ($user->orders as $order)
-        <div class="card">
-            <p class="card-header">作品</p>
-            <div class="card-body">
-                <p class="card-title">クライアント:
-                    <a href="{{route('users.show', $order->requesting_user_id)}}">{{$order->user->name}}</a>
-                </p>
-                <p class="card-text">{{$order->content}}</p>
-                <a href="{{route('orders.show',$order->id)}}" class="btn btn-primary">詳細</a>
-            </div>
+    <div class="card">
+        <p class="card-header">作品</p>
+        <div class="card-body">
+            <order-list
+            :orders="{{ json_encode($user->orders) }}"
+            ></order-list>
         </div>
-    @endforeach
+    </div>
 
-    @foreach ($user->orders_me as $order)
-        <div class="card">
-            <p class="card-header">送信したリクエスト</p>
-            <div class="card-body">
-                <p class="card-title">クライアント:
-                    <a href="{{route('users.show', $user->id)}}">{{$user->name}}</a>
-                </p>
-                <p class="card-text">{{$order->content}}</p>
-                <a href="{{route('orders.show',$order->id)}}" class="btn btn-primary">詳細</a>
-            </div>
+    <div class="card">
+        <p class="card-header">送信したリクエスト</p>
+        <div class="card-body">
+            <order-list
+            :orders="{{ json_encode($user->orders_me) }}"
+            ></order-list>
         </div>
-    @endforeach
+    </div>
 </div>
 
 @endsection

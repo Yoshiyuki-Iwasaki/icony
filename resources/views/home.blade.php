@@ -9,13 +9,6 @@
                 <order-list
                 :orders="{{ json_encode($orders) }}"
                 ></order-list>
-                {{-- @foreach ($orders as $order)
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="{{route('orders.show',$order->id)}}" class="card-text">{{$order->content}}</a>
-                        </div>
-                    </div>
-                @endforeach --}}
             </div>
         </div>
     </div>
@@ -38,5 +31,4 @@
         </div>
     </div>
 </div>
-<swiper></swiper>
 @endsection

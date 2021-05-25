@@ -2,7 +2,11 @@
     <slick ref="slick" :options="slickOptions">
         <div v-for="(user, index) in users" :key="index" class="image-thumb">
             <a :href="'/users/' + user.id">
-                <img src="/storage/image/noimage.png" />
+                <img
+                    v-if="user.image == null || user.image == ''"
+                    src="/storage/image/noimage.png"
+                />
+                <img v-else :src="'/storage/image/' + user.image" />
                 <p>{{ user.name }}</p>
             </a>
         </div>
@@ -24,7 +28,6 @@ export default {
                 autoplay: true,
                 infinite: true,
                 speed: 300,
-                centerPadding: "40px",
                 slidesToShow: 6,
                 slidesToScroll: 1
                 // responsive: [

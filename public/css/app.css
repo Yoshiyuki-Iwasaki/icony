@@ -149,6 +149,15 @@ li {
   z-index: 1;
 }
 
+.slick-initialized .slick-slide {
+  margin: 5px;
+}
+
+.user_avatar {
+  margin: 0 auto;
+  width: 200px;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

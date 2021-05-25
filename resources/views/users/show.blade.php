@@ -15,11 +15,13 @@
     :default-Followed="{{ json_encode($defaultFollowed) }}"
     :default-Count="{{ json_encode($defaultCount) }}"
     ></follow>
-    @if($user->image == null)
-        <img src="/storage/image/noimage.png">
-    @else
-        <img src="{{ asset('storage/image/'.$user->image) }}">
-    @endif
+    <figure class="user_avatar">
+        @if($user->image == null)
+            <img src="/storage/image/noimage.png">
+        @else
+            <img src="{{ asset('storage/image/'.$user->image) }}">
+        @endif
+    </figure>
     <p>紹介文: {{$user->introduction}}</p>
     <p>メールアドレス: {{$user->email}}</p>
     @if(Auth::id() === $user->id)

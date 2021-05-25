@@ -13,6 +13,13 @@
         <div class="card-body">
             <p class="card-text">Comment: {{$order->content}}</p>
             <p class="card-title">カテゴリー: <span>{{$order->category->category_name}}</span></p>
+            <figure class="user_avatar">
+                @if($order->user->image == null)
+                    <img src="/storage/image/noimage.png">
+                @else
+                    <img src="{{ asset('storage/image/'.$order->user->image) }}">
+                @endif
+            </figure>
             <p class="card-text">依頼者: <a href="{{route('users.show', $order->requesting_user_id)}}">{{$order->user->name}}</a></p>
             {{-- <form method="GET" action="{{route('orders.edit',$order->id)}}">
                 @csrf

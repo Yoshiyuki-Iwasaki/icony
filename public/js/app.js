@@ -1933,6 +1933,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 // vue-slickをインポート
 
 
@@ -1950,7 +1954,6 @@ __webpack_require__.r(__webpack_exports__);
         autoplay: true,
         infinite: true,
         speed: 300,
-        centerPadding: "40px",
         slidesToShow: 6,
         slidesToScroll: 1 // responsive: [
         //     {
@@ -38109,7 +38112,9 @@ var render = function() {
     _vm._l(_vm.users, function(user, index) {
       return _c("div", { key: index, staticClass: "image-thumb" }, [
         _c("a", { attrs: { href: "/users/" + user.id } }, [
-          _c("img", { attrs: { src: "/storage/image/noimage.png" } }),
+          user.image == null || user.image == ""
+            ? _c("img", { attrs: { src: "/storage/image/noimage.png" } })
+            : _c("img", { attrs: { src: "/storage/image/" + user.image } }),
           _vm._v(" "),
           _c("p", [_vm._v(_vm._s(user.name))])
         ])

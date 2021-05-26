@@ -23,4 +23,9 @@ class Order extends Model
         // 投稿は１つのカテゴリーに属する
         return $this->belongsTo(Category::class,'category_id');
     }
+
+    public function image(){
+        // 投稿は１つのカテゴリーに属する
+        return $this->belongsToMany(Image::class);
+    }
 }

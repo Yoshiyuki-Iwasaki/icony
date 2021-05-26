@@ -10,6 +10,14 @@
     @endif
 
     <div class="card">
+        <figure class="user_avatar">
+            @if($order_user->image == null)
+            <img src="/storage/image/noimage.png">
+            @else
+            <img src="{{ asset('storage/image/'.$order_user->image) }}">
+            @endif
+        </figure>
+        <p>名前: {{$order_user->name}}</p>
         <div class="card-body">
             @if ($errors->any())
                 <div class="alert alert-danger">

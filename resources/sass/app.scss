@@ -1,5 +1,7 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
 @import "slick-carousel/slick/slick.css";
 // Variables
 @import "component/c-button";
@@ -17,6 +19,3 @@
 @import "utility/u-color";
 @import "utility/u-fontsize";
 @import "utility/u-margin";
-
-// Bootstrap
-@import "~bootstrap/scss/bootstrap";

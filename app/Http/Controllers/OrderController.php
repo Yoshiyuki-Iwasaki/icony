@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Image;
+use App\Models\User;
 use App\Http\Requests\OrderRequests;
 use Illuminate\Support\Facades\Auth; //追加
 use App\Models\Category;
@@ -20,8 +22,9 @@ class OrderController extends Controller
     public function create(Request $request)
     {
         $user = $request->user;
+        $order_user = User::find($user);
         $categories = Category::all();
-        return view('orders.create', compact('user','categories'));
+        return view('orders.create', compact('order_user','user','categories'));
     }
 
 

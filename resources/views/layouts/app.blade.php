@@ -38,6 +38,9 @@
                             <li class="nav-item">
                                 <a href="{{route('news.index')}}" class="btn btn-primary">お知らせ</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('orders.index')}}" class="btn btn-primary">リクエスト</a>
+                            </li>
                         </ul>
 
                         <!-- Right Side Of Navbar -->

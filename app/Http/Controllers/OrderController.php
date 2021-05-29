@@ -14,8 +14,8 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::latest()->paginate(5);
-        $orders->load('category','user');
+        $orders = Order::all();
+        $orders->load('category','requested_user','requesting_user');
         return view('orders.index',['orders' => $orders]);
     }
 
@@ -60,7 +60,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order->load('category','user');
+        $order->load('category','requested_user','requesting_user');
         return view('orders.show',['order' => $order]);
     }
 

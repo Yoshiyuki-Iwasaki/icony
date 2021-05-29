@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $orders = Order::all();
         $users = User::all();
-        $orders->load('user');
+        $orders->load('category','requested_user','requesting_user');
         return view('home',[
             'orders' => $orders,
             'users' => $users,

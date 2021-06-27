@@ -18,7 +18,7 @@
                 {{-- <order-list
                 :orders="{{ json_encode($orders->requested_user) }}"
                 ></order-list> --}}
-                @foreach ($orders as $order)
+                @foreach ($orders->requested_user as $order)
                     <li class="orderList-item">
                         <a class="orderList-link" href="/orders/{{$order->id}}">
                             <figure class="orderList-image">

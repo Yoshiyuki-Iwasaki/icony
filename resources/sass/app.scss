@@ -1,21 +1,8 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Nunito");
-// Bootstrap
-@import "~bootstrap/scss/bootstrap";
-@import "slick-carousel/slick/slick.css";
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
 // Variables
-@import "component/c-button";
-@import "foundation/variables";
-@import "foundation/base";
-@import "foundation/reset";
-// @import "foundation/mixin";
-@import "layout/l-container";
-@import "layout/l-header";
-@import "layout/l-footer";
-@import "layout/l-main";
-@import "project/p-order";
-@import "project/p-footer";
-@import "project/p-header";
-@import "utility/u-color";
-@import "utility/u-fontsize";
-@import "utility/u-margin";
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';

@@ -50,3 +50,7 @@ Route::post('/orders/destroy/{order}', 'OrderController@destroy')->name('orders.
 Route::get('/orders/edit/{order}', 'OrderController@edit')->name('orders.edit');
 Route::post('/orders/update/{order}', 'OrderController@update')->name('orders.update');
 Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

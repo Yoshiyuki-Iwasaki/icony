@@ -22,6 +22,7 @@
 </head>
 <body>
     <div id="app">
+        <div id="header"></div>
         <header class="navbar navbar-expand navbar-light bg-white shadow-sm">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -94,6 +95,7 @@
                 </div>
             </div>
         </main>
+        <div id="footer"></div>
     </div>
 </body>
 </html>

@@ -15,3 +15,4 @@ require("./bootstrap");
 require("./components/Example");
 require("./components/Footer");
 require("./components/Header");
+require("./components/Admin");

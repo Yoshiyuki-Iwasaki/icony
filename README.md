@@ -1,4 +1,11 @@
-参考
-＝＝＝＝＝
-【Laravel 講座】掲示板を作ろう!!
-https://www.youtube.com/watch?v=-ZU48CRIWFU&list=PLTp8vyhuGlQObtOcEzsIvZn5N8P-pqnen&index=1
+# icony
+url:
+
+## 使用技術
+- Laravel
+- TypeScript
+- React
+- Styled-components (CSS in JS)
+- AWS
+- Storybook
+- Jest

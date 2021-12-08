@@ -95,7 +95,6 @@
                 </div>
             </div>
         </main>
-        <div id="footer"></div>
     </div>
 </body>
 </html>

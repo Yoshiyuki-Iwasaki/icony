@@ -44,12 +44,14 @@ Route::resource('/category', 'CategoryController', ['except' => ['index','create
 Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 // order
-Route::resource('/orders', 'OrderController', ['except' => ['index','show','edit','update','destroy']]);
-Route::get('/orders', 'OrderController@index')->name('orders.index');
-Route::post('/orders/destroy/{order}', 'OrderController@destroy')->name('orders.destroy');
-Route::get('/orders/edit/{order}', 'OrderController@edit')->name('orders.edit');
-Route::post('/orders/update/{order}', 'OrderController@update')->name('orders.update');
-Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
+// Route::resource('/orders', 'OrderController', ['except' => ['index','show','edit','update','destroy']]);
+// Route::get('/orders', 'OrderController@index')->name('orders.index');
+// Route::post('/orders/destroy/{order}', 'OrderController@destroy')->name('orders.destroy');
+// Route::get('/orders/edit/{order}', 'OrderController@edit')->name('orders.edit');
+// Route::post('/orders/update/{order}', 'OrderController@update')->name('orders.update');
+// Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
+
+Route::apiResource('orders','OrderController');
 
 Auth::routes();
 

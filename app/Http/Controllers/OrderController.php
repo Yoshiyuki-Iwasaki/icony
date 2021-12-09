@@ -15,9 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return $orders;
-        // $orders->load('category','requested_user','requesting_user');
-        // return view('orders.index',['orders' => $orders]);
+        return $orders->load('category','requested_user','requesting_user');
     }
 
     public function create(Request $request)

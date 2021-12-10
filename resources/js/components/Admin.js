@@ -1,5 +1,5 @@
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import ReactDOM from "react-dom";
 
 function Admin() {
     return <>Admin</>;

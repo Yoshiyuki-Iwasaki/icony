@@ -59,8 +59,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order->load('category','requested_user','requesting_user');
-        return view('orders.show',['order' => $order]);
+        return $order->load('category','requested_user','requesting_user');
     }
 
     /**
@@ -82,7 +81,7 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(OrderRequests $request, Order $order)
+    public function update(OrderRequests $request, Order $order, $id)
     {
         $order = new Order;
         $order->requested_user_id = $request->requested_user_id;
@@ -92,7 +91,7 @@ class OrderController extends Controller
         // $order->image = basename($filename);
         $order->content = $request->content;
         $order->save();
-        return redirect('/');
+        return redirect("api/orders/".$id);
     }
 
     /**
@@ -105,6 +104,6 @@ class OrderController extends Controller
     {
         $news = Order::find($id);
         $news->delete();
-        return redirect('/');
+        return redirect("api/orders/");
     }
 }

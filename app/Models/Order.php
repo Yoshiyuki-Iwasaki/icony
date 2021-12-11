@@ -9,7 +9,7 @@ class Order extends Model
 {
 
     protected $fillable = [
-        'requested_user_id','requesting_user_id','content','category_id'
+        'requested_user_id','requesting_user_id','content','category_id','talkroom_id'
     ];
 
     // user_nameをPost側で取得できるようにする

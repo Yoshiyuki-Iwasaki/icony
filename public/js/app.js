@@ -3197,6 +3197,11 @@ var OrderList = function OrderList() {
       orders = _useState2[0],
       setOrders = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      content = _useState4[0],
+      setContent = _useState4[1];
+
   var getTasks = function getTasks() {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -3216,13 +3221,54 @@ var OrderList = function OrderList() {
     }));
   };
 
+  var handleSubmit = function handleSubmit(e) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var _yield$axios$post, error;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              e.preventDefault();
+              console.log('test');
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/orders", {
+                requested_user_id: 2,
+                requesting_user_id: 9,
+                content: content,
+                category_id: 15,
+                talkroom_id: 0
+              });
+
+            case 4:
+              _yield$axios$post = _context2.sent;
+              error = _yield$axios$post.error;
+              console.log('error', error);
+              setContent('');
+              getTasks();
+
+            case 9:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+  };
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     getTasks();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-      to: "/about",
-      children: "About"
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("form", {
+      onSubmit: handleSubmit,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+        type: "text",
+        placeholder: "Todo\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+        onChange: function onChange(e) {
+          return setContent(e.target.value);
+        }
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
       children: orders.map(function (order) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ListItem, {
@@ -3242,8 +3288,8 @@ var OrderList = function OrderList() {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderList);
 var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    margin-top: 10px;\n\n    &:first-child {\n        margin-top: 0;\n    }\n"])));
-var Date = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    font-size: 13px;\n"])));
-var Text = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    font-size: 14px;\n"])));
+var Date = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: block;\n    font-size: 13px;\n"])));
+var Text = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    margin-top: 5px;\n    display: block;\n    font-size: 14px;\n"])));
 
 /***/ }),
 

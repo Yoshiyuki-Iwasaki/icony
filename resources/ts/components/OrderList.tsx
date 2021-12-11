@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { formatDate } from "../util/date";
 
 const OrderList = () => {
     const [orders, setOrders] = useState<any>([]);
@@ -42,7 +43,7 @@ const OrderList = () => {
                 {orders.map((order: any) => (
                     <ListItem key={order.id}>
                         <Link to={`/orders/${order.id}`}>
-                            <Date> {order.created_at}</Date>
+                            <Date> {formatDate(order.created_at)}</Date>
                             <Text>{order.content}</Text>
                         </Link>
                     </ListItem>

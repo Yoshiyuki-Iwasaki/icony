@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import { formatDate } from "../util/date";
 
 const OrderDetail = () => {
     const { id }: any = useParams();
@@ -19,7 +20,7 @@ const OrderDetail = () => {
 
     return (
         <div>
-            {orders && <Date>{orders.created_at}</Date>}
+            {orders && <Date>{formatDate(orders.created_at)}</Date>}
             {orders && <Text>{orders.content}</Text>}
         </div>
     );

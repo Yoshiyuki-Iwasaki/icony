@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const OrderList = () => {
     const [orders, setOrders] = useState([]);
@@ -13,18 +13,18 @@ const OrderList = () => {
     useEffect(() => {
         getTasks();
     }, []);
-    console.log("orders", orders);
+
     return (
         <>
             <Link to="/about">About</Link>
             <ul>
                 {orders.map((order: any) => (
-                    <li key={order.id}>
+                    <ListItem key={order.id}>
                         <Link to={`/orders/${order.id}`}>
-                            <span> {order.created_at}</span>
-                            <span>{order.content}</span>
+                            <Date> {order.created_at}</Date>
+                            <Text>{order.content}</Text>
                         </Link>
-                    </li>
+                    </ListItem>
                 ))}
             </ul>
         </>
@@ -33,6 +33,16 @@ const OrderList = () => {
 
 export default OrderList;
 
-if (document.getElementById('orderList')) {
-    ReactDOM.render(<OrderList />, document.getElementById("orderList"));
-}
+const ListItem = styled.li`
+    margin-top: 10px;
+
+    &:first-child {
+        margin-top: 0;
+    }
+`;
+const Date = styled.span`
+    font-size: 13px;
+`;
+const Text = styled.span`
+    font-size: 14px;
+`;

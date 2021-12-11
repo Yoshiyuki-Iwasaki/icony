@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import styled from "styled-components";
 
 const OrderDetail = () => {
     const { id }: any = useParams();
@@ -18,11 +19,17 @@ const OrderDetail = () => {
 
     return (
         <div>
-            OrderDetail
-            {orders && orders.content}
-            {orders && orders.created_at}
+            {orders && <Date>{orders.created_at}</Date>}
+            {orders && <Text>{orders.content}</Text>}
         </div>
     );
 }
 
 export default OrderDetail;
+
+const Date = styled.p`
+    font-size: 13px;
+`;
+const Text = styled.p`
+    font-size: 14px;
+`;

@@ -1,14 +1,27 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import styled from "styled-components";
 
 const Header = () => {
     return (
-        <header>Header</header>
+        <HeaderLayout>
+            <Inner>
+                <Title>Irony</Title>
+            </Inner>
+        </HeaderLayout>
     );
 }
 
 export default Header;
 
-if (document.getElementById("header")) {
-    ReactDOM.render(<Header />, document.getElementById("header"));
-}
+const HeaderLayout = styled.header``;
+const Inner = styled.div`
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    width: 1000px;
+    height: 70px;
+`;
+const Title = styled.h1`
+    font-size: 22px;
+    font-weight: 700;
+`;

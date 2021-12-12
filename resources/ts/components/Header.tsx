@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <HeaderLayout>
             <Inner>
-                <Title>Irony</Title>
+                <Title>Icony</Title>
             </Inner>
         </HeaderLayout>
     );

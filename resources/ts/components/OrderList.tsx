@@ -14,7 +14,6 @@ const OrderList = () => {
     }
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('test');
         const { error }: any = await axios.post("/api/orders", {
             requested_user_id: 2,
             requesting_user_id: 9,
@@ -26,6 +25,15 @@ const OrderList = () => {
         setContent('');
         getTasks();
     }
+    const handleRemove = async (e: any, id: number) => {
+        e.preventDefault();
+        const result = window.confirm("本当にこの投稿を削除しますか。");
+        if (result) {
+            const { error }: any = await axios.delete(`/api/orders/${id}`);
+            console.log("error", error);
+            getTasks();
+        }
+    };
     useEffect(() => {
         getTasks();
     }, []);
@@ -45,6 +53,9 @@ const OrderList = () => {
                         <Link to={`/orders/${order.id}`}>
                             <Date> {formatDate(order.created_at)}</Date>
                             <Text>{order.content}</Text>
+                            <button onClick={e => handleRemove(e, order.id)}>
+                                削除
+                            </button>
                         </Link>
                     </ListItem>
                 ))}
@@ -69,5 +80,8 @@ const Date = styled.span`
 const Text = styled.span`
     margin-top: 5px;
     display: block;
+    font-size: 14px;
+`;
+const RemoveText = styled.button`
     font-size: 14px;
 `;

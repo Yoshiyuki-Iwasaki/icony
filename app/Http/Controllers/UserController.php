@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use Auth;
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     /**
@@ -123,5 +125,27 @@ class UserController extends Controller
             return redirect("/users/{$user->id}")->with('user', $user);
 
         }
+    }
+
+    public function register(Request $request) {
+        $user = new User;
+        $user->name = $request->name;
+        $user->introduction = $request->introduction;
+        $user->role = $request->role;
+        $user->image = $request->image;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+        return $user
+        ? response()->json($user,201)
+        : response()->json([],500);
+    }
+
+    public function login(Request $request) {
+        $user = User::where('email', $request->email)->first();
+        if(!$user || !Hash::check($request->password, $user->password)){
+            return ["error" => "Email or password is not matched"];
+        }
+        return $user;
     }
 }

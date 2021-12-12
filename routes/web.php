@@ -15,7 +15,7 @@ use App\Http\Controllers\HomeController; # don't forgot to add this
 |
 */
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/', function(){
     return view('home');

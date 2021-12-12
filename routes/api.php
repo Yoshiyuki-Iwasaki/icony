@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Auth::routes();
-
 Route::resource('/', 'HomeController');
+Route::apiResource('orders','OrderController');
+Route::post('/users/login', 'UserController@login');
+Route::post('/users/register', 'UserController@register');
 
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Auth::routes();
 // // users
 // Route::resource('/users', 'UserController', ['except' => ['edit','destroy','update']]);
 // Route::post('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');
@@ -53,5 +55,3 @@ Route::resource('/', 'HomeController');
 // Route::get('/orders/edit/{order}', 'OrderController@edit')->name('orders.edit');
 // Route::post('/orders/update/{order}', 'OrderController@update')->name('orders.update');
 // Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
-
-Route::apiResource('orders','OrderController');

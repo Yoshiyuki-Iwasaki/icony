@@ -38,7 +38,7 @@ class OrderController extends Controller
         $order = Order::create($request->all());
         return $order
         ? response()->json($order,201)
-        : response()->json([],500) ;
+        : response()->json([],500);
     }
 
     /**
@@ -71,17 +71,19 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(OrderRequests $request, Order $order, $id)
+    public function update(OrderRequests $request, Order $order)
     {
-        $order = new Order;
         $order->requested_user_id = $request->requested_user_id;
         $order->requesting_user_id = $request->requesting_user_id;
         $order->category_id = $request->category_id;
+        $order->talkroom_id = $request->talkroom_id;
         // $filename = $request->file('image')->store('public/image');
         // $order->image = basename($filename);
         $order->content = $request->content;
-        $order->save();
-        return redirect("api/orders/".$id);
+
+        return $order->update()
+        ? response()->json($order)
+        : response()->json([],500);
     }
 
     /**
@@ -90,10 +92,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        $news = Order::find($id);
-        $news->delete();
-        return redirect("api/orders/");
+        return $order->delete()
+        ? response()->json($order)
+        : response()->json([],500) ;
     }
 }

@@ -2939,7 +2939,7 @@ var Header = function Header() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(HeaderLayout, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Inner, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Title, {
-        children: "Irony"
+        children: "Icony"
       })
     })
   });
@@ -3136,7 +3136,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -3234,8 +3234,7 @@ var OrderList = function OrderList() {
           switch (_context2.prev = _context2.next) {
             case 0:
               e.preventDefault();
-              console.log('test');
-              _context2.next = 4;
+              _context2.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/orders", {
                 requested_user_id: 2,
                 requesting_user_id: 9,
@@ -3244,19 +3243,53 @@ var OrderList = function OrderList() {
                 talkroom_id: 0
               });
 
-            case 4:
+            case 3:
               _yield$axios$post = _context2.sent;
               error = _yield$axios$post.error;
               console.log('error', error);
               setContent('');
               getTasks();
 
-            case 9:
+            case 8:
             case "end":
               return _context2.stop();
           }
         }
       }, _callee2);
+    }));
+  };
+
+  var handleRemove = function handleRemove(e, id) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var result, _yield$axios$delete, error;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              e.preventDefault();
+              result = window.confirm("本当にこの投稿を削除しますか。");
+
+              if (!result) {
+                _context3.next = 9;
+                break;
+              }
+
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/orders/".concat(id));
+
+            case 5:
+              _yield$axios$delete = _context3.sent;
+              error = _yield$axios$delete.error;
+              console.log("error", error);
+              getTasks();
+
+            case 9:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
     }));
   };
 
@@ -3282,6 +3315,11 @@ var OrderList = function OrderList() {
               children: [" ", (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(order.created_at)]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
               children: order.content
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              onClick: function onClick(e) {
+                return handleRemove(e, order.id);
+              },
+              children: "\u524A\u9664"
             })]
           })
         }, order.id);
@@ -3294,6 +3332,7 @@ var OrderList = function OrderList() {
 var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.li(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    margin-top: 10px;\n\n    &:first-child {\n        margin-top: 0;\n    }\n"])));
 var Date = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: block;\n    font-size: 13px;\n"])));
 var Text = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    margin-top: 5px;\n    display: block;\n    font-size: 14px;\n"])));
+var RemoveText = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    font-size: 14px;\n"])));
 
 /***/ }),
 

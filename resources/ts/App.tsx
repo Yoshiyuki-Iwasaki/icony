@@ -3,16 +3,20 @@ import '../styles/globals.css'
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
 import Top from "./pages/Top";
-import About from "./pages/About";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 import OrderDetail from "./components/OrderDetail";
 import Layout from "./components/Layout";
+import Header from "./components/Header";
 
 const App = () => {
     return (
         <Layout>
             <BrowserRouter>
+                <Header />
                 <Route exact path="/" component={Top} />
-                <Route exact path="/about" component={About} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/signin" component={SignIn} />
                 <Route path="/orders/:id" component={OrderDetail} />
             </BrowserRouter>
         </Layout>

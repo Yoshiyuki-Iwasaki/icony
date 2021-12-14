@@ -7,9 +7,13 @@ import { formatDate } from "../util/date";
 const OrderList = () => {
     const [orders, setOrders] = useState<any>([]);
     const [content, setContent] = useState<string>('');
+    useEffect(() => {
+        getTasks();
+    }, []);
     const getTasks = async () => {
         axios.get("/api/orders").then(res => {
             setOrders(res.data);
+            console.log("res.data", res.data);
         });
     }
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
@@ -34,9 +38,6 @@ const OrderList = () => {
             getTasks();
         }
     };
-    useEffect(() => {
-        getTasks();
-    }, []);
 
     return (
         <>
@@ -50,13 +51,18 @@ const OrderList = () => {
             <ul>
                 {orders.map((order: any) => (
                     <ListItem key={order.id}>
-                        <Link to={`/orders/${order.id}`}>
-                            <Date> {formatDate(order.created_at)}</Date>
-                            <Text>{order.content}</Text>
-                            <button onClick={e => handleRemove(e, order.id)}>
-                                削除
-                            </button>
-                        </Link>
+                        <Block to={`/orders/${order.id}`}>
+                            <Username>{order.requesting_user.name}</Username>
+                            <RightArea>
+                                <Date> {formatDate(order.created_at)}</Date>
+                                <Text>{order.content}</Text>
+                                <RemoveText
+                                    onClick={(e) => handleRemove(e, order.id)}
+                                >
+                                    削除
+                                </RemoveText>
+                            </RightArea>
+                        </Block>
                     </ListItem>
                 ))}
             </ul>
@@ -72,6 +78,15 @@ const ListItem = styled.li`
     &:first-child {
         margin-top: 0;
     }
+`;
+const Block = styled(Link)`
+    display: flex;
+`;
+const Username = styled.p`
+    font-size: 13px;
+`;
+const RightArea = styled.div`
+    margin-left: 20px;
 `;
 const Date = styled.span`
     display: block;

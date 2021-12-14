@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/', 'HomeController');
 Route::apiResource('orders','OrderController');
-Route::post('/users/login', 'UserController@login');
-Route::post('/users/register', 'UserController@register');
+Route::post('/login', 'UserController@login');
+Route::post('/logout', 'UserController@logout');
+Route::get('user', function(Request $request){
+    return $request->user();
+});
+// Route::post('/users/login', 'UserController@login');
+// Route::post('/users/register', 'UserController@register');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

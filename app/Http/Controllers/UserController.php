@@ -127,6 +127,8 @@ class UserController extends Controller
         }
     }
 
+
+
     public function register(Request $request) {
         $user = new User;
         $user->name = $request->name;
@@ -141,11 +143,32 @@ class UserController extends Controller
         : response()->json([],500);
     }
 
-    public function login(Request $request) {
-        $user = User::where('email', $request->email)->first();
-        if(!$user || !Hash::check($request->password, $user->password)){
-            return ["error" => "Email or password is not matched"];
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email'=> 'bail|required',
+            'password' => 'bail|required|string',
+        ]);
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return response()->json(Auth::user());
         }
-        return $user;
+        return response()->json([], 401);
+    }
+
+
+    /**
+     * ログアウト
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $result = true;
+        $status = 200;
+        $message = 'ログアウトしました';
+        return response()->json(['result' => $result, 'status' => $status, 'message' => $message]);
     }
 }

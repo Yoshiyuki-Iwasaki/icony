@@ -1,23 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/globals.css'
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
 import Top from "./pages/Top";
 import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
 import OrderDetail from "./components/OrderDetail";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
+import Auth from "./pages/Auth";
+import axios from "axios";
 
 const App = () => {
+    const [user, setUser] = useState<any>(null);
+
+    // ブラウザリロード時にログイン済みか判定
+    useEffect(() => {
+        getUser();
+    }, []);
+
+    // 認証ユーザを取得
+    const getUser = () => {
+        axios
+            .get("/api/user")
+            .then((res) => {
+                console.log("[getUser]ログイン済み");
+                console.log("res01", res);
+                setUser(res.data);
+            })
+            .catch((err) => {
+                console.log("[getUser]ログインしてません");
+            });
+    };
+
     return (
         <Layout>
             <BrowserRouter>
-                <Header />
-                <Route exact path="/" component={Top} />
-                <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/signin" component={SignIn} />
-                <Route path="/orders/:id" component={OrderDetail} />
+                <Header user={user} setUser={setUser} getUser={getUser} />
+                <Route exact path="/">
+                    <Top />
+                </Route>
+                <Route exact path="/signup">
+                    <SignUp />
+                </Route>
+                <Route exact path="/auth">
+                    <Auth user={user} setUser={setUser} getUser={getUser} />
+                </Route>
+                <Route path="/orders/:id">
+                    <OrderDetail />
+                </Route>
             </BrowserRouter>
         </Layout>
     );

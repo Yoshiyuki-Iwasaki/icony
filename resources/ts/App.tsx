@@ -8,6 +8,7 @@ import SignIn from "./pages/SignIn";
 import OrderDetail from "./components/OrderDetail";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
+import Auth from "./components/Auth";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                 <Route exact path="/" component={Top} />
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/signin" component={SignIn} />
+                <Route exact path="/auth" component={Auth} />
                 <Route path="/orders/:id" component={OrderDetail} />
             </BrowserRouter>
         </Layout>

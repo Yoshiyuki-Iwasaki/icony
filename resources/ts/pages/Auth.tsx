@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const Auth = () => {
-    const [user, setUser] = useState<any>(null);
+const Auth = ({ user, setUser, getUser }: any) => {
     const [email, setEmail] = useState<any>("");
     const [password, setPassword] = useState<any>("");
-
-    // ブラウザリロード時にログイン済みか判定
-    useEffect(() => {
-        getUser();
-    }, []);
-
-    // 認証ユーザを取得
-    const getUser = () => {
-        axios
-            .get("/api/user")
-            .then((res) => {
-                console.log("[getUser]ログイン済み");
-                console.log("res01", res);
-                setUser(res.data);
-            })
-            .catch((err) => {
-                console.log("[getUser]ログインしてません");
-            });
-    };
+    const history = useHistory();
 
     // ログイン
-    const login = async (e : any) => {
+    const login = async (e: any) => {
         e.preventDefault();
         // ログイン時にCSRFトークンを初期化
         axios.get("/sanctum/csrf-cookie").then((response) => {
@@ -36,10 +18,11 @@ const Auth = () => {
                     password,
                 })
                 .then((res) => {
-                    console.log("res02", res);
-                    if (res.data.result) {
+                    if (res.data.name) {
                         console.log("[login]ログイン成功");
                         setUser(res.data.user);
+                        getUser();
+                        history.push("/");
                     } else {
                         console.log(res.data.message);
                         console.log("[login]ログイン失敗");
@@ -58,6 +41,8 @@ const Auth = () => {
             .post("/api/logout")
             .then((res) => {
                 setUser(null);
+                getUser();
+                history.push("/");
             })
             .catch((err) => {
                 console.log(err);

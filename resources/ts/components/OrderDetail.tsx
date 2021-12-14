@@ -7,10 +7,13 @@ import { formatDate } from "../util/date";
 const OrderDetail = () => {
     const { id }: any = useParams();
     const [orders, setOrders] = useState<any>([]);
+    const [user, setUser] = useState<any>()
 
     const getTasks = async () => {
         axios.get(`/api/orders/${id}`).then((res) => {
             setOrders(res.data);
+            setUser(res.data.requesting_user);
+            console.log("res.data01", res.data);
         });
     };
 
@@ -20,6 +23,7 @@ const OrderDetail = () => {
 
     return (
         <div>
+            {user && <Username>{user.name}</Username>}
             {orders && <Date>{formatDate(orders.created_at)}</Date>}
             {orders && <Text>{orders.content}</Text>}
         </div>
@@ -33,4 +37,7 @@ const Date = styled.p`
 `;
 const Text = styled.p`
     font-size: 14px;
+`;
+const Username = styled.p`
+    font-size: 13px;
 `;

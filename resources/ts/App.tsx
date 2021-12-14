@@ -43,7 +43,7 @@ const App = () => {
                     <SignUp />
                 </Route>
                 <Route exact path="/auth">
-                    <Auth user={user} setUser={setUser} getUser={getUser} />
+                    <Auth setUser={setUser} getUser={getUser} />
                 </Route>
                 <Route path="/orders/:id">
                     <OrderDetail />

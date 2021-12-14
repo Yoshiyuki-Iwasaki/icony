@@ -3061,7 +3061,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2;
+var _templateObject, _templateObject2, _templateObject3;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -3128,6 +3128,11 @@ var OrderDetail = function OrderDetail() {
       orders = _useState2[0],
       setOrders = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      user = _useState4[0],
+      setUser = _useState4[1];
+
   var getTasks = function getTasks() {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -3136,6 +3141,8 @@ var OrderDetail = function OrderDetail() {
             case 0:
               axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/orders/".concat(id)).then(function (res) {
                 setOrders(res.data);
+                setUser(res.data.requesting_user);
+                console.log("res.data01", res.data);
               });
 
             case 1:
@@ -3155,6 +3162,8 @@ var OrderDetail = function OrderDetail() {
       children: (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(orders.created_at)
     }), orders && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
       children: orders.content
+    }), user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Username, {
+      children: user.name
     })]
   });
 };
@@ -3162,6 +3171,7 @@ var OrderDetail = function OrderDetail() {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderDetail);
 var Date = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    font-size: 13px;\n"])));
 var Text = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    font-size: 14px;\n"])));
+var Username = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    font-size: 13px;\n"])));
 
 /***/ }),
 
@@ -3181,11 +3191,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -3255,6 +3265,10 @@ var OrderList = function OrderList() {
       content = _useState4[0],
       setContent = _useState4[1];
 
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    getTasks();
+  }, []);
+
   var getTasks = function getTasks() {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -3263,6 +3277,7 @@ var OrderList = function OrderList() {
             case 0:
               axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/orders").then(function (res) {
                 setOrders(res.data);
+                console.log("res.data", res.data);
               });
 
             case 1:
@@ -3342,9 +3357,6 @@ var OrderList = function OrderList() {
     }));
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    getTasks();
-  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("form", {
       onSubmit: handleSubmit,
@@ -3358,17 +3370,21 @@ var OrderList = function OrderList() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
       children: orders.map(function (order) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ListItem, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
             to: "/orders/".concat(order.id),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Date, {
-              children: [" ", (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(order.created_at)]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
-              children: order.content
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-              onClick: function onClick(e) {
-                return handleRemove(e, order.id);
-              },
-              children: "\u524A\u9664"
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Username, {
+              children: order.requesting_user.name
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(RightArea, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Date, {
+                children: [" ", (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(order.created_at)]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+                children: order.content
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(RemoveText, {
+                onClick: function onClick(e) {
+                  return handleRemove(e, order.id);
+                },
+                children: "\u524A\u9664"
+              })]
             })]
           })
         }, order.id);
@@ -3378,10 +3394,13 @@ var OrderList = function OrderList() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderList);
-var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.li(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    margin-top: 10px;\n\n    &:first-child {\n        margin-top: 0;\n    }\n"])));
-var Date = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: block;\n    font-size: 13px;\n"])));
-var Text = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    margin-top: 5px;\n    display: block;\n    font-size: 14px;\n"])));
-var RemoveText = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    font-size: 14px;\n"])));
+var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    margin-top: 10px;\n\n    &:first-child {\n        margin-top: 0;\n    }\n"])));
+var Block = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n"])));
+var Username = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    font-size: 13px;\n"])));
+var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
+var Date = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    display: block;\n    font-size: 13px;\n"])));
+var Text = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    margin-top: 5px;\n    display: block;\n    font-size: 14px;\n"])));
+var RemoveText = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    font-size: 14px;\n"])));
 
 /***/ }),
 
@@ -3456,8 +3475,7 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
 
 
 var Auth = function Auth(_ref) {
-  var user = _ref.user,
-      setUser = _ref.setUser,
+  var setUser = _ref.setUser,
       getUser = _ref.getUser;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
@@ -3507,68 +3525,32 @@ var Auth = function Auth(_ref) {
         }
       }, _callee);
     }));
-  }; // ログアウト
+  };
 
-
-  var logout = function logout() {
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/logout").then(function (res) {
-      setUser(null);
-      getUser();
-      history.push("/");
-    })["catch"](function (err) {
-      console.log(err);
-    });
-  }; // ログインフォーム
-
-
-  var form = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-    onSubmit: login,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-      children: "email"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-      type: "email",
-      value: email,
-      onChange: function onChange(e) {
-        return setEmail(e.target.value);
-      }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-      children: "password"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-      type: "password",
-      value: password,
-      onChange: function onChange(e) {
-        return setPassword(e.target.value);
-      }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-      type: "submit",
-      children: "Login"
-    })]
-  }); // ユーザ情報
-
-
-  var userInfo = null; // 認証済みの場合、ログアウトボタンとユーザ情報を表示
-
-  if (user) {
-    form = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-      onClick: logout,
-      children: "Logout"
-    });
-    userInfo = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-        children: "User"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        children: ["name: ", user.name]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        children: ["email: ", user.email]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+      onSubmit: login,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+        children: "email"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+        type: "email",
+        value: email,
+        onChange: function onChange(e) {
+          return setEmail(e.target.value);
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+        children: "password"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+        type: "password",
+        value: password,
+        onChange: function onChange(e) {
+          return setPassword(e.target.value);
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        type: "submit",
+        children: "Login"
       })]
-    });
-  }
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    children: [form, userInfo, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-      onClick: getUser,
-      children: "getUser"
-    })]
+    })
   });
 };
 
@@ -38763,7 +38745,6 @@ var App = function App() {
         exact: true,
         path: "/auth",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_pages_Auth__WEBPACK_IMPORTED_MODULE_8__.default, {
-          user: user,
           setUser: setUser,
           getUser: getUser
         })

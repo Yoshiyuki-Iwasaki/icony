@@ -4,10 +4,11 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
 import Top from "./pages/Top";
 import SignUp from "./pages/SignUp";
-import OrderDetail from "./components/OrderDetail";
+import OrderDetail from "./pages/OrderDetail";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Auth from "./pages/Auth";
+import ProfileEdit from "./pages/ProfileEdit";
 import axios from "axios";
 
 const App = () => {
@@ -35,19 +36,36 @@ const App = () => {
     return (
         <Layout>
             <BrowserRouter>
-                <Header user={user} setUser={setUser} getUser={getUser} />
-                <Route exact path="/">
-                    <Top />
-                </Route>
-                <Route exact path="/signup">
-                    <SignUp />
-                </Route>
-                <Route exact path="/auth">
-                    <Auth setUser={setUser} getUser={getUser} />
-                </Route>
-                <Route path="/orders/:id">
-                    <OrderDetail />
-                </Route>
+                {user ? (
+                    <>
+                        <Header
+                            user={user}
+                            setUser={setUser}
+                            getUser={getUser}
+                        />
+                        <Route exact path="/">
+                            <Top />
+                        </Route>
+                        <Route exact path="/auth">
+                            <Auth setUser={setUser} getUser={getUser} />
+                        </Route>
+                        <Route path="/orders/:id">
+                            <OrderDetail />
+                        </Route>
+                        <Route path="/profile/edit">
+                            <ProfileEdit />
+                        </Route>
+                    </>
+                ) : (
+                    <>
+                        <Route exact path="/">
+                            <Auth setUser={setUser} getUser={getUser} />
+                        </Route>
+                        <Route exact path="/signup">
+                            <SignUp />
+                        </Route>
+                    </>
+                )}
             </BrowserRouter>
         </Layout>
     );

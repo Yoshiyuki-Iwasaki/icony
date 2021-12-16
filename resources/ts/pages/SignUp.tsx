@@ -76,7 +76,7 @@ const Title = styled.h1`
     font-weight: 700;
 `;
 const Form = styled.form`
-    margin-top: 60px;
+    margin-top: 45px;
 `;
 const Block = styled.div`
     margin-top: 20px;

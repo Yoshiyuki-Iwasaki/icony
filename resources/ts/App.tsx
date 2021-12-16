@@ -53,7 +53,7 @@ const App = () => {
                             <OrderDetail />
                         </Route>
                         <Route path="/profile/edit">
-                            <ProfileEdit />
+                            <ProfileEdit user={user} getUser={getUser} />
                         </Route>
                     </>
                 ) : (

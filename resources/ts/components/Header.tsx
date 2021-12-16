@@ -31,6 +31,7 @@ const Header = ({ user, setUser, getUser }: any) => {
                     <Link to="/">Icony</Link>
                 </Title>
                 <LeftArea>
+                    <Link to="/profile/edit">ユーザー編集</Link>
                     {user ? (
                         <>
                             <p>{user.name}</p>

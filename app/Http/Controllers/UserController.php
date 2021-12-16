@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Order;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -87,18 +88,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-        if($request->file('image')->isValid()) {
-            $user = User::find($id);
-            $user->name = $request->input('name');
-            $user->introduction	 = $request->input('introduction');
-            $user->email = $request->input('email');
-            $filename = $request->file('image')->store('public/image');
-            $user->image = basename($filename);
-            $user->save();
-        }
-        return redirect('/');
+        $user->name = $request->name;
+        return $user->update()
+        ? response()->json($user)
+        : response()->json([],500);
     }
 
     /**

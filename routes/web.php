@@ -17,6 +17,6 @@ use App\Http\Controllers\HomeController; # don't forgot to add this
 
 // Auth::routes();
 
-Route::get('/', function(){
+Route::get('{all}', function(){
     return view('home');
-});
+})->where(['all' => '.*']);

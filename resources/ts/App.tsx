@@ -25,9 +25,14 @@ const App = () => {
         axios
             .get("/api/user")
             .then((res) => {
-                console.log("[getUser]ログイン済み");
-                console.log("res01", res);
-                setUser(res.data);
+                if (res.data) {
+                    console.log("[getUser]ログイン済み");
+                    console.log("res01", res);
+                    setUser(res.data);
+                } else {
+                    console.log(res.data.message);
+                    console.log("[login]ログイン失敗01");
+                }
             })
             .catch((err) => {
                 console.log("[getUser]ログインしてません");

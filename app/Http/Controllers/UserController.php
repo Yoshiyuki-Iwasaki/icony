@@ -107,8 +107,6 @@ class UserController extends Controller
         }
     }
 
-
-
     public function register(Request $request) {
         $user = new User;
         $user->name = $request->name;
@@ -123,11 +121,11 @@ class UserController extends Controller
         : response()->json([],500);
     }
 
-    public function login(Request $request)
+    public function login(UserRequest $request)
     {
         $credentials = $request->validate([
-            'email'=> 'bail|required',
-            'password' => 'bail|required|string',
+            'email'=> 'bail|required|max:255|email|string|unique:users',
+            'password' => 'bail|required|string|min:8',
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

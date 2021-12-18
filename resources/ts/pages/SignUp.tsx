@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Link, Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
     const [email, setEmail] = useState<string>("");
@@ -9,14 +9,19 @@ const SignUp = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const { error }: any = await axios.post("/api/users/register", {
-            name: "name",
-            introduction: "introduction",
-            role: "member",
-            image: "",
-            email: email,
-            password: password,
-        });
+        const { error }: any = await axios
+            .post("/api/users/register", {
+                name: "name",
+                introduction: "introduction",
+                role: "member",
+                image: "",
+                email: email,
+                password: password,
+            })
+            .then((res) => {})
+            .catch((e) => {
+                console.log(e.response.data.errors);
+            });
         console.log("error", error);
         setEmail("");
         setPassword("");

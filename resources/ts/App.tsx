@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Auth from "./pages/Auth";
 import ProfileEdit from "./pages/ProfileEdit";
+import UserDetail from "./pages/UserDetail";
 import axios from "axios";
 
 const App = () => {
@@ -54,6 +55,9 @@ const App = () => {
                         </Route>
                         <Route path="/profile/edit">
                             <ProfileEdit user={user} getUser={getUser} />
+                        </Route>
+                        <Route path="/user/:id">
+                            <UserDetail/>
                         </Route>
                     </>
                 ) : (

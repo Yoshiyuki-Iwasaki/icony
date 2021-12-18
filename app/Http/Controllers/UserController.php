@@ -49,24 +49,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, Order $order)
+    public function show(User $user)
     {
-        $userAuth = Auth::id();
-        $user->load('orders','orders_me','followUsers','follows');
-        $defaultCount = count($user->followUsers);
-        $defaultFollowed = $user->followUsers->where('id', $userAuth)->first();
-        if($defaultFollowed) {
-            $defaultFollowed == true;
-        } else {
-            $defaultFollowed == false;
-        }
-        return view('users.show',[
-            'user' => $user,
-            'order' => $order,
-            'defaultFollowed' => $defaultFollowed,
-            'defaultCount' => $defaultCount,
-            ]
-        );
+        return $user->load('orders','orders_me','followUsers','follows');
     }
 
     /**

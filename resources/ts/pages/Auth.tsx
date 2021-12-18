@@ -8,6 +8,8 @@ import { Link, Router } from "react-router-dom";
 const Auth = ({ setUser, getUser }: any) => {
     const [email, setEmail] = useState<any>("");
     const [password, setPassword] = useState<any>("");
+    const [emailError, setEmailError] = useState<any>("");
+    const [passwordError, setPasswordError] = useState<any>("");
     const history = useHistory();
 
     // ログイン
@@ -28,12 +30,14 @@ const Auth = ({ setUser, getUser }: any) => {
                         history.push("/");
                     } else {
                         console.log(res.data.message);
-                        console.log("[login]ログイン失敗");
+                        console.log("[login]ログイン失敗02");
                     }
                 })
                 .catch((err) => {
                     console.log(err.response);
-                    console.log("[login]ログイン失敗");
+                    setEmailError(err.response.data.errors.email);
+                    setPasswordError(err.response.data.errors.password);
+                    console.log("eeeeee[login]ログイン失敗03");
                 });
         });
     };
@@ -43,6 +47,7 @@ const Auth = ({ setUser, getUser }: any) => {
             <Title>ログイン</Title>
             <Form onSubmit={login}>
                 <Block>
+                    {emailError && <p>{emailError}</p>}
                     <Label htmlFor="email">email</Label>
                     <Input
                         id="email"
@@ -53,6 +58,7 @@ const Auth = ({ setUser, getUser }: any) => {
                 </Block>
 
                 <Block>
+                    {passwordError && <p>{passwordError}</p>}
                     <Label htmlFor="password">password</Label>
                     <Input
                         id="password"

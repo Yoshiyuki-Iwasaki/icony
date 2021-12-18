@@ -3366,6 +3366,16 @@ var Auth = function Auth(_ref) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      emailError = _useState6[0],
+      setEmailError = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      passwordError = _useState8[0],
+      setPasswordError = _useState8[1];
+
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useHistory)(); // ログイン
 
   var login = function login(e) {
@@ -3388,11 +3398,13 @@ var Auth = function Auth(_ref) {
                     history.push("/");
                   } else {
                     console.log(res.data.message);
-                    console.log("[login]ログイン失敗");
+                    console.log("[login]ログイン失敗02");
                   }
                 })["catch"](function (err) {
                   console.log(err.response);
-                  console.log("[login]ログイン失敗");
+                  setEmailError(err.response.data.errors.email);
+                  setPasswordError(err.response.data.errors.password);
+                  console.log("eeeeee[login]ログイン失敗03");
                 });
               });
 
@@ -3411,7 +3423,9 @@ var Auth = function Auth(_ref) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(Form, {
       onSubmit: login,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(Block, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Label, {
+        children: [emailError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: emailError
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Label, {
           htmlFor: "email",
           children: "email"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Input, {
@@ -3423,7 +3437,9 @@ var Auth = function Auth(_ref) {
           }
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(Block, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Label, {
+        children: [passwordError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: passwordError
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Label, {
           htmlFor: "password",
           children: "password"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Input, {
@@ -3851,7 +3867,7 @@ var SignUp = function SignUp() {
 
   var handleSubmit = function handleSubmit(e) {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var _yield$axios$post, error;
+      var _yield$axios$post$the, error;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
@@ -3866,11 +3882,13 @@ var SignUp = function SignUp() {
                 image: "",
                 email: email,
                 password: password
+              }).then(function (res) {})["catch"](function (e) {
+                console.log(e.response.data.errors);
               });
 
             case 3:
-              _yield$axios$post = _context.sent;
-              error = _yield$axios$post.error;
+              _yield$axios$post$the = _context.sent;
+              error = _yield$axios$post$the.error;
               console.log("error", error);
               setEmail("");
               setPassword("");
@@ -39093,9 +39111,14 @@ var App = function App() {
 
   var getUser = function getUser() {
     axios__WEBPACK_IMPORTED_MODULE_11___default().get("/api/user").then(function (res) {
-      console.log("[getUser]ログイン済み");
-      console.log("res01", res);
-      setUser(res.data);
+      if (res.data) {
+        console.log("[getUser]ログイン済み");
+        console.log("res01", res);
+        setUser(res.data);
+      } else {
+        console.log(res.data.message);
+        console.log("[login]ログイン失敗01");
+      }
     })["catch"](function (err) {
       console.log("[getUser]ログインしてません");
     });

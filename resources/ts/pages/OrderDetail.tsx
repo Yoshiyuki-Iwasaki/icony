@@ -23,22 +23,48 @@ const OrderDetail = () => {
     }, []);
 
     return (
-        <div>
-            {user && <Username to={`/user/${user.id}`}>{user.name}</Username>}
-            {orders && <Date>{formatDate(orders.created_at)}</Date>}
-            {orders && <Text>{orders.content}</Text>}
-        </div>
+        <>
+            <Block>
+                <LeftArea>
+                    <Icon>
+                        <img src="" />
+                    </Icon>
+                    <Username>{user && user.name}</Username>
+                </LeftArea>
+                <RightArea>
+                    <Date> {formatDate(orders && orders.created_at)}</Date>
+                    <Text>{orders && orders.content}</Text>
+                </RightArea>
+            </Block>
+        </>
     );
 }
 
 export default OrderDetail;
 
+const Block = styled.div`
+    display: flex;
+`;
+const LeftArea = styled.div`
+    text-align: center;
+`;
+const Icon = styled.figure`
+    width: 30px;
+    height: 30px;
+    background: #555;
+    border-radius: 15px;
+`;
+const Username = styled.div`
+    margin-top: 5px;
+    font-size: 13px;
+`;
+const RightArea = styled.div`
+    margin-left: 20px;
+`;
 const Date = styled.p`
     font-size: 13px;
 `;
 const Text = styled.p`
+    margin-top: 10px;
     font-size: 14px;
-`;
-const Username = styled(Link)`
-    font-size: 13px;
 `;

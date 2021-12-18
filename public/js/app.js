@@ -3270,7 +3270,7 @@ var OrderList = function OrderList() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderList);
-var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    margin-top: 10px;\n\n    &:first-child {\n        margin-top: 0;\n    }\n"])));
+var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    margin-top: 20px;\n\n    &:first-child {\n        margin-top: 0;\n    }\n"])));
 var Block = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n"])));
 var LeftArea = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
 var Icon = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.figure(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
@@ -3507,9 +3507,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -3606,22 +3605,35 @@ var OrderDetail = function OrderDetail() {
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     getTasks();
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Username, {
-      to: "/user/".concat(user.id),
-      children: user.name
-    }), orders && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Date, {
-      children: (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(orders.created_at)
-    }), orders && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
-      children: orders.content
-    })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(LeftArea, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Icon, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+            src: ""
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Username, {
+          children: user && user.name
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(RightArea, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Date, {
+          children: [" ", (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(orders && orders.created_at)]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
+          children: orders && orders.content
+        })]
+      })]
+    })
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderDetail);
-var Date = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    font-size: 13px;\n"])));
-var Text = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    font-size: 14px;\n"])));
-var Username = (0,styled_components__WEBPACK_IMPORTED_MODULE_6__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    font-size: 13px;\n"])));
+var Block = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    display: flex;\n"])));
+var LeftArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
+var Icon = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.figure(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
+var Username = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    margin-top: 5px;\n    font-size: 13px;\n"])));
+var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
+var Date = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    font-size: 13px;\n"])));
+var Text = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
 
 /***/ }),
 

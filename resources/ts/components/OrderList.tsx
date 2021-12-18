@@ -52,7 +52,14 @@ const OrderList = () => {
                 {orders.map((order: any) => (
                     <ListItem key={order.id}>
                         <Block to={`/orders/${order.id}`}>
-                            <Username>{order.requesting_user.name}</Username>
+                            <LeftArea>
+                                <Icon>
+                                    <img src="" />
+                                </Icon>
+                                <Username>
+                                    {order.requesting_user.name}
+                                </Username>
+                            </LeftArea>
                             <RightArea>
                                 <Date> {formatDate(order.created_at)}</Date>
                                 <Text>{order.content}</Text>
@@ -73,7 +80,7 @@ const OrderList = () => {
 export default OrderList;
 
 const ListItem = styled.li`
-    margin-top: 10px;
+    margin-top: 20px;
 
     &:first-child {
         margin-top: 0;
@@ -82,7 +89,17 @@ const ListItem = styled.li`
 const Block = styled(Link)`
     display: flex;
 `;
+const LeftArea = styled.div`
+    text-align: center;
+`;
+const Icon = styled.figure`
+    width: 30px;
+    height: 30px;
+    background: #555;
+    border-radius: 15px;
+`;
 const Username = styled.p`
+    margin-top: 5px;
     font-size: 13px;
 `;
 const RightArea = styled.div`
@@ -93,10 +110,11 @@ const Date = styled.span`
     font-size: 13px;
 `;
 const Text = styled.span`
-    margin-top: 5px;
+    margin-top: 10px;
     display: block;
     font-size: 14px;
 `;
 const RemoveText = styled.button`
+    margin-top: 10px;
     font-size: 14px;
 `;

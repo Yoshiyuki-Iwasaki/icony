@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { formatDate } from "../util/date";
+import { Link } from "react-router-dom";
 
 const OrderDetail = () => {
     const { id }: any = useParams();
@@ -23,7 +24,7 @@ const OrderDetail = () => {
 
     return (
         <div>
-            {user && <Username>{user.name}</Username>}
+            {user && <Username to={`/user/${user.id}`}>{user.name}</Username>}
             {orders && <Date>{formatDate(orders.created_at)}</Date>}
             {orders && <Text>{orders.content}</Text>}
         </div>
@@ -38,6 +39,6 @@ const Date = styled.p`
 const Text = styled.p`
     font-size: 14px;
 `;
-const Username = styled.p`
+const Username = styled(Link)`
     font-size: 13px;
 `;

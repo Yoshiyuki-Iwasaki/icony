@@ -35,6 +35,7 @@ const ProfileEdit = ({ user, getUser }: any) => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
+                        ユーザー編集
                     </Block>
                     <ButtonArea>
                         <Button type="submit" onClick={profileEdit}>

@@ -27,15 +27,15 @@ const Header = ({ user, setUser, getUser }: any) => {
     return (
         <HeaderLayout>
             <Inner>
-                <Title>
-                    <Link to="/">Icony</Link>
-                </Title>
+                <Title to="/">Icony</Title>
                 <LeftArea>
-                    <Link to="/profile/edit">ユーザー編集</Link>
+                    <EditUser to="/profile/edit">ユーザー編集</EditUser>
                     {user ? (
                         <>
-                            <p>{user.name}</p>
-                            <button onClick={logout}>ログアウト</button>
+                            <Username to={`/user/${user.id}`}>
+                                {user.name}
+                            </Username>
+                            <Logout onClick={logout}>ログアウト</Logout>
                         </>
                     ) : (
                         <>
@@ -60,13 +60,29 @@ const Inner = styled.div`
     width: 1000px;
     height: 70px;
 `;
-const Title = styled.h1`
+const Title = styled(Link)`
     font-size: 22px;
     font-weight: 700;
 `;
 const LeftArea = styled.div`
     display: flex;
 `;
-const Auth = styled(Link)``;
-const SignUp = styled(Link)``;
-const SignIn = styled(Link)``;
+const EditUser = styled(Link)`
+    font-size: 14px;
+`;
+const Username = styled(Link)`
+    margin-left: 10px;
+    font-size: 14px;
+`;
+const Logout = styled.button`
+    margin-left: 10px;
+    font-size: 14px;
+`;
+const Auth = styled(Link)`
+    margin-left: 10px;
+    font-size: 14px;
+`;
+const SignUp = styled(Link)`
+    margin-left: 10px;
+    font-size: 14px;
+`;

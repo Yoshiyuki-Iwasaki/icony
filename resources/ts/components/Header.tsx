@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Link, Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
@@ -25,27 +25,29 @@ const Header = ({ user, setUser, getUser }: any) => {
     };
 
     return (
-        <HeaderLayout>
-            <Inner>
-                <Title to="/">Icony</Title>
-                <LeftArea>
-                    <EditUser to="/profile/edit">ユーザー編集</EditUser>
-                    {user ? (
-                        <>
-                            <Username to={`/user/${user.id}`}>
-                                {user.name}
-                            </Username>
-                            <Logout onClick={logout}>ログアウト</Logout>
-                        </>
-                    ) : (
-                        <>
-                            <Auth to="/auth">ログイン</Auth>
-                            <SignUp to="/signup">新規登録</SignUp>
-                        </>
-                    )}
-                </LeftArea>
-            </Inner>
-        </HeaderLayout>
+        <>
+            <HeaderLayout>
+                <Inner>
+                    <Title to="/">Icony</Title>
+                    <LeftArea>
+                        <EditUser to="/profile/edit">ユーザー編集</EditUser>
+                        {user ? (
+                            <>
+                                <Username to={`/user/${user.id}`}>
+                                    {user.name}
+                                </Username>
+                                <Logout onClick={logout}>ログアウト</Logout>
+                            </>
+                        ) : (
+                            <>
+                                <Auth to="/auth">ログイン</Auth>
+                                <SignUp to="/signup">新規登録</SignUp>
+                            </>
+                        )}
+                    </LeftArea>
+                </Inner>
+            </HeaderLayout>
+        </>
     );
 };
 

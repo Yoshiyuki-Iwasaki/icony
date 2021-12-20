@@ -56,13 +56,13 @@ const App = () => {
                             <Auth setUser={setUser} getUser={getUser} />
                         </Route>
                         <Route path="/orders/:id">
-                            <OrderDetail />
+                            <OrderDetail user={user} />
                         </Route>
                         <Route path="/profile/edit">
                             <ProfileEdit user={user} getUser={getUser} />
                         </Route>
                         <Route path="/user/:id">
-                            <UserDetail/>
+                            <UserDetail />
                         </Route>
                     </>
                 ) : (

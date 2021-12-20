@@ -3648,7 +3648,9 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
 
 
 
-var OrderDetail = function OrderDetail() {
+var OrderDetail = function OrderDetail(_ref) {
+  var user = _ref.user;
+
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
       id = _useParams.id;
 
@@ -3659,8 +3661,8 @@ var OrderDetail = function OrderDetail() {
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState4 = _slicedToArray(_useState3, 2),
-      user = _useState4[0],
-      setUser = _useState4[1];
+      requestUser = _useState4[0],
+      setRequestUser = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -3685,7 +3687,7 @@ var OrderDetail = function OrderDetail() {
             case 0:
               axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/orders/".concat(id)).then(function (res) {
                 setOrders(res.data);
-                setUser(res.data.requesting_user);
+                setRequestUser(res.data.requesting_user);
                 console.log("res.data01", res.data);
               });
 
@@ -3730,8 +3732,8 @@ var OrderDetail = function OrderDetail() {
               _context3.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/comments", {
                 content: content,
-                order_id: 4,
-                user_id: 2
+                order_id: id,
+                user_id: user.id
               });
 
             case 3:
@@ -3792,7 +3794,7 @@ var OrderDetail = function OrderDetail() {
             src: ""
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Username, {
-          children: user && user.name
+          children: requestUser && requestUser.name
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(RightArea, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Date, {
@@ -39481,7 +39483,9 @@ var App = function App() {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
           path: "/orders/:id",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_pages_OrderDetail__WEBPACK_IMPORTED_MODULE_5__.default, {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_pages_OrderDetail__WEBPACK_IMPORTED_MODULE_5__.default, {
+            user: user
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
           path: "/profile/edit",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_pages_ProfileEdit__WEBPACK_IMPORTED_MODULE_9__.default, {

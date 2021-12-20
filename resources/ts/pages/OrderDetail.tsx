@@ -4,10 +4,10 @@ import axios from "axios";
 import styled from "styled-components";
 import { formatDate } from "../util/date";
 
-const OrderDetail = () => {
+const OrderDetail = ({ user }:any) => {
     const { id }: any = useParams();
     const [orders, setOrders] = useState<any>([]);
-    const [user, setUser] = useState<any>();
+    const [requestUser, setRequestUser] = useState<any>();
     const [comments, setComments] = useState<any>([]);
     const [content, setContent] = useState<any>();
 
@@ -19,7 +19,7 @@ const OrderDetail = () => {
     const getOrder = async () => {
         axios.get(`/api/orders/${id}`).then((res) => {
             setOrders(res.data);
-            setUser(res.data.requesting_user);
+            setRequestUser(res.data.requesting_user);
             console.log("res.data01", res.data);
         });
     };
@@ -35,8 +35,8 @@ const OrderDetail = () => {
         e.preventDefault();
         const { error }: any = await axios.post("/api/comments", {
             content: content,
-            order_id: 4,
-            user_id: 2,
+            order_id: id,
+            user_id: user.id,
         });
         console.log("error", error);
         setContent("");
@@ -60,7 +60,7 @@ const OrderDetail = () => {
                     <Icon>
                         <img src="" />
                     </Icon>
-                    <Username>{user && user.name}</Username>
+                    <Username>{requestUser && requestUser.name}</Username>
                 </LeftArea>
                 <RightArea>
                     <Date> {formatDate(orders && orders.created_at)}</Date>
@@ -112,7 +112,7 @@ const OrderDetail = () => {
             </CommentArea>
         </>
     );
-}
+};
 
 export default OrderDetail;
 

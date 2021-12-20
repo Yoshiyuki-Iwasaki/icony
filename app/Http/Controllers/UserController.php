@@ -124,7 +124,7 @@ class UserController extends Controller
     public function login(UserRequest $request)
     {
         $credentials = $request->validate([
-            'email'=> 'bail|required|max:255|email|string|unique:users',
+            'email'=> 'bail|required|max:255|email|string',
             'password' => 'bail|required|string|min:8',
         ]);
         if (Auth::attempt($credentials)) {

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Models\Image;
 use App\Models\User;
 use App\Http\Requests\OrderRequests;
-use Illuminate\Support\Facades\Auth; //追加
 use App\Models\Category;
 
 class OrderController extends Controller

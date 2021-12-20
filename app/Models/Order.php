@@ -29,8 +29,12 @@ class Order extends Model
         return $this->belongsTo(Category::class,'category_id');
     }
 
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
+
     public function image(){
         // 投稿は１つのカテゴリーに属する
-        return $this->belongsToMany(Image::class);
+        return $this->hasMany(Image::class);
     }
 }

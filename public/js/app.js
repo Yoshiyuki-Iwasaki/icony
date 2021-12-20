@@ -3589,7 +3589,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -3662,7 +3662,22 @@ var OrderDetail = function OrderDetail() {
       user = _useState4[0],
       setUser = _useState4[1];
 
-  var getTasks = function getTasks() {
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      comments = _useState6[0],
+      setComments = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      content = _useState8[0],
+      setContent = _useState8[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    getOrder();
+    getComment();
+  }, []);
+
+  var getOrder = function getOrder() {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
@@ -3683,9 +3698,92 @@ var OrderDetail = function OrderDetail() {
     }));
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    getTasks();
-  }, []);
+  var getComment = function getComment() {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/comments").then(function (res) {
+                setComments(res.data);
+                console.log("comment", res.data);
+              });
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+  };
+
+  var insertComment = function insertComment(e) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var _yield$axios$post, error;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              e.preventDefault();
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/comments", {
+                content: content,
+                order_id: 4,
+                user_id: 2
+              });
+
+            case 3:
+              _yield$axios$post = _context3.sent;
+              error = _yield$axios$post.error;
+              console.log("error", error);
+              setContent("");
+              getComment();
+
+            case 8:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+  };
+
+  var RemoveComment = function RemoveComment(e, id) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      var result, _yield$axios$delete, error;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              e.preventDefault();
+              result = window.confirm("本当にこの投稿を削除しますか。");
+
+              if (!result) {
+                _context4.next = 9;
+                break;
+              }
+
+              _context4.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/comments/".concat(id));
+
+            case 5:
+              _yield$axios$delete = _context4.sent;
+              error = _yield$axios$delete.error;
+              console.log("error", error);
+              getComment();
+
+            case 9:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(LeftArea, {
@@ -3703,19 +3801,45 @@ var OrderDetail = function OrderDetail() {
           children: orders && orders.content
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
-        children: "\u30C6\u30AD\u30B9\u30C8"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CommentArea, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentTitle, {
+        children: "\u30B3\u30E1\u30F3\u30C8\u4E00\u89A7"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentList, {
+        children: comments.map(function (comment, index) {
+          return comment.order_id.id == id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CommentListItem, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CommentLeftArea, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentIcon, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                  src: ""
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentUsername, {
+                children: comment.user_id.name
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CommentRightArea, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentDate, {
+                children: (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(comment.created_at)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentText, {
+                children: comment.content
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentRemoveText, {
+                onClick: function onClick(e) {
+                  return RemoveComment(e, comment.id);
+                },
+                children: "\u524A\u9664"
+              })]
+            })]
+          }, index);
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentTitle, {
         children: "\u30B3\u30E1\u30F3\u30C8\u8FFD\u52A0"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-          type: "text"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-          children: "\u8FFD\u52A0"
-        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentForm, {
+        onSubmit: insertComment,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentInput, {
+          type: "text",
+          placeholder: "\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+          onChange: function onChange(e) {
+            return setContent(e.target.value);
+          }
+        })
       })]
     })]
   });
@@ -3729,6 +3853,19 @@ var Username = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templ
 var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
 var Date = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    font-size: 13px;\n"])));
 var Text = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
+var CommentList = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.ul(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    margin-top: 20px;\n"])));
+var CommentListItem = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.li(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: flex;\n"])));
+var CommentArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    margin-top: 20px;\n"])));
+var CommentTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.h2(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral([""])));
+var CommentForm = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.form(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n"])));
+var CommentInput = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.input(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral([""])));
+var CommentLeftArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
+var CommentIcon = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.figure(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
+var CommentUsername = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n    margin-top: 5px;\n    font-size: 13px;\n"])));
+var CommentRightArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
+var CommentDate = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n    display: block;\n    font-size: 13px;\n"])));
+var CommentText = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: block;\n    font-size: 14px;\n"])));
+var CommentRemoveText = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.button(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
 
 /***/ }),
 

@@ -3229,11 +3229,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
@@ -3277,10 +3289,18 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
 
 
 var OrderList = function OrderList(_ref) {
-  var orders = _ref.orders,
+  var user = _ref.user,
+      orders = _ref.orders,
       getTasks = _ref.getTasks;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      likes = _useState2[0],
+      setLikes = _useState2[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     getTasks();
+    getLike();
   }, []);
 
   var handleRemove = function handleRemove(e, id) {
@@ -3317,11 +3337,96 @@ var OrderList = function OrderList(_ref) {
     }));
   };
 
+  var getLike = function getLike() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/likes").then(function (res) {
+      if (res.data) {
+        console.log("res", res);
+        setLikes(res.data);
+      } else {
+        console.log(res.data);
+      }
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  };
+
+  var insertLike = function insertLike(e, id) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var _yield$axios$post, error;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              e.preventDefault();
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/likes", {
+                order_id: id,
+                user_id: user.id
+              });
+
+            case 3:
+              _yield$axios$post = _context2.sent;
+              error = _yield$axios$post.error;
+              console.log("error", error);
+              getLike();
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+  };
+
+  var removeLike = function removeLike(e, id) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var likeFilter, _yield$axios$delete2, error;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              e.preventDefault();
+              likeFilter = likes.filter(function (like) {
+                return like.order_id.id === id && like.user_id.id === user.id;
+              });
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/likes/".concat(likeFilter[0].id));
+
+            case 4:
+              _yield$axios$delete2 = _context3.sent;
+              error = _yield$axios$delete2.error;
+              console.log("error", error);
+              getLike();
+
+            case 8:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+  };
+
+  var likeFunction = function likeFunction(id) {
+    var likeFilter = likes.filter(function (like) {
+      return like.order_id.id === id && like.user_id.id === user.id;
+    });
+
+    if (likeFilter.length === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
       children: orders.map(function (order) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ListItem, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ListItem, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
             to: "/orders/".concat(order.id),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(LeftArea, {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Icon, {
@@ -3343,7 +3448,17 @@ var OrderList = function OrderList(_ref) {
                 children: "\u524A\u9664"
               })]
             })]
-          })
+          }), likes && likeFunction(order.id) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
+            onClick: function onClick(e) {
+              return removeLike(e, order.id);
+            },
+            children: "\u3044\u3044\u306D\u6E08\u307F"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
+            onClick: function onClick(e) {
+              return insertLike(e, order.id);
+            },
+            children: "\u3044\u3044\u306D"
+          })]
         }, order.id);
       })
     })
@@ -3360,6 +3475,7 @@ var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_temp
 var Date = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: block;\n    font-size: 13px;\n"])));
 var Text = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: block;\n    font-size: 14px;\n"])));
 var RemoveText = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
+var LikeButton = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral([""])));
 
 /***/ }),
 
@@ -3857,8 +3973,8 @@ var Date = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObj
 var Text = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
 var CommentList = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.ul(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    margin-top: 20px;\n"])));
 var CommentListItem = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.li(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: flex;\n"])));
-var CommentArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    margin-top: 20px;\n"])));
-var CommentTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.h2(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral([""])));
+var CommentArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral([""])));
+var CommentTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.h2(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    margin-top: 50px;\n    font-size: 16px;\n    font-weight: 700;\n"])));
 var CommentForm = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.form(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n"])));
 var CommentInput = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.input(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral([""])));
 var CommentLeftArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
@@ -4288,7 +4404,9 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
 
 
 
-var Top = function Top() {
+var Top = function Top(_ref) {
+  var user = _ref.user;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       orders = _useState2[0],
@@ -4316,6 +4434,7 @@ var Top = function Top() {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_OrderList__WEBPACK_IMPORTED_MODULE_3__.default, {
+      user: user,
       orders: orders,
       getTasks: getTasks
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Modal__WEBPACK_IMPORTED_MODULE_4__.default, {
@@ -4347,7 +4466,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2;
+var _templateObject, _templateObject2, _templateObject3;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -4414,6 +4533,10 @@ var UserDetail = function UserDetail() {
       users = _useState2[0],
       setUsers = _useState2[1];
 
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    getUser();
+  }, []);
+
   var getUser = function getUser() {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -4433,15 +4556,46 @@ var UserDetail = function UserDetail() {
     }));
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    getUser();
-  }, []);
+  var insertFollow = function insertFollow(e) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var _yield$axios$post, error;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              e.preventDefault();
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/comments", {
+                followed_user_id: 2,
+                following_user_id: 5
+              });
+
+            case 3:
+              _yield$axios$post = _context2.sent;
+              error = _yield$axios$post.error;
+              console.log("error", error);
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: users && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(UserName, {
         children: users.name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Introduction, {
         children: users.introduction
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
+        onClick: function onClick(e) {
+          return insertFollow(e);
+        },
+        children: "\u30D5\u30A9\u30ED\u30FC"
       })]
     })
   });
@@ -4450,6 +4604,7 @@ var UserDetail = function UserDetail() {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserDetail);
 var UserName = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    font-size: 14px;\n"])));
 var Introduction = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
+var FollowButton = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n"])));
 
 /***/ }),
 
@@ -39473,7 +39628,9 @@ var App = function App() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
           exact: true,
           path: "/",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_pages_Top__WEBPACK_IMPORTED_MODULE_3__.default, {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_pages_Top__WEBPACK_IMPORTED_MODULE_3__.default, {
+            user: user
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
           exact: true,
           path: "/auth",

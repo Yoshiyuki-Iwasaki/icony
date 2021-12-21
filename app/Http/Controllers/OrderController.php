@@ -94,6 +94,6 @@ class OrderController extends Controller
     {
         return $order->delete()
         ? response()->json($order)
-        : response()->json([],500) ;
+        : response()->json([],500);
     }
 }

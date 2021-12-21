@@ -3,7 +3,7 @@ import axios from "axios";
 import OrderList from "../components/OrderList";
 import Modal from "../components/Modal";
 
-const Top = () => {
+const Top = ({ user } : any) => {
     const [orders, setOrders] = useState<any>([]);
     const getTasks = async () => {
         axios.get("/api/orders").then((res) => {
@@ -13,7 +13,7 @@ const Top = () => {
     };
     return (
         <>
-            <OrderList orders={orders} getTasks={getTasks} />
+            <OrderList user={user} orders={orders} getTasks={getTasks} />
             <Modal getTasks={getTasks} />
         </>
     );

@@ -50,7 +50,7 @@ const App = () => {
                             getUser={getUser}
                         />
                         <Route exact path="/">
-                            <Top />
+                            <Top user={user} />
                         </Route>
                         <Route exact path="/auth">
                             <Auth setUser={setUser} getUser={getUser} />

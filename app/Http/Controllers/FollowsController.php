@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\FollowUser;
 use Illuminate\Support\Facades\Auth; //追加
 
-class FollowUserController extends Controller
+class FollowsController extends Controller
 {
 
     private $user;

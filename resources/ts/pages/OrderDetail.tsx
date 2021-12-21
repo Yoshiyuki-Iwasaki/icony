@@ -149,10 +149,12 @@ const CommentListItem = styled.li`
     margin-top: 10px;
     display: flex;
 `;
-const CommentArea = styled.div`
-    margin-top: 20px;
+const CommentArea = styled.div``;
+const CommentTitle = styled.h2`
+    margin-top: 50px;
+    font-size: 16px;
+    font-weight: 700;
 `;
-const CommentTitle = styled.h2``;
 const CommentForm = styled.form`
     margin-top: 10px;
 `;

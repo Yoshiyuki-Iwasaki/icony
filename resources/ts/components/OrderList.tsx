@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { formatDate } from "../util/date";
 
-const OrderList = ({ orders, getTasks}:any) => {
+const OrderList = ({ user, orders, getTasks }: any) => {
+    const [likes, setLikes] = useState<any>(null);
+
     useEffect(() => {
         getTasks();
+        getLike();
     }, []);
+
     const handleRemove = async (e: any, id: number) => {
         e.preventDefault();
         const result = window.confirm("本当にこの投稿を削除しますか。");
@@ -17,6 +21,51 @@ const OrderList = ({ orders, getTasks}:any) => {
             getTasks();
         }
     };
+
+    const getLike = () => {
+        axios
+            .get("/api/likes")
+            .then((res) => {
+                if (res.data) {
+                    console.log("res", res);
+                    setLikes(res.data);
+                } else {
+                    console.log(res.data);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const insertLike = async (e: any, id: number) => {
+        e.preventDefault();
+        const { error }: any = await axios.post("/api/likes", {
+            order_id: id,
+            user_id: user.id,
+        });
+        console.log("error", error);
+        getLike();
+    };
+
+    const removeLike = async (e: any, id: number) => {
+        e.preventDefault();
+        const likeFilter = likes.filter((like: any) => {
+            return like.order_id.id === id && like.user_id.id === user.id;
+        });
+        const { error }: any = await axios.delete(
+            `/api/likes/${likeFilter[0].id}`
+        );
+        console.log("error", error);
+        getLike();
+    };
+
+    const likeFunction = (id: number) => {
+        const likeFilter = likes.filter((like: any) => {
+            return like.order_id.id === id && like.user_id.id === user.id;
+        });
+        if (likeFilter.length === 0) {return false;} else {return true;}
+    }
 
     return (
         <>
@@ -42,12 +91,25 @@ const OrderList = ({ orders, getTasks}:any) => {
                                 </RemoveText>
                             </RightArea>
                         </Block>
+                        {likes && likeFunction(order.id) ? (
+                            <LikeButton
+                                onClick={(e) => removeLike(e, order.id)}
+                            >
+                                いいね済み
+                            </LikeButton>
+                        ) : (
+                            <LikeButton
+                                onClick={(e) => insertLike(e, order.id)}
+                            >
+                                いいね
+                            </LikeButton>
+                        )}
                     </ListItem>
                 ))}
             </ul>
         </>
     );
-}
+};
 
 export default OrderList;
 
@@ -90,3 +152,4 @@ const RemoveText = styled.button`
     margin-top: 10px;
     font-size: 14px;
 `;
+const LikeButton = styled.button``;

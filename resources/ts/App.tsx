@@ -50,19 +50,19 @@ const App = () => {
                             getUser={getUser}
                         />
                         <Route exact path="/">
-                            <Top />
+                            <Top user={user} />
                         </Route>
                         <Route exact path="/auth">
                             <Auth setUser={setUser} getUser={getUser} />
                         </Route>
                         <Route path="/orders/:id">
-                            <OrderDetail />
+                            <OrderDetail user={user} />
                         </Route>
                         <Route path="/profile/edit">
                             <ProfileEdit user={user} getUser={getUser} />
                         </Route>
                         <Route path="/user/:id">
-                            <UserDetail/>
+                            <UserDetail />
                         </Route>
                     </>
                 ) : (

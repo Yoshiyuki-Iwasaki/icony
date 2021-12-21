@@ -33,6 +33,10 @@ class Order extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function likes(){
+        return $this->hasMany(Likes::class);
+    }
+
     public function image(){
         // 投稿は１つのカテゴリーに属する
         return $this->hasMany(Image::class);

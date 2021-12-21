@@ -27,5 +27,4 @@ class CommentsController extends Controller
         ? response()->json($comment)
         : response()->json([],500) ;
     }
-
 }

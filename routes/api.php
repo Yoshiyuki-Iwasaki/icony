@@ -19,6 +19,7 @@ Route::apiResource('orders','OrderController');
 Route::apiResource('users','UserController');
 Route::apiResource('comments','CommentsController');
 Route::apiResource('likes', 'LikesController');
+Route::apiResource('follows', 'FollowsController');
 Route::post('/login', 'UserController@login');
 Route::post('/logout', 'UserController@logout');
 Route::get('user', function(Request $request){

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { formatDate } from "../util/date";
 
 const OrderDetail = ({ user }:any) => {
-    const id: number = useParams();
+    const { id }: any = useParams();
     const [orders, setOrders] = useState<any>([]);
     const [requestUser, setRequestUser] = useState<any>();
     const [comments, setComments] = useState<any>([]);

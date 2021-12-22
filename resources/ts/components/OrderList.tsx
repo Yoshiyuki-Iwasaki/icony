@@ -51,7 +51,7 @@ const OrderList = ({ user, orders, getTasks }: any) => {
     const removeLike = async (e: any, id: number) => {
         e.preventDefault();
         const likeFilter = likes.filter((like: any) => {
-            return like.order_id.id === id && like.user_id.id === user.id;
+            return like.order_id.id === id && like.order_id.id === user.id;
         });
         const { error }: any = await axios.delete(
             `/api/likes/${likeFilter[0].id}`
@@ -62,6 +62,8 @@ const OrderList = ({ user, orders, getTasks }: any) => {
 
     const likeFunction = (id: number) => {
         const likeFilter = likes.filter((like: any) => {
+            console.log(like.order_id.id, user.id);
+            console.log(like.order_id.id, id);
             return like.order_id.id === id && like.user_id.id === user.id;
         });
         if (likeFilter.length === 0) {return false;} else {return true;}

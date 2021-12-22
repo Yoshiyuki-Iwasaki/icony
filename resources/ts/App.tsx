@@ -62,7 +62,7 @@ const App = () => {
                             <ProfileEdit user={user} getUser={getUser} />
                         </Route>
                         <Route path="/user/:id">
-                            <UserDetail />
+                            <UserDetail user={user} />
                         </Route>
                     </>
                 ) : (

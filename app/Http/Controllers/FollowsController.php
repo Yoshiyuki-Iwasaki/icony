@@ -3,29 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\FollowUser;
-use Illuminate\Support\Facades\Auth; //追加
+use App\Models\Follow;
 
 class FollowsController extends Controller
 {
 
-    private $user;
+    public function index()
+{
+    $follow = Follow::all();
+    return $follow->load('following_user_id', 'followed_user_id');
+}
 
-    public function follow(User $user, Request $request) {
-        $follow = FollowUser::create([
-            'following_user_id' => Auth::id(),
-            'followed_user_id' => $request->id,
-        ]);
-        $followCount = count(FollowUser::where('followed_user_id', $request->id)->get());
-        return response()->json(['followCount' => $followCount]);
-    }
+    public function store(Request $request)
+{
+    $follow = Follow::create($request->all());
+    return $follow
+    ? response()->json($follow,201)
+    : response()->json([],500);
+}
 
-    public function unfollow(User $user, Request $request) {
-        $follow = FollowUser::where('following_user_id', Auth::id())->where('followed_user_id', $request->id)->first();
-        $follow->delete();
-        $followCount = count(FollowUser::where('followed_user_id', $request->id)->get());
-
-        return response()->json(['followCount' => $followCount]);
+    public function destroy(Follow $follow)
+    {
+        return $follow->delete()
+        ? response()->json($follow)
+        : response()->json([],500) ;
     }
 }

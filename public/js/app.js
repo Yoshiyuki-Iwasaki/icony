@@ -3390,7 +3390,7 @@ var OrderList = function OrderList(_ref) {
             case 0:
               e.preventDefault();
               likeFilter = likes.filter(function (like) {
-                return like.order_id.id === id && like.user_id.id === user.id;
+                return like.order_id.id === id && like.order_id.id === user.id;
               });
               _context3.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/likes/".concat(likeFilter[0].id));
@@ -3412,6 +3412,8 @@ var OrderList = function OrderList(_ref) {
 
   var likeFunction = function likeFunction(id) {
     var likeFilter = likes.filter(function (like) {
+      console.log(like.order_id.id, user.id);
+      console.log(like.order_id.id, id);
       return like.order_id.id === id && like.user_id.id === user.id;
     });
 
@@ -4524,7 +4526,9 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
 
 
 
-var UserDetail = function UserDetail() {
+var UserDetail = function UserDetail(_ref) {
+  var user = _ref.user;
+
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useParams)(),
       id = _useParams.id;
 
@@ -4533,8 +4537,14 @@ var UserDetail = function UserDetail() {
       users = _useState2[0],
       setUsers = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      follows = _useState4[0],
+      setFollows = _useState4[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     getUser();
+    getFollow();
   }, []);
 
   var getUser = function getUser() {
@@ -4556,7 +4566,20 @@ var UserDetail = function UserDetail() {
     }));
   };
 
-  var insertFollow = function insertFollow(e) {
+  var getFollow = function getFollow() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/follows").then(function (res) {
+      if (res.data) {
+        console.log("res", res);
+        setFollows(res.data);
+      } else {
+        console.log(res.data);
+      }
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  };
+
+  var insertFollow = function insertFollow(e, follow_id) {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
       var _yield$axios$post, error;
 
@@ -4566,17 +4589,18 @@ var UserDetail = function UserDetail() {
             case 0:
               e.preventDefault();
               _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/comments", {
-                followed_user_id: 2,
-                following_user_id: 5
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/follows", {
+                followed_user_id: follow_id,
+                following_user_id: user.id
               });
 
             case 3:
               _yield$axios$post = _context2.sent;
               error = _yield$axios$post.error;
               console.log("error", error);
+              getFollow();
 
-            case 6:
+            case 7:
             case "end":
               return _context2.stop();
           }
@@ -4585,15 +4609,65 @@ var UserDetail = function UserDetail() {
     }));
   };
 
+  var removeFollow = function removeFollow(e, follow_id) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var followsFilter, _yield$axios$delete, error;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              e.preventDefault();
+              followsFilter = follows.filter(function (follow) {
+                return follow.followed_user_id.id === follow_id && follow.following_user_id.id === user.id;
+              });
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/follows/".concat(followsFilter[0].id));
+
+            case 4:
+              _yield$axios$delete = _context3.sent;
+              error = _yield$axios$delete.error;
+              console.log("error", error);
+              getFollow();
+
+            case 8:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+  };
+
+  var followFunction = function followFunction(follow_id) {
+    var followsFilter = follows.filter(function (follow) {
+      console.log(follow.following_user_id.id, user.id);
+      console.log(follow.followed_user_id.id, follow_id);
+      return follow.followed_user_id.id === follow_id && follow.following_user_id.id === user.id;
+    });
+
+    if (followsFilter.length === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  ;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: users && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(UserName, {
         children: users.name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Introduction, {
         children: users.introduction
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
+      }), console.log(followFunction(Number(id))), follows && followFunction(Number(id)) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
         onClick: function onClick(e) {
-          return insertFollow(e);
+          return removeFollow(e, Number(id));
+        },
+        children: "\u30D5\u30A9\u30ED\u30FC\u6E08\u307F"
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
+        onClick: function onClick(e) {
+          return insertFollow(e, Number(id));
         },
         children: "\u30D5\u30A9\u30ED\u30FC"
       })]
@@ -39651,7 +39725,9 @@ var App = function App() {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
           path: "/user/:id",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_pages_UserDetail__WEBPACK_IMPORTED_MODULE_10__.default, {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_pages_UserDetail__WEBPACK_IMPORTED_MODULE_10__.default, {
+            user: user
+          })
         })]
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {

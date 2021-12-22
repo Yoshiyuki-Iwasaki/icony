@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 const ProfileEdit = ({ user, getUser }: any) => {
-    const [name, setName] = useState<any>("");
+    const [name, setName] = useState<string>("");
     console.log("user", user);
     // ログイン
     const profileEdit = async (e: any) => {

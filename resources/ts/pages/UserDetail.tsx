@@ -3,9 +3,15 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
-const UserDetail = () => {
-    const { id }: any = useParams();
+const UserDetail = ({ user }:any) => {
+    const id: number = useParams();
     const [users, setUsers] = useState<any>([]);
+    const [follow, setFollow] = useState<any>([]);
+
+    useEffect(() => {
+        getUser();
+        getFollow();
+    }, []);
 
     const getUser = async () => {
         axios.get(`/api/users/${id}`).then((res) => {

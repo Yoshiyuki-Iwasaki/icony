@@ -6,10 +6,10 @@ import { Link, Router } from "react-router-dom";
 
 
 const Auth = ({ setUser, getUser }: any) => {
-    const [email, setEmail] = useState<any>("");
-    const [password, setPassword] = useState<any>("");
-    const [emailError, setEmailError] = useState<any>("");
-    const [passwordError, setPasswordError] = useState<any>("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [emailError, setEmailError] = useState<string>("");
+    const [passwordError, setPasswordError] = useState<string>("");
     const history = useHistory();
 
     // ログイン

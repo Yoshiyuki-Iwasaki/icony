@@ -29,14 +29,33 @@ const Header = ({ user, setUser, getUser }: any) => {
             <HeaderLayout>
                 <Inner>
                     <Title to="/">Icony</Title>
-                    <LeftArea>
-                        <EditUser to="/profile/edit">ユーザー編集</EditUser>
+                    <RightArea>
                         {user ? (
                             <>
-                                <Username to={`/user/${user.id}`}>
-                                    {user.name}
-                                </Username>
-                                <Logout onClick={logout}>ログアウト</Logout>
+                                <Hover>
+                                    <UserArea>
+                                        <Icon>
+                                            <img src="" />
+                                        </Icon>
+                                        <Username to={`/user/${user.id}`}>
+                                            {user.name}
+                                        </Username>
+                                    </UserArea>
+                                    <List>
+                                        <ListItem>
+                                            <Link to="/profile/edit">
+                                                <LinkText>
+                                                    プロフィール編集
+                                                </LinkText>
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem>
+                                            <Button onClick={logout}>
+                                                ログアウト
+                                            </Button>
+                                        </ListItem>
+                                    </List>
+                                </Hover>
                             </>
                         ) : (
                             <>
@@ -44,7 +63,7 @@ const Header = ({ user, setUser, getUser }: any) => {
                                 <SignUp to="/signup">新規登録</SignUp>
                             </>
                         )}
-                    </LeftArea>
+                    </RightArea>
                 </Inner>
             </HeaderLayout>
         </>
@@ -66,17 +85,20 @@ const Title = styled(Link)`
     font-size: 22px;
     font-weight: 700;
 `;
-const LeftArea = styled.div`
+const RightArea = styled.div`
     display: flex;
 `;
-const EditUser = styled(Link)`
-    font-size: 14px;
+const UserArea = styled.div`
+    display: flex;
+    align-items: center;
+`;
+const Icon = styled.figure`
+    width: 30px;
+    height: 30px;
+    background: #555;
+    border-radius: 15px;
 `;
 const Username = styled(Link)`
-    margin-left: 10px;
-    font-size: 14px;
-`;
-const Logout = styled.button`
     margin-left: 10px;
     font-size: 14px;
 `;
@@ -87,4 +109,56 @@ const Auth = styled(Link)`
 const SignUp = styled(Link)`
     margin-left: 10px;
     font-size: 14px;
+`;
+
+const Hover = styled.div`
+    position: relative;
+    cursor: pointer;
+`;
+const List = styled.ul`
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s;
+
+    ${Hover}:hover & {
+        opacity: 1;
+        visibility: visible;
+    }
+`;
+const ListItem = styled.li`
+    border-top: 1px solid #2b3a42;
+
+    &:first-child {
+        border-top: none;
+    }
+`;
+const Avatar = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+`;
+const UserName = styled.p`
+    margin-right: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #f3f3f3;
+`;
+const LinkText = styled.a`
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+    display: inline-block;
+    background: #f3f3f3;
+    font-size: 13px;
+`;
+const Button = styled.button`
+    padding: 10px;
+    display: block;
+    width: 100%;
+    background: #f3f3f3;
+    cursor: pointer;
+    font-size: 13px;
 `;

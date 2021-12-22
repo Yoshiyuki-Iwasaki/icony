@@ -2925,13 +2925,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -2970,18 +2970,34 @@ var Header = function Header(_ref) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Title, {
           to: "/",
           children: "Icony"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(LeftArea, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(EditUser, {
-            to: "/profile/edit",
-            children: "\u30E6\u30FC\u30B6\u30FC\u7DE8\u96C6"
-          }), user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Username, {
-              to: "/user/".concat(user.id),
-              children: user.name
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Logout, {
-              onClick: logout,
-              children: "\u30ED\u30B0\u30A2\u30A6\u30C8"
-            })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(RightArea, {
+          children: user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(Hover, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(UserArea, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Icon, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                    src: ""
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Username, {
+                  to: "/user/".concat(user.id),
+                  children: user.name
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(List, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ListItem, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+                    to: "/profile/edit",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(LinkText, {
+                      children: "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u7DE8\u96C6"
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ListItem, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Button, {
+                    onClick: logout,
+                    children: "\u30ED\u30B0\u30A2\u30A6\u30C8"
+                  })
+                })]
+              })]
+            })
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Auth, {
               to: "/auth",
@@ -2990,7 +3006,7 @@ var Header = function Header(_ref) {
               to: "/signup",
               children: "\u65B0\u898F\u767B\u9332"
             })]
-          })]
+          })
         })]
       })
     })
@@ -2998,15 +3014,22 @@ var Header = function Header(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
-var HeaderLayout = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.header(_templateObject || (_templateObject = _taggedTemplateLiteral([""])));
-var Inner = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    margin: 0 auto;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 1000px;\n    height: 70px;\n"])));
-var Title = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    font-size: 22px;\n    font-weight: 700;\n"])));
-var LeftArea = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    display: flex;\n"])));
-var EditUser = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    font-size: 14px;\n"])));
-var Username = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link)(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    font-size: 14px;\n"])));
-var Logout = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.button(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    font-size: 14px;\n"])));
-var Auth = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link)(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    font-size: 14px;\n"])));
-var SignUp = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link)(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    font-size: 14px;\n"])));
+var HeaderLayout = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.header(_templateObject || (_templateObject = _taggedTemplateLiteral([""])));
+var Inner = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    margin: 0 auto;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    width: 1000px;\n    height: 70px;\n"])));
+var Title = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    font-size: 22px;\n    font-weight: 700;\n"])));
+var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    display: flex;\n"])));
+var UserArea = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n"])));
+var Icon = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.figure(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
+var Username = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link)(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    font-size: 14px;\n"])));
+var Auth = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link)(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    font-size: 14px;\n"])));
+var SignUp = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link)(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    font-size: 14px;\n"])));
+var Hover = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    position: relative;\n    cursor: pointer;\n"])));
+var List = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.ul(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 40px;\n    right: 20px;\n    opacity: 0;\n    visibility: hidden;\n    transition: all 0.6s;\n\n    ", ":hover & {\n        opacity: 1;\n        visibility: visible;\n    }\n"])), Hover);
+var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    border-top: 1px solid #2b3a42;\n\n    &:first-child {\n        border-top: none;\n    }\n"])));
+var Avatar = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n    flex-direction: row-reverse;\n"])));
+var UserName = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n    margin-right: 15px;\n    font-size: 14px;\n    font-weight: 700;\n    color: #f3f3f3;\n"])));
+var LinkText = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.a(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n    padding: 10px;\n    text-align: center;\n    width: 200px;\n    display: inline-block;\n    background: #f3f3f3;\n    font-size: 13px;\n"])));
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n    padding: 10px;\n    display: block;\n    width: 100%;\n    background: #f3f3f3;\n    cursor: pointer;\n    font-size: 13px;\n"])));
 
 /***/ }),
 

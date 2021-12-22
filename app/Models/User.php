@@ -64,12 +64,12 @@ class User extends Authenticatable
      // フォロワー→フォロー
     public function followUsers()
     {
-        return $this->belongsToMany('App\Models\User', 'follow_users', 'followed_user_id', 'following_user_id');
+        return $this->belongsToMany('App\Models\User', 'follows', 'followed_user_id', 'following_user_id');
     }
 
     // フォロー→フォロワー
     public function follows()
     {
-        return $this->belongsToMany('App\Models\User', 'follow_users', 'following_user_id', 'followed_user_id');
+        return $this->belongsToMany('App\Models\User', 'follows', 'following_user_id', 'followed_user_id');
     }
 }

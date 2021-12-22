@@ -9,7 +9,7 @@ const OrderDetail = ({ user }:any) => {
     const [orders, setOrders] = useState<any>([]);
     const [requestUser, setRequestUser] = useState<any>();
     const [comments, setComments] = useState<any>([]);
-    const [content, setContent] = useState<any>();
+    const [content, setContent] = useState<string>();
 
     useEffect(() => {
         getOrder();

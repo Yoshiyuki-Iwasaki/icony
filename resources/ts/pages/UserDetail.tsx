@@ -84,6 +84,9 @@ const UserDetail = ({ user }:any) => {
         <>
             {users && (
                 <>
+                    <Icon>
+                        <img src="" />
+                    </Icon>
                     <UserName>{users.name}</UserName>
                     <Introduction>{users.introduction}</Introduction>
                     {console.log(followFunction(Number(id)))}
@@ -108,6 +111,12 @@ const UserDetail = ({ user }:any) => {
 
 export default UserDetail;
 
+const Icon = styled.figure`
+    width: 30px;
+    height: 30px;
+    background: #555;
+    border-radius: 15px;
+`;
 const UserName = styled.p`
     font-size: 14px;
 `;

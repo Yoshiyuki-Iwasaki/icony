@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { formatDate } from "../util/date";
+import { Link } from "react-router-dom";
 
 const OrderDetail = ({ user }:any) => {
     const { id }: any = useParams();
@@ -56,7 +57,7 @@ const OrderDetail = ({ user }:any) => {
     return (
         <>
             <Block>
-                <LeftArea>
+                <LeftArea to={`/user/${orders.requesting_user_id}`}>
                     <Icon>
                         <img src="" />
                     </Icon>
@@ -74,7 +75,9 @@ const OrderDetail = ({ user }:any) => {
                         (comment: any, index: number) =>
                             comment.order_id.id == id && (
                                 <CommentListItem key={index}>
-                                    <CommentLeftArea>
+                                    <CommentLeftArea
+                                        to={`/user/${comment.user_id.id}`}
+                                    >
                                         <CommentIcon>
                                             <img src="" />
                                         </CommentIcon>
@@ -119,7 +122,7 @@ export default OrderDetail;
 const Block = styled.div`
     display: flex;
 `;
-const LeftArea = styled.div`
+const LeftArea = styled(Link)`
     text-align: center;
 `;
 const Icon = styled.figure`
@@ -159,7 +162,7 @@ const CommentForm = styled.form`
     margin-top: 10px;
 `;
 const CommentInput = styled.input``;
-const CommentLeftArea = styled.div`
+const CommentLeftArea = styled(Link)`
     text-align: center;
 `;
 const CommentIcon = styled.figure`

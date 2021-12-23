@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components"
 
-const UserDetail = ({ user }:any) => {
+const UserDetail = ({ myUser }:any) => {
     const { id }: any = useParams();
     const [users, setUsers] = useState<any>([]);
     const [follows, setFollows] = useState<any>([]);
@@ -39,7 +39,7 @@ const UserDetail = ({ user }:any) => {
         e.preventDefault();
         const { error }: any = await axios.post("/api/follows", {
             followed_user_id: follow_id,
-            following_user_id: user.id,
+            following_user_id: myUser.id,
         });
         console.log("error", error);
         getFollow();
@@ -50,7 +50,7 @@ const UserDetail = ({ user }:any) => {
         const followsFilter = follows.filter((follow: any) => {
             return (
                 follow.followed_user_id.id === follow_id &&
-                follow.following_user_id.id === user.id
+                follow.following_user_id.id === myUser.id
             );
         });
         const { error }: any = await axios.delete(
@@ -62,14 +62,11 @@ const UserDetail = ({ user }:any) => {
 
     const followFunction = (follow_id:number) => {
         const followsFilter = follows.filter((follow: any) => {
-            console.log(
-                follow.following_user_id.id,
-                user.id
-            );
+            console.log(follow.following_user_id.id, myUser.id);
             console.log(follow.followed_user_id.id, follow_id);
             return (
                 follow.followed_user_id.id === follow_id &&
-                follow.following_user_id.id === user.id
+                follow.following_user_id.id === myUser.id
             );
         });
 
@@ -89,19 +86,24 @@ const UserDetail = ({ user }:any) => {
                     </Icon>
                     <UserName>{users.name}</UserName>
                     <Introduction>{users.introduction}</Introduction>
-                    {console.log(followFunction(Number(id)))}
-                    {follows && followFunction(Number(id)) ? (
-                        <FollowButton
-                            onClick={(e) => removeFollow(e, Number(id))}
-                        >
-                            フォロー済み
-                        </FollowButton>
-                    ) : (
-                        <FollowButton
-                            onClick={(e) => insertFollow(e, Number(id))}
-                        >
-                            フォロー
-                        </FollowButton>
+                    {console.log("users.id", users.id, "myUser", myUser)}
+                    {myUser && users.id != myUser.id && (
+                        <>{
+                            follows && followFunction(users.id) ? (
+                                <FollowButton
+                                    onClick={(e) => removeFollow(e, users.id)}
+                                >
+                                    フォロー済み
+                                </FollowButton>
+                            ) : (
+                                <FollowButton
+                                    onClick={(e) => insertFollow(e, users.id)}
+                                >
+                                    フォロー
+                                </FollowButton>
+                            )
+                        }
+                        </>
                     )}
                 </>
             )}

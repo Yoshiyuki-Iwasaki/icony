@@ -4559,7 +4559,7 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
 
 
 var UserDetail = function UserDetail(_ref) {
-  var user = _ref.user;
+  var myUser = _ref.myUser;
 
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useParams)(),
       id = _useParams.id;
@@ -4623,7 +4623,7 @@ var UserDetail = function UserDetail(_ref) {
               _context2.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/follows", {
                 followed_user_id: follow_id,
-                following_user_id: user.id
+                following_user_id: myUser.id
               });
 
             case 3:
@@ -4651,7 +4651,7 @@ var UserDetail = function UserDetail(_ref) {
             case 0:
               e.preventDefault();
               followsFilter = follows.filter(function (follow) {
-                return follow.followed_user_id.id === follow_id && follow.following_user_id.id === user.id;
+                return follow.followed_user_id.id === follow_id && follow.following_user_id.id === myUser.id;
               });
               _context3.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/follows/".concat(followsFilter[0].id));
@@ -4673,9 +4673,9 @@ var UserDetail = function UserDetail(_ref) {
 
   var followFunction = function followFunction(follow_id) {
     var followsFilter = follows.filter(function (follow) {
-      console.log(follow.following_user_id.id, user.id);
+      console.log(follow.following_user_id.id, myUser.id);
       console.log(follow.followed_user_id.id, follow_id);
-      return follow.followed_user_id.id === follow_id && follow.following_user_id.id === user.id;
+      return follow.followed_user_id.id === follow_id && follow.following_user_id.id === myUser.id;
     });
 
     if (followsFilter.length === 0) {
@@ -4696,16 +4696,18 @@ var UserDetail = function UserDetail(_ref) {
         children: users.name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Introduction, {
         children: users.introduction
-      }), console.log(followFunction(Number(id))), follows && followFunction(Number(id)) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
-        onClick: function onClick(e) {
-          return removeFollow(e, Number(id));
-        },
-        children: "\u30D5\u30A9\u30ED\u30FC\u6E08\u307F"
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
-        onClick: function onClick(e) {
-          return insertFollow(e, Number(id));
-        },
-        children: "\u30D5\u30A9\u30ED\u30FC"
+      }), console.log("users.id", users.id, "myUser", myUser), myUser && users.id != myUser.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+        children: follows && followFunction(users.id) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
+          onClick: function onClick(e) {
+            return removeFollow(e, users.id);
+          },
+          children: "\u30D5\u30A9\u30ED\u30FC\u6E08\u307F"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
+          onClick: function onClick(e) {
+            return insertFollow(e, users.id);
+          },
+          children: "\u30D5\u30A9\u30ED\u30FC"
+        })
       })]
     })
   });
@@ -39761,9 +39763,10 @@ var App = function App() {
             getUser: getUser
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+          exact: true,
           path: "/user/:id",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_pages_UserDetail__WEBPACK_IMPORTED_MODULE_10__.default, {
-            user: user
+            myUser: user
           })
         })]
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.Fragment, {

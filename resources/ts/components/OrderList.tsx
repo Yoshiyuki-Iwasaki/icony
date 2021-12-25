@@ -75,7 +75,7 @@ const OrderList = ({ user, orders, getTasks }: any) => {
                 {orders.map((order: any) => (
                     <ListItem key={order.id}>
                         <Block to={`/orders/${order.id}`}>
-                            <LeftArea>
+                            <LeftArea to={`/user/${order.requesting_user.id}`}>
                                 <Icon>
                                     <img src="" />
                                 </Icon>
@@ -125,7 +125,7 @@ const ListItem = styled.li`
 const Block = styled(Link)`
     display: flex;
 `;
-const LeftArea = styled.div`
+const LeftArea = styled(Link)`
     text-align: center;
 `;
 const Icon = styled.figure`

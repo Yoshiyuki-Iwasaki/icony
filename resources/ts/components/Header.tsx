@@ -37,11 +37,16 @@ const Header = ({ user, setUser, getUser }: any) => {
                                         <Icon>
                                             <img src="" />
                                         </Icon>
-                                        <Username to={`/user/${user.id}`}>
+                                        <Username>
                                             {user.name}
                                         </Username>
                                     </UserArea>
                                     <List>
+                                        <ListItem>
+                                            <Link to={`/user/${user.id}`}>
+                                                <LinkText>マイページ</LinkText>
+                                            </Link>
+                                        </ListItem>
                                         <ListItem>
                                             <Link to="/profile/edit">
                                                 <LinkText>
@@ -98,7 +103,7 @@ const Icon = styled.figure`
     background: #555;
     border-radius: 15px;
 `;
-const Username = styled(Link)`
+const Username = styled.p`
     margin-left: 10px;
     font-size: 14px;
 `;
@@ -134,17 +139,6 @@ const ListItem = styled.li`
     &:first-child {
         border-top: none;
     }
-`;
-const Avatar = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-`;
-const UserName = styled.p`
-    margin-right: 15px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #f3f3f3;
 `;
 const LinkText = styled.a`
     padding: 10px;

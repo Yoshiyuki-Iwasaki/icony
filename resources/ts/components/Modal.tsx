@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { ModalType } from "../type/modal";
 
-const Modal = ({ getTasks }:any) => {
+const Modal: React.FC<ModalType> = ({ getTasks }) => {
     const [content, setContent] = useState<string>("");
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,7 +22,7 @@ const Modal = ({ getTasks }:any) => {
     };
     const toggleOpen = () => {
         setModalOpen(!modalOpen);
-    }
+    };
     return (
         <>
             <ModalButton onClick={toggleOpen}></ModalButton>

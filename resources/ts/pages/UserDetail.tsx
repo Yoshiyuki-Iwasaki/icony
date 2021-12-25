@@ -4,7 +4,11 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const UserDetail = ({ myUser }:any) => {
+type UserDetailType = {
+    myUser: any;
+};
+
+const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
     const { id }: any = useParams();
     const [users, setUsers] = useState<any>([]);
     const [follows, setFollows] = useState<any>([]);
@@ -61,7 +65,7 @@ const UserDetail = ({ myUser }:any) => {
         getFollow();
     };
 
-    const followFunction = (follow_id:number) => {
+    const followFunction = (follow_id: number) => {
         const followsFilter = follows.filter((follow: any) => {
             console.log(follow.following_user_id.id, myUser.id);
             console.log(follow.followed_user_id.id, follow_id);
@@ -79,8 +83,8 @@ const UserDetail = ({ myUser }:any) => {
     };
 
     const createTalk = async () => {
-        console.log('test');
-    }
+        console.log("test");
+    };
 
     return (
         <>

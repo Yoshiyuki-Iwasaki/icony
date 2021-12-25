@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import { formatDate } from "../util/date";
+import formatDate from "../util/date";
 import { Link } from "react-router-dom";
+import { OrderDetailType } from "../type/OrderDetail";
 
-const OrderDetail = ({ user }:any) => {
+const OrderDetail: React.FC<OrderDetailType> = ({ user }) => {
     const { id }: any = useParams();
     const [orders, setOrders] = useState<any>([]);
     const [requestUser, setRequestUser] = useState<any>();

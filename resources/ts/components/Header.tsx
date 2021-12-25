@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { HeaderType } from '../type/header'
 
-const Header = ({ user, setUser, getUser }: any) => {
+const Header: React.FC<HeaderType> = ({ user, setUser, getUser }) => {
     const history = useHistory();
     // ブラウザリロード時にログイン済みか判定
     useEffect(() => {
@@ -37,9 +38,7 @@ const Header = ({ user, setUser, getUser }: any) => {
                                         <Icon>
                                             <img src="" />
                                         </Icon>
-                                        <Username>
-                                            {user.name}
-                                        </Username>
+                                        <Username>{user.name}</Username>
                                     </UserArea>
                                     <List>
                                         <ListItem>

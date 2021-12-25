@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { formatDate } from "../util/date";
+import formatDate from "../util/date";
+import { OrderListType } from "../type/OrderList";
 
-const OrderList = ({ user, orders, getTasks }: any) => {
+const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
     const [likes, setLikes] = useState<any>(null);
 
     useEffect(() => {
@@ -66,8 +67,12 @@ const OrderList = ({ user, orders, getTasks }: any) => {
             console.log(like.order_id.id, id);
             return like.order_id.id === id && like.user_id.id === user.id;
         });
-        if (likeFilter.length === 0) {return false;} else {return true;}
-    }
+        if (likeFilter.length === 0) {
+            return false;
+        } else {
+            return true;
+        }
+    };
 
     return (
         <>

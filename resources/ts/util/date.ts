@@ -1,5 +1,11 @@
 import dayjs from "dayjs";
+import React from "react";
 
-export const formatDate = (dateText: any) => {
-  return dayjs(dateText).format("YYYY-MM-DD HH:mm");
+type formatDate = {
+    dateText: any;
 };
+
+const formatDate = ({ dateText }: formatDate) => {
+    return dayjs(dateText).format("YYYY-MM-DD HH:mm");
+};
+export default formatDate;

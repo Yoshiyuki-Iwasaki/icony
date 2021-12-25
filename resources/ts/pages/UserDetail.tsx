@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import styled from "styled-components"
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const UserDetail = ({ myUser }:any) => {
     const { id }: any = useParams();
@@ -75,7 +76,11 @@ const UserDetail = ({ myUser }:any) => {
         } else {
             return true;
         }
-    };;
+    };
+
+    const createTalk = async () => {
+        console.log('test');
+    }
 
     return (
         <>
@@ -86,10 +91,9 @@ const UserDetail = ({ myUser }:any) => {
                     </Icon>
                     <UserName>{users.name}</UserName>
                     <Introduction>{users.introduction}</Introduction>
-                    {console.log("users.id", users.id, "myUser", myUser)}
                     {myUser && users.id != myUser.id && (
-                        <>{
-                            follows && followFunction(users.id) ? (
+                        <>
+                            {follows && followFunction(users.id) ? (
                                 <FollowButton
                                     onClick={(e) => removeFollow(e, users.id)}
                                 >
@@ -101,8 +105,9 @@ const UserDetail = ({ myUser }:any) => {
                                 >
                                     フォロー
                                 </FollowButton>
-                            )
-                        }
+                            )}
+                            <button onClick={createTalk}>チャット</button>
+                            <Link to={`/talkroom`}>チャット(遷移のみ)</Link>
                         </>
                     )}
                 </>

@@ -10,6 +10,8 @@ import Header from "./components/Header";
 import Auth from "./pages/Auth";
 import ProfileEdit from "./pages/ProfileEdit";
 import UserDetail from "./pages/UserDetail";
+import TalkroomArchive from "./pages/TalkroomArchive";
+import TalkroomDetail from "./pages/TalkroomDetail";
 import axios from "axios";
 
 const App = () => {
@@ -55,14 +57,20 @@ const App = () => {
                         <Route exact path="/auth">
                             <Auth setUser={setUser} getUser={getUser} />
                         </Route>
-                        <Route path="/orders/:id">
-                            <OrderDetail user={user} />
-                        </Route>
                         <Route path="/profile/edit">
                             <ProfileEdit user={user} getUser={getUser} />
                         </Route>
+                        <Route path="/orders/:id">
+                            <OrderDetail user={user} />
+                        </Route>
                         <Route path="/user/:id">
                             <UserDetail myUser={user} />
+                        </Route>
+                        <Route path="/talkroom">
+                            <TalkroomArchive myUser={user} />
+                        </Route>
+                        <Route path="/talkroom/:id">
+                            <TalkroomDetail myUser={user} />
                         </Route>
                     </>
                 ) : (

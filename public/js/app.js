@@ -3747,7 +3747,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -3947,18 +3947,20 @@ var OrderDetail = function OrderDetail(_ref) {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(LeftArea, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LeftArea, {
         to: "/user/".concat(orders.requesting_user_id),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Icon, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Icon, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
             src: ""
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Username, {
-          children: requestUser && requestUser.name
-        })]
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(RightArea, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Date, {
-          children: [" ", (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(orders && orders.created_at)]
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(RightAreaHeader, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Username, {
+            children: requestUser && requestUser.name
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Date, {
+            children: [" ", (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(orders && orders.created_at)]
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
           children: orders && orders.content
         })]
@@ -3969,18 +3971,20 @@ var OrderDetail = function OrderDetail(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentList, {
         children: comments.map(function (comment, index) {
           return comment.order_id.id == id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CommentListItem, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CommentLeftArea, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentLeftArea, {
               to: "/user/".concat(comment.user_id.id),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentIcon, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentIcon, {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                   src: ""
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentUsername, {
-                children: comment.user_id.name
-              })]
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CommentRightArea, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentDate, {
-                children: (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(comment.created_at)
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CommentRightAreaHeader, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentUsername, {
+                  children: comment.user_id.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentDate, {
+                  children: (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(comment.created_at)
+                })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentText, {
                 children: comment.content
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CommentRemoveText, {
@@ -4012,23 +4016,25 @@ var OrderDetail = function OrderDetail(_ref) {
 var Block = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    display: flex;\n"])));
 var LeftArea = (0,styled_components__WEBPACK_IMPORTED_MODULE_6__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
 var Icon = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.figure(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
-var Username = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    margin-top: 5px;\n    font-size: 13px;\n"])));
-var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
-var Date = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    font-size: 13px;\n"])));
-var Text = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
-var CommentList = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.ul(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    margin-top: 20px;\n"])));
-var CommentListItem = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.li(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: flex;\n"])));
-var CommentArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral([""])));
-var CommentTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.h2(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    margin-top: 50px;\n    font-size: 16px;\n    font-weight: 700;\n"])));
-var CommentForm = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.form(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n"])));
-var CommentInput = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.input(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral([""])));
-var CommentLeftArea = (0,styled_components__WEBPACK_IMPORTED_MODULE_6__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link)(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
-var CommentIcon = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.figure(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
-var CommentUsername = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n    margin-top: 5px;\n    font-size: 13px;\n"])));
-var CommentRightArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
-var CommentDate = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n    display: block;\n    font-size: 13px;\n"])));
-var CommentText = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: block;\n    font-size: 14px;\n"])));
-var CommentRemoveText = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.button(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
+var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
+var RightAreaHeader = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n"])));
+var Username = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    font-size: 14px;\n    font-weight: 700;\n"])));
+var Date = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    display: block;\n    font-size: 11px;\n"])));
+var Text = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
+var CommentList = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.ul(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-top: 20px;\n"])));
+var CommentListItem = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.li(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    margin-bottom: 10px;\n    padding: 10px;\n    display: flex;\n"])));
+var CommentArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral([""])));
+var CommentTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.h2(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    margin-top: 50px;\n    font-size: 16px;\n    font-weight: 700;\n"])));
+var CommentForm = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.form(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n"])));
+var CommentInput = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.input(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral([""])));
+var CommentLeftArea = (0,styled_components__WEBPACK_IMPORTED_MODULE_6__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link)(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
+var CommentIcon = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.figure(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
+var CommentRightAreaHeader = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n"])));
+var CommentRightArea = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
+var CommentUsername = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n    font-size: 14px;\n    font-weight: 700;\n"])));
+var CommentDate = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    display: block;\n    font-size: 11px;\n"])));
+var CommentText = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.span(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: block;\n    font-size: 14px;\n"])));
+var CommentRemoveText = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.button(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
 
 /***/ }),
 

@@ -3,9 +3,9 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Link, Router } from "react-router-dom";
+import { AuthType } from "../type/Auth";
 
-
-const Auth = ({ setUser, getUser }: any) => {
+const Auth: React.FC<AuthType> = ({ setUser, getUser }) => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [emailError, setEmailError] = useState<string>("");

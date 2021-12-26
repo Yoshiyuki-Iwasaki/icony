@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { ProfileEditType } from "../type/ProfileEdit";
 
-const ProfileEdit = ({ user, getUser }: any) => {
+const ProfileEdit: React.FC<ProfileEditType> = ({ user, getUser }) => {
     const [name, setName] = useState<string>("");
     console.log("user", user);
     // ログイン

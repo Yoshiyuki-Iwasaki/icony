@@ -4,8 +4,9 @@ import axios from "axios";
 import styled from "styled-components";
 import { formatDate } from "../util/date";
 import { Link } from "react-router-dom";
+import { OrderDetailType } from "../type/OrderDetail";
 
-const OrderDetail = ({ user }:any) => {
+const OrderDetail: React.FC<OrderDetailType> = ({ user }) => {
     const { id }: any = useParams();
     const [orders, setOrders] = useState<any>([]);
     const [requestUser, setRequestUser] = useState<any>();
@@ -61,10 +62,12 @@ const OrderDetail = ({ user }:any) => {
                     <Icon>
                         <img src="" />
                     </Icon>
-                    <Username>{requestUser && requestUser.name}</Username>
                 </LeftArea>
                 <RightArea>
-                    <Date> {formatDate(orders && orders.created_at)}</Date>
+                    <RightAreaHeader>
+                        <Username>{requestUser && requestUser.name}</Username>
+                        <Date> {formatDate(orders && orders.created_at)}</Date>
+                    </RightAreaHeader>
                     <Text>{orders && orders.content}</Text>
                 </RightArea>
             </Block>
@@ -81,14 +84,16 @@ const OrderDetail = ({ user }:any) => {
                                         <CommentIcon>
                                             <img src="" />
                                         </CommentIcon>
-                                        <CommentUsername>
-                                            {comment.user_id.name}
-                                        </CommentUsername>
                                     </CommentLeftArea>
                                     <CommentRightArea>
-                                        <CommentDate>
-                                            {formatDate(comment.created_at)}
-                                        </CommentDate>
+                                        <CommentRightAreaHeader>
+                                            <CommentUsername>
+                                                {comment.user_id.name}
+                                            </CommentUsername>
+                                            <CommentDate>
+                                                {formatDate(comment.created_at)}
+                                            </CommentDate>
+                                        </CommentRightAreaHeader>
                                         <CommentText>
                                             {comment.content}
                                         </CommentText>
@@ -131,15 +136,21 @@ const Icon = styled.figure`
     background: #555;
     border-radius: 15px;
 `;
-const Username = styled.div`
-    margin-top: 5px;
-    font-size: 13px;
-`;
 const RightArea = styled.div`
     margin-left: 20px;
 `;
+const RightAreaHeader = styled.div`
+    display: flex;
+    align-items: center;
+`;
+const Username = styled.div`
+    font-size: 14px;
+    font-weight: 700;
+`;
 const Date = styled.p`
-    font-size: 13px;
+    margin-left: 10px;
+    display: block;
+    font-size: 11px;
 `;
 const Text = styled.p`
     margin-top: 10px;
@@ -149,7 +160,8 @@ const CommentList = styled.ul`
     margin-top: 20px;
 `;
 const CommentListItem = styled.li`
-    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
     display: flex;
 `;
 const CommentArea = styled.div``;
@@ -171,16 +183,21 @@ const CommentIcon = styled.figure`
     background: #555;
     border-radius: 15px;
 `;
-const CommentUsername = styled.p`
-    margin-top: 5px;
-    font-size: 13px;
+const CommentRightAreaHeader = styled.div`
+    display: flex;
+    align-items: center;
 `;
 const CommentRightArea = styled.div`
     margin-left: 20px;
 `;
+const CommentUsername = styled.p`
+    font-size: 14px;
+    font-weight: 700;
+`;
 const CommentDate = styled.span`
+    margin-left: 10px;
     display: block;
-    font-size: 13px;
+    font-size: 11px;
 `;
 const CommentText = styled.span`
     margin-top: 10px;

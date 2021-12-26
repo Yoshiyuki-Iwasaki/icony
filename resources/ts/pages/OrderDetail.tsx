@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import formatDate from "../util/date";
+import { formatDate } from "../util/date";
 import { Link } from "react-router-dom";
 import { OrderDetailType } from "../type/OrderDetail";
 

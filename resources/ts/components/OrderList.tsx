@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import formatDate from "../util/date";
+import { formatDate } from "../util/date";
 import { OrderListType } from "../type/OrderList";
 
 const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {

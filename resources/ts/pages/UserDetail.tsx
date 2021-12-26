@@ -3,10 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
-type UserDetailType = {
-    myUser: any;
-};
+import { UserDetailType } from "../type/UserDetail";
 
 const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
     const { id }: any = useParams();

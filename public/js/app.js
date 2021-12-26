@@ -3415,7 +3415,7 @@ var OrderList = function OrderList(_ref) {
             case 0:
               e.preventDefault();
               likeFilter = likes.filter(function (like) {
-                return like.order_id.id === id && like.order_id.id === user.id;
+                return like.order_id.id === id && like.user_id.id === user.id;
               });
               _context3.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/likes/".concat(likeFilter[0].id));
@@ -3437,8 +3437,6 @@ var OrderList = function OrderList(_ref) {
 
   var likeFunction = function likeFunction(id) {
     var likeFilter = likes.filter(function (like) {
-      console.log(like.order_id.id, user.id);
-      console.log(like.order_id.id, id);
       return like.order_id.id === id && like.user_id.id === user.id;
     });
 
@@ -3452,8 +3450,8 @@ var OrderList = function OrderList(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(List, {
       children: orders.map(function (order) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ListItem, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ListItem, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
             to: "/orders/".concat(order.id),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LeftArea, {
               to: "/user/".concat(order.requesting_user.id),
@@ -3477,18 +3475,18 @@ var OrderList = function OrderList(_ref) {
                 },
                 children: "\u524A\u9664"
               })]
-            }), likes && likeFunction(order.id) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
-              onClick: function onClick(e) {
-                return removeLike(e, order.id);
-              },
-              children: "\u3044\u3044\u306D\u6E08\u307F"
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
-              onClick: function onClick(e) {
-                return insertLike(e, order.id);
-              },
-              children: "\u3044\u3044\u306D"
             })]
-          })
+          }), likes && likeFunction(order.id) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
+            onClick: function onClick(e) {
+              return removeLike(e, order.id);
+            },
+            children: "\u3044\u3044\u306D\u6E08\u307F"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
+            onClick: function onClick(e) {
+              return insertLike(e, order.id);
+            },
+            children: "\u3044\u3044\u306D"
+          })]
         }, order.id);
       })
     })
@@ -3497,8 +3495,8 @@ var OrderList = function OrderList(_ref) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderList);
 var List = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.ul(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    border-top: 1px solid #555;\n    border-left: 1px solid #555;\n    border-right: 1px solid #555;\n"])));
-var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    border-bottom: 1px solid #555;\n"])));
-var Block = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    margin-bottom: 10px;\n    padding: 10px 10px 20px 10px;\n    position: relative;\n    display: flex;\n"])));
+var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    position: relative;\n    border-bottom: 1px solid #555;\n"])));
+var Block = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    margin-bottom: 10px;\n    padding: 10px 10px 20px 10px;\n    display: flex;\n"])));
 var LeftArea = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
 var Icon = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.figure(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
 var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
@@ -3507,7 +3505,7 @@ var Username = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templat
 var Date = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    display: block;\n    font-size: 11px;\n"])));
 var Text = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: block;\n    font-size: 14px;\n"])));
 var RemoveText = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 10px;\n    right: 10px;\n    font-size: 14px;\n"])));
-var LikeButton = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    position: absolute;\n    bottom: 0;\n    z-index: 10;\n"])));
+var LikeButton = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    position: absolute;\n    bottom: 10px;\n    left: 60px;\n    z-index: 10;\n"])));
 
 /***/ }),
 

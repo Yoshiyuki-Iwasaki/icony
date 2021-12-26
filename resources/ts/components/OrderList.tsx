@@ -52,7 +52,7 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
     const removeLike = async (e: any, id: number) => {
         e.preventDefault();
         const likeFilter = likes.filter((like: any) => {
-            return like.order_id.id === id && like.order_id.id === user.id;
+            return like.order_id.id === id && like.user_id.id === user.id;
         });
         const { error }: any = await axios.delete(
             `/api/likes/${likeFilter[0].id}`
@@ -63,8 +63,6 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
 
     const likeFunction = (id: number) => {
         const likeFilter = likes.filter((like: any) => {
-            console.log(like.order_id.id, user.id);
-            console.log(like.order_id.id, id);
             return like.order_id.id === id && like.user_id.id === user.id;
         });
         if (likeFilter.length === 0) {
@@ -99,20 +97,20 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
                                     削除
                                 </RemoveText>
                             </RightArea>
-                            {likes && likeFunction(order.id) ? (
-                                <LikeButton
-                                    onClick={(e) => removeLike(e, order.id)}
-                                >
-                                    いいね済み
-                                </LikeButton>
-                            ) : (
-                                <LikeButton
-                                    onClick={(e) => insertLike(e, order.id)}
-                                >
-                                    いいね
-                                </LikeButton>
-                            )}
                         </Block>
+                        {likes && likeFunction(order.id) ? (
+                            <LikeButton
+                                onClick={(e) => removeLike(e, order.id)}
+                            >
+                                いいね済み
+                            </LikeButton>
+                        ) : (
+                            <LikeButton
+                                onClick={(e) => insertLike(e, order.id)}
+                            >
+                                いいね
+                            </LikeButton>
+                        )}
                     </ListItem>
                 ))}
             </List>
@@ -128,12 +126,12 @@ const List = styled.ul`
     border-right: 1px solid #555;
 `;
 const ListItem = styled.li`
+    position: relative;
     border-bottom: 1px solid #555;
 `;
 const Block = styled(Link)`
     margin-bottom: 10px;
     padding: 10px 10px 20px 10px;
-    position: relative;
     display: flex;
 `;
 const LeftArea = styled(Link)`
@@ -174,6 +172,7 @@ const RemoveText = styled.button`
 `;
 const LikeButton = styled.button`
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
+    left: 60px;
     z-index: 10;
 `;

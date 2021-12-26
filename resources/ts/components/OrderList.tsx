@@ -99,20 +99,20 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
                                     削除
                                 </RemoveText>
                             </RightArea>
+                            {likes && likeFunction(order.id) ? (
+                                <LikeButton
+                                    onClick={(e) => removeLike(e, order.id)}
+                                >
+                                    いいね済み
+                                </LikeButton>
+                            ) : (
+                                <LikeButton
+                                    onClick={(e) => insertLike(e, order.id)}
+                                >
+                                    いいね
+                                </LikeButton>
+                            )}
                         </Block>
-                        {likes && likeFunction(order.id) ? (
-                            <LikeButton
-                                onClick={(e) => removeLike(e, order.id)}
-                            >
-                                いいね済み
-                            </LikeButton>
-                        ) : (
-                            <LikeButton
-                                onClick={(e) => insertLike(e, order.id)}
-                            >
-                                いいね
-                            </LikeButton>
-                        )}
                     </ListItem>
                 ))}
             </List>
@@ -128,11 +128,12 @@ const List = styled.ul`
     border-right: 1px solid #555;
 `;
 const ListItem = styled.li`
-    margin-bottom: 10px;
-    padding: 10px;
     border-bottom: 1px solid #555;
 `;
 const Block = styled(Link)`
+    margin-bottom: 10px;
+    padding: 10px 10px 20px 10px;
+    position: relative;
     display: flex;
 `;
 const LeftArea = styled(Link)`
@@ -166,9 +167,13 @@ const Text = styled.span`
     font-size: 14px;
 `;
 const RemoveText = styled.button`
-    margin-top: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     font-size: 14px;
 `;
 const LikeButton = styled.button`
-    margin-top: 10px;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
 `;

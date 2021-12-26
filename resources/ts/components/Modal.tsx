@@ -3,14 +3,14 @@ import axios from "axios";
 import styled from "styled-components";
 import { ModalType } from "../type/modal";
 
-const Modal: React.FC<ModalType> = ({ getTasks }) => {
+const Modal: React.FC<ModalType> = ({ user, getTasks }) => {
     const [content, setContent] = useState<string>("");
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const { error }: any = await axios.post("/api/orders", {
             requested_user_id: 2,
-            requesting_user_id: 9,
+            requesting_user_id: user.id,
             content: content,
             category_id: 15,
             talkroom_id: 0,

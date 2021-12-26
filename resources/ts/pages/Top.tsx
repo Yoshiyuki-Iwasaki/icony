@@ -15,7 +15,7 @@ const Top: React.FC<TopType> = ({ user }) => {
     return (
         <>
             <OrderList user={user} orders={orders} getTasks={getTasks} />
-            <Modal getTasks={getTasks} />
+            <Modal user={user} getTasks={getTasks} />
         </>
     );
 };

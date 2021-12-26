@@ -1,11 +1,18 @@
 import React from 'react'
 import styled from "styled-components";
 import { LayoutType } from "../type/layout";
+import { RecoilRoot } from "recoil";
+import { ThemeProvider } from "../style";
+
 
 const Layout: React.FC<LayoutType> = ({ children }) => {
     return (
         <>
-            <Main>{children}</Main>
+            <RecoilRoot>
+                <ThemeProvider>
+                    <Main>{children}</Main>
+                </ThemeProvider>
+            </RecoilRoot>
         </>
     );
 };

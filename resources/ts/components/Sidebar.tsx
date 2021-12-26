@@ -43,7 +43,8 @@ export default Sidebar
 
 const List = styled.ul``;
 const ListItem = styled.li`
-    margin-top: 15px;
+    margin-top: 10px;
+    padding: 10px 0;
     &:first-child {
         margin-top: 0;
     }

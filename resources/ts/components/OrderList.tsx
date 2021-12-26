@@ -76,7 +76,7 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
 
     return (
         <>
-            <ul>
+            <List>
                 {orders.map((order: any) => (
                     <ListItem key={order.id}>
                         <Block to={`/orders/${order.id}`}>
@@ -84,12 +84,14 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
                                 <Icon>
                                     <img src="" />
                                 </Icon>
-                                <Username>
-                                    {order.requesting_user.name}
-                                </Username>
                             </LeftArea>
                             <RightArea>
-                                <Date> {formatDate(order.created_at)}</Date>
+                                <RightAreaHeader>
+                                    <Username>
+                                        {order.requesting_user.name}
+                                    </Username>
+                                    <Date> {formatDate(order.created_at)}</Date>
+                                </RightAreaHeader>
                                 <Text>{order.content}</Text>
                                 <RemoveText
                                     onClick={(e) => handleRemove(e, order.id)}
@@ -113,19 +115,22 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
                         )}
                     </ListItem>
                 ))}
-            </ul>
+            </List>
         </>
     );
 };
 
 export default OrderList;
 
+const List = styled.ul`
+    border-top: 1px solid #555;
+    border-left: 1px solid #555;
+    border-right: 1px solid #555;
+`;
 const ListItem = styled.li`
-    margin-top: 20px;
-
-    &:first-child {
-        margin-top: 0;
-    }
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #555;
 `;
 const Block = styled(Link)`
     display: flex;
@@ -139,16 +144,21 @@ const Icon = styled.figure`
     background: #555;
     border-radius: 15px;
 `;
-const Username = styled.p`
-    margin-top: 5px;
-    font-size: 13px;
-`;
 const RightArea = styled.div`
     margin-left: 20px;
 `;
+const RightAreaHeader = styled.div`
+    display: flex;
+    align-items: center;
+`;
+const Username = styled.p`
+    font-size: 14px;
+    font-weight: 700;
+`;
 const Date = styled.span`
+    margin-left: 10px;
     display: block;
-    font-size: 13px;
+    font-size: 11px;
 `;
 const Text = styled.span`
     margin-top: 10px;
@@ -159,4 +169,6 @@ const RemoveText = styled.button`
     margin-top: 10px;
     font-size: 14px;
 `;
-const LikeButton = styled.button``;
+const LikeButton = styled.button`
+    margin-top: 10px;
+`;

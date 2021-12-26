@@ -87,30 +87,38 @@ const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
         <>
             {users && (
                 <>
-                    <Icon>
-                        <img src="" />
-                    </Icon>
-                    <UserName>{users.name}</UserName>
-                    <Introduction>{users.introduction}</Introduction>
-                    {myUser && users.id != myUser.id && (
-                        <>
-                            {follows && followFunction(users.id) ? (
-                                <FollowButton
-                                    onClick={(e) => removeFollow(e, users.id)}
-                                >
-                                    フォロー済み
-                                </FollowButton>
-                            ) : (
-                                <FollowButton
-                                    onClick={(e) => insertFollow(e, users.id)}
-                                >
-                                    フォロー
-                                </FollowButton>
-                            )}
-                            <button onClick={createTalk}>チャット</button>
-                            <Link to={`/talkroom`}>チャット(遷移のみ)</Link>
-                        </>
-                    )}
+                    <UserHeader>
+                        <IconBg></IconBg>
+                        <Icon>
+                            <img src="" />
+                        </Icon>
+                        <UserName>{users.name}</UserName>
+                        <Introduction>{users.introduction}</Introduction>
+                        {myUser && users.id != myUser.id && (
+                            <>
+                                {follows && followFunction(users.id) ? (
+                                    <FollowButton
+                                        onClick={(e) =>
+                                            removeFollow(e, users.id)
+                                        }
+                                    >
+                                        フォロー済み
+                                    </FollowButton>
+                                ) : (
+                                    <FollowButton
+                                        onClick={(e) =>
+                                            insertFollow(e, users.id)
+                                        }
+                                    >
+                                        フォロー
+                                    </FollowButton>
+                                )}
+                                <button onClick={createTalk}>チャット</button>
+                                <Link to={`/talkroom`}>チャット(遷移のみ)</Link>
+                            </>
+                        )}
+                    </UserHeader>
+                    <UserPost>投稿表示</UserPost>
                 </>
             )}
         </>
@@ -119,18 +127,30 @@ const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
 
 export default UserDetail;
 
+const IconBg = styled.div`
+    height: 100px;
+    background-color: #15202b;
+`;
+const UserHeader = styled.div``;
 const Icon = styled.figure`
-    width: 30px;
-    height: 30px;
+    margin: -50px auto 0;
+    width: 100px;
+    height: 100px;
     background: #555;
-    border-radius: 15px;
+    border-radius: 50px;
 `;
 const UserName = styled.p`
-    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
 `;
 const Introduction = styled.p`
     margin-top: 10px;
     font-size: 14px;
+    text-align: center;
 `;
-const FollowButton = styled.button`
+const FollowButton = styled.button``;
+const UserPost = styled.div`
+    margin-top: 20px;
 `;

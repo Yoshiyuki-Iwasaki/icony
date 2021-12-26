@@ -3184,7 +3184,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -3380,23 +3380,25 @@ var OrderList = function OrderList(_ref) {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(List, {
       children: orders.map(function (order) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ListItem, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
             to: "/orders/".concat(order.id),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(LeftArea, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LeftArea, {
               to: "/user/".concat(order.requesting_user.id),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Icon, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Icon, {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                   src: ""
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Username, {
-                children: order.requesting_user.name
-              })]
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(RightArea, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Date, {
-                children: [" ", (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(order.created_at)]
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(RightAreaHeader, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Username, {
+                  children: order.requesting_user.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Date, {
+                  children: [" ", (0,_util_date__WEBPACK_IMPORTED_MODULE_3__.formatDate)(order.created_at)]
+                })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Text, {
                 children: order.content
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(RemoveText, {
@@ -3424,16 +3426,18 @@ var OrderList = function OrderList(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderList);
-var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    margin-top: 20px;\n\n    &:first-child {\n        margin-top: 0;\n    }\n"])));
-var Block = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n"])));
-var LeftArea = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
-var Icon = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.figure(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
-var Username = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    margin-top: 5px;\n    font-size: 13px;\n"])));
+var List = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.ul(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    border-top: 1px solid #555;\n    border-left: 1px solid #555;\n    border-right: 1px solid #555;\n"])));
+var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    margin-bottom: 10px;\n    padding: 10px;\n    border-bottom: 1px solid #555;\n"])));
+var Block = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    display: flex;\n"])));
+var LeftArea = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
+var Icon = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.figure(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
 var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
-var Date = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: block;\n    font-size: 13px;\n"])));
-var Text = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: block;\n    font-size: 14px;\n"])));
-var RemoveText = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
-var LikeButton = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral([""])));
+var RightAreaHeader = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n"])));
+var Username = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    font-size: 14px;\n    font-weight: 700;\n"])));
+var Date = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    display: block;\n    font-size: 11px;\n"])));
+var Text = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: block;\n    font-size: 14px;\n"])));
+var RemoveText = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
+var LikeButton = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n"])));
 
 /***/ }),
 
@@ -3510,7 +3514,7 @@ var Sidebar = function Sidebar(_ref) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sidebar);
 var List = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.ul(_templateObject || (_templateObject = _taggedTemplateLiteral([""])));
-var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.li(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    margin-top: 15px;\n    &:first-child {\n        margin-top: 0;\n    }\n"])));
+var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.li(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    padding: 10px 0;\n    &:first-child {\n        margin-top: 0;\n    }\n"])));
 var LinkText = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    font-size: 16px;\n    font-weight: 700;\n"])));
 var Button = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    font-size: 16px;\n    font-weight: 700;\n"])));
 
@@ -4562,7 +4566,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -4767,42 +4771,49 @@ var UserDetail = function UserDetail(_ref) {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: users && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Icon, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-          src: ""
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(UserName, {
-        children: users.name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Introduction, {
-        children: users.introduction
-      }), myUser && users.id != myUser.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-        children: [follows && followFunction(users.id) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
-          onClick: function onClick(e) {
-            return removeFollow(e, users.id);
-          },
-          children: "\u30D5\u30A9\u30ED\u30FC\u6E08\u307F"
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
-          onClick: function onClick(e) {
-            return insertFollow(e, users.id);
-          },
-          children: "\u30D5\u30A9\u30ED\u30FC"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-          onClick: createTalk,
-          children: "\u30C1\u30E3\u30C3\u30C8"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
-          to: "/talkroom",
-          children: "\u30C1\u30E3\u30C3\u30C8(\u9077\u79FB\u306E\u307F)"
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(UserHeader, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(IconBg, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Icon, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+            src: ""
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(UserName, {
+          children: users.name
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Introduction, {
+          children: users.introduction
+        }), myUser && users.id != myUser.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+          children: [follows && followFunction(users.id) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
+            onClick: function onClick(e) {
+              return removeFollow(e, users.id);
+            },
+            children: "\u30D5\u30A9\u30ED\u30FC\u6E08\u307F"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(FollowButton, {
+            onClick: function onClick(e) {
+              return insertFollow(e, users.id);
+            },
+            children: "\u30D5\u30A9\u30ED\u30FC"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+            onClick: createTalk,
+            children: "\u30C1\u30E3\u30C3\u30C8"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+            to: "/talkroom",
+            children: "\u30C1\u30E3\u30C3\u30C8(\u9077\u79FB\u306E\u307F)"
+          })]
         })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(UserPost, {
+        children: "\u6295\u7A3F\u8868\u793A"
       })]
     })
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserDetail);
-var Icon = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.figure(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
-var UserName = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    font-size: 14px;\n"])));
-var Introduction = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n"])));
-var FollowButton = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n"])));
+var IconBg = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    height: 100px;\n    background-color: #15202b;\n"])));
+var UserHeader = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral([""])));
+var Icon = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.figure(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    margin: -50px auto 0;\n    width: 100px;\n    height: 100px;\n    background: #555;\n    border-radius: 50px;\n"])));
+var UserName = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    text-align: center;\n    font-size: 15px;\n    font-weight: 700;\n"])));
+var Introduction = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    font-size: 14px;\n    text-align: center;\n"])));
+var FollowButton = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.button(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral([""])));
+var UserPost = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    margin-top: 20px;\n"])));
 
 /***/ }),
 
@@ -39765,7 +39776,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -39840,7 +39851,7 @@ var App = function App() {
               setUser: setUser,
               getUser: getUser
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(RightArea, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(CenterArea, {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
               exact: true,
               path: "/",
@@ -39874,6 +39885,8 @@ var App = function App() {
                 myUser: user
               })
             })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(RightArea, {
+            children: "RightArea"
           })]
         })]
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
@@ -39901,8 +39914,9 @@ if (document.getElementById("app")) {
 }
 
 var Content = styled_components__WEBPACK_IMPORTED_MODULE_18__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    display: flex;\n"])));
-var LeftArea = styled_components__WEBPACK_IMPORTED_MODULE_18__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    width: 20%;\n"])));
-var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_18__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    width: 80%;\n"])));
+var LeftArea = styled_components__WEBPACK_IMPORTED_MODULE_18__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    padding: 0 10px;\n    width: 20%;\n"])));
+var CenterArea = styled_components__WEBPACK_IMPORTED_MODULE_18__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    width: 50%;\n"])));
+var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_18__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    padding: 0 10px;\n    width: 30%;\n"])));
 })();
 
 /******/ })()

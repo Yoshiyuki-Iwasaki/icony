@@ -57,7 +57,7 @@ const App = () => {
                                     getUser={getUser}
                                 />
                             </LeftArea>
-                            <RightArea>
+                            <CenterArea>
                                 <Route exact path="/">
                                     <Top user={user} />
                                 </Route>
@@ -79,7 +79,8 @@ const App = () => {
                                 <Route path="/talkroom/:id">
                                     <TalkroomDetail myUser={user} />
                                 </Route>
-                            </RightArea>
+                            </CenterArea>
+                            <RightArea>RightArea</RightArea>
                         </Content>
                     </>
                 ) : (
@@ -108,8 +109,13 @@ const Content = styled.div`
     display: flex;
 `;
 const LeftArea = styled.div`
+    padding: 0 10px;
     width: 20%;
 `;
+const CenterArea = styled.div`
+    width: 50%;
+`;
 const RightArea = styled.div`
-    width: 80%;
+    padding: 0 10px;
+    width: 30%;
 `;

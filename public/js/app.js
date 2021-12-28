@@ -3254,7 +3254,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -3435,7 +3435,7 @@ var OrderList = function OrderList(_ref) {
     }));
   };
 
-  var likeFunction = function likeFunction(id) {
+  var likeFilterFunc = function likeFilterFunc(id) {
     var likeFilter = likes.filter(function (like) {
       return like.order_id.id === id && like.user_id.id === user.id;
     });
@@ -3444,6 +3444,15 @@ var OrderList = function OrderList(_ref) {
       return false;
     } else {
       return true;
+    }
+  };
+
+  var likeCountFunc = function likeCountFunc(id) {
+    if (likes) {
+      var customisedLiked = likes.filter(function (like) {
+        return like.order_id.id == id;
+      });
+      return customisedLiked.length;
     }
   };
 
@@ -3476,16 +3485,20 @@ var OrderList = function OrderList(_ref) {
                 children: "\u524A\u9664"
               })]
             })]
-          }), likes && likeFunction(order.id) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
-            onClick: function onClick(e) {
-              return removeLike(e, order.id);
-            },
-            children: "\u3044\u3044\u306D\u6E08\u307F"
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
-            onClick: function onClick(e) {
-              return insertLike(e, order.id);
-            },
-            children: "\u3044\u3044\u306D"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(BottomArea, {
+            children: [likes && likeFilterFunc(order.id) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
+              onClick: function onClick(e) {
+                return removeLike(e, order.id);
+              },
+              children: "\u3044\u3044\u306D\u6E08\u307F"
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
+              onClick: function onClick(e) {
+                return insertLike(e, order.id);
+              },
+              children: "\u3044\u3044\u306D"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeCount, {
+              children: likeCountFunc(order.id)
+            })]
           })]
         }, order.id);
       })
@@ -3496,7 +3509,7 @@ var OrderList = function OrderList(_ref) {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderList);
 var List = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.ul(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    border-top: 1px solid #555;\n    border-left: 1px solid #555;\n    border-right: 1px solid #555;\n"])));
 var ListItem = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.li(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    position: relative;\n    border-bottom: 1px solid #555;\n"])));
-var Block = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    margin-bottom: 10px;\n    padding: 10px 10px 20px 10px;\n    display: flex;\n"])));
+var Block = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    margin-bottom: 15px;\n    padding: 10px 10px 20px 10px;\n    display: flex;\n"])));
 var LeftArea = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    text-align: center;\n"])));
 var Icon = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.figure(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    width: 30px;\n    height: 30px;\n    background: #555;\n    border-radius: 15px;\n"])));
 var RightArea = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    margin-left: 20px;\n"])));
@@ -3505,7 +3518,9 @@ var Username = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templat
 var Date = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    display: block;\n    font-size: 11px;\n"])));
 var Text = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.span(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: block;\n    font-size: 14px;\n"])));
 var RemoveText = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 10px;\n    right: 10px;\n    font-size: 14px;\n"])));
-var LikeButton = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    position: absolute;\n    bottom: 10px;\n    left: 60px;\n    z-index: 10;\n"])));
+var BottomArea = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    display: flex;\n    position: absolute;\n    bottom: 10px;\n    left: 60px;\n    z-index: 10;\n"])));
+var LikeButton = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n    font-size: 12px;\n"])));
+var LikeCount = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n    margin-left: 5px;\n    font-size: 12px;\n"])));
 
 /***/ }),
 
@@ -4691,13 +4706,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _util_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/date */ "./resources/ts/util/date.ts");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -4751,7 +4766,7 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
 
 
 
-
+;
 
 
 
@@ -4778,11 +4793,20 @@ var UserDetail = function UserDetail(_ref) {
       orders = _useState6[0],
       setOrders = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+      _useState8 = _slicedToArray(_useState7, 2),
+      likes = _useState8[0],
+      setLikes = _useState8[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     getUser();
     getFollow();
     getOrders();
+    getLike();
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    getUser();
+  }, [id]);
 
   var getUser = function getUser() {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -4793,8 +4817,9 @@ var UserDetail = function UserDetail(_ref) {
               axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/users/".concat(id)).then(function (res) {
                 setUsers(res.data);
               });
+              console.log('test');
 
-            case 1:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -4944,20 +4969,114 @@ var UserDetail = function UserDetail(_ref) {
     }
   };
 
-  var createTalk = function createTalk() {
+  var getLike = function getLike() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/likes").then(function (res) {
+      if (res.data) {
+        console.log("res", res);
+        setLikes(res.data);
+      } else {
+        console.log(res.data);
+      }
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  };
+
+  var insertLike = function insertLike(e, id) {
     return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+      var _yield$axios$post2, error;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
-              console.log("test");
+              e.preventDefault();
+              _context6.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/likes", {
+                order_id: id,
+                user_id: myUser.id
+              });
 
-            case 1:
+            case 3:
+              _yield$axios$post2 = _context6.sent;
+              error = _yield$axios$post2.error;
+              console.log("error", error);
+              getLike();
+
+            case 7:
             case "end":
               return _context6.stop();
           }
         }
       }, _callee6);
+    }));
+  };
+
+  var removeLike = function removeLike(e, id) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
+      var likeFilter, _yield$axios$delete3, error;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              e.preventDefault();
+              likeFilter = likes.filter(function (like) {
+                return like.order_id.id === id && like.user_id.id === myUser.id;
+              });
+              _context7.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/likes/".concat(likeFilter[0].id));
+
+            case 4:
+              _yield$axios$delete3 = _context7.sent;
+              error = _yield$axios$delete3.error;
+              console.log("error", error);
+              getLike();
+
+            case 8:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
+    }));
+  };
+
+  var likeFilterFunc = function likeFilterFunc(id) {
+    var likeFilter = likes.filter(function (like) {
+      return like.order_id.id === id && like.user_id.id === myUser.id;
+    });
+
+    if (likeFilter.length === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  var likeCountFunc = function likeCountFunc(id) {
+    if (likes) {
+      var customisedLiked = likes.filter(function (like) {
+        return like.order_id.id == id;
+      });
+      return customisedLiked.length;
+    }
+  };
+
+  var createTalk = function createTalk() {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              console.log("test");
+
+            case 1:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
     }));
   };
 
@@ -4993,8 +5112,8 @@ var UserDetail = function UserDetail(_ref) {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(UserPost, {
         children: orders.map(function (order) {
-          return order.requesting_user_id == id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ListItem, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
+          return order.requesting_user_id == id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ListItem, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Block, {
               to: "/orders/".concat(order.id),
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LeftArea, {
                 to: "/user/".concat(order.requesting_user.id),
@@ -5019,7 +5138,21 @@ var UserDetail = function UserDetail(_ref) {
                   children: "\u524A\u9664"
                 })]
               })]
-            })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(BottomArea, {
+              children: [likes && likeFilterFunc(order.id) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
+                onClick: function onClick(e) {
+                  return removeLike(e, order.id);
+                },
+                children: "\u3044\u3044\u306D\u6E08\u307F"
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeButton, {
+                onClick: function onClick(e) {
+                  return insertLike(e, order.id);
+                },
+                children: "\u3044\u3044\u306D"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LikeCount, {
+                children: likeCountFunc(order.id)
+              })]
+            })]
           }, order.id);
         })
       })]
@@ -5045,6 +5178,9 @@ var Username = styled_components__WEBPACK_IMPORTED_MODULE_7__.default.p(_templat
 var Date = styled_components__WEBPACK_IMPORTED_MODULE_7__.default.span(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n    margin-left: 10px;\n    display: block;\n    font-size: 11px;\n"])));
 var Text = styled_components__WEBPACK_IMPORTED_MODULE_7__.default.span(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n    margin-top: 10px;\n    display: block;\n    font-size: 14px;\n"])));
 var RemoveText = styled_components__WEBPACK_IMPORTED_MODULE_7__.default.button(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 10px;\n    right: 10px;\n    font-size: 14px;\n"])));
+var BottomArea = styled_components__WEBPACK_IMPORTED_MODULE_7__.default.div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n    display: flex;\n    position: absolute;\n    bottom: 10px;\n    left: 60px;\n    z-index: 10;\n"])));
+var LikeButton = styled_components__WEBPACK_IMPORTED_MODULE_7__.default.button(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n    font-size: 12px;\n"])));
+var LikeCount = styled_components__WEBPACK_IMPORTED_MODULE_7__.default.p(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n    margin-left: 5px;\n    font-size: 12px;\n"])));
 
 /***/ }),
 

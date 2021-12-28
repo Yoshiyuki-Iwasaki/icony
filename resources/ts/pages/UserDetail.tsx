@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from "styled-components";;
 import { formatDate } from "../util/date";
 import { UserDetailType } from "../type/UserDetail";
 
@@ -11,12 +10,18 @@ const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
     const [users, setUsers] = useState<any>([]);
     const [follows, setFollows] = useState<any>([]);
     const [orders, setOrders] = useState<any>([]);
+    const [likes, setLikes] = useState<any>(null);
 
     useEffect(() => {
         getUser();
         getFollow();
         getOrders();
+        getLike();
     }, []);
+
+    useEffect(() => {
+        getUser();
+    }, [id]);
 
     const getUser = async () => {
         axios.get(`/api/users/${id}`).then((res) => {

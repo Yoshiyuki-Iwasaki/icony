@@ -99,6 +99,65 @@ const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
         }
     };
 
+    const getLike = () => {
+        axios
+            .get("/api/likes")
+            .then((res) => {
+                if (res.data) {
+                    console.log("res", res);
+                    setLikes(res.data);
+                } else {
+                    console.log(res.data);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+
+    const insertLike = async (e: any, id: number) => {
+        e.preventDefault();
+        const { error }: any = await axios.post("/api/likes", {
+            order_id: id,
+            user_id: myUser.id,
+        });
+        console.log("error", error);
+        getLike();
+    };
+
+    const removeLike = async (e: any, id: number) => {
+        e.preventDefault();
+        const likeFilter = likes.filter((like: any) => {
+            return like.order_id.id === id && like.user_id.id === myUser.id;
+        });
+        const { error }: any = await axios.delete(
+            `/api/likes/${likeFilter[0].id}`
+        );
+        console.log("error", error);
+        getLike();
+    };
+
+    const likeFilterFunc = (id: number) => {
+        const likeFilter = likes.filter((like: any) => {
+            return like.order_id.id === id && like.user_id.id === myUser.id;
+        });
+        if (likeFilter.length === 0) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    const likeCountFunc = (id: number) => {
+        if (likes) {
+            const customisedLiked = likes.filter((like: any) => {
+                return like.order_id.id == id;
+            });
+            return customisedLiked.length;
+        }
+    };
+
     const createTalk = async () => {
         console.log("test");
     };
@@ -139,39 +198,72 @@ const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
                         )}
                     </UserHeader>
                     <UserPost>
-                        {orders.map((order: any) => (
-                            order.requesting_user_id == id && (
-                            <ListItem key={order.id}>
-                                <Block to={`/orders/${order.id}`}>
-                                    <LeftArea
-                                        to={`/user/${order.requesting_user.id}`}
-                                    >
-                                        <ListIcon>
-                                            <img src="" />
-                                        </ListIcon>
-                                    </LeftArea>
-                                    <RightArea>
-                                        <RightAreaHeader>
-                                            <Username>
-                                                {order.requesting_user.name}
-                                            </Username>
-                                            <Date>
-                                                {formatDate(order.created_at)}
-                                            </Date>
-                                        </RightAreaHeader>
-                                        <Text>{order.content}</Text>
-                                        <RemoveText
-                                            onClick={(e) =>
-                                                handleRemove(e, order.id)
-                                            }
-                                        >
-                                            削除
-                                        </RemoveText>
-                                    </RightArea>
-                                </Block>
-                            </ListItem>
-                            )
-                        ))}
+                        {orders.map(
+                            (order: any) =>
+                                order.requesting_user_id == id && (
+                                    <ListItem key={order.id}>
+                                        <Block to={`/orders/${order.id}`}>
+                                            <LeftArea
+                                                to={`/user/${order.requesting_user.id}`}
+                                            >
+                                                <ListIcon>
+                                                    <img src="" />
+                                                </ListIcon>
+                                            </LeftArea>
+                                            <RightArea>
+                                                <RightAreaHeader>
+                                                    <Username>
+                                                        {
+                                                            order
+                                                                .requesting_user
+                                                                .name
+                                                        }
+                                                    </Username>
+                                                    <Date>
+                                                        {formatDate(
+                                                            order.created_at
+                                                        )}
+                                                    </Date>
+                                                </RightAreaHeader>
+                                                <Text>{order.content}</Text>
+                                                <RemoveText
+                                                    onClick={(e) =>
+                                                        handleRemove(
+                                                            e,
+                                                            order.id
+                                                        )
+                                                    }
+                                                >
+                                                    削除
+                                                </RemoveText>
+                                            </RightArea>
+                                        </Block>
+                                        <BottomArea>
+                                            {likes &&
+                                            likeFilterFunc(order.id) ? (
+                                                <LikeButton
+                                                    onClick={(e) =>
+                                                        removeLike(e, order.id)
+                                                    }
+                                                >
+                                                    いいね済み
+                                                </LikeButton>
+                                            ) : (
+                                                <LikeButton
+                                                    onClick={(e) =>
+                                                        insertLike(e, order.id)
+                                                    }
+                                                >
+                                                    いいね
+                                                </LikeButton>
+                                            )}
+                                            <LikeCount>
+                                                {likeCountFunc(order.id)}
+                                            </LikeCount>
+                                        </BottomArea>
+                                    </ListItem>
+                                )
+                        )}
                     </UserPost>
                 </>
             )}
@@ -253,4 +345,19 @@ const RemoveText = styled.button`
     top: 10px;
     right: 10px;
     font-size: 14px;
+`;
+
+const BottomArea = styled.div`
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    left: 60px;
+    z-index: 10;
+`;
+const LikeButton = styled.button`
+    font-size: 12px;
+`;
+const LikeCount = styled.p`
+    margin-left: 5px;
+    font-size: 12px;
 `;

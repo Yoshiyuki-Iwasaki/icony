@@ -6,7 +6,7 @@ import { TopType } from "../type/Top";
 
 const Top: React.FC<TopType> = ({ user }) => {
     const [orders, setOrders] = useState<any>([]);
-    const getTasks = async () => {
+    const getOrders = async () => {
         axios.get("/api/orders").then((res) => {
             setOrders(res.data);
             console.log("res.data", res.data);
@@ -14,8 +14,8 @@ const Top: React.FC<TopType> = ({ user }) => {
     };
     return (
         <>
-            <OrderList user={user} orders={orders} getTasks={getTasks} />
-            <Modal user={user} getTasks={getTasks} />
+            <OrderList user={user} orders={orders} getOrders={getOrders} />
+            <Modal user={user} getOrders={getOrders} />
         </>
     );
 };

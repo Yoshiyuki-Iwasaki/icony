@@ -3,21 +3,31 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { formatDate } from "../util/date";
 import { UserDetailType } from "../type/UserDetail";
 
 const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
     const { id }: any = useParams();
     const [users, setUsers] = useState<any>([]);
     const [follows, setFollows] = useState<any>([]);
+    const [orders, setOrders] = useState<any>([]);
 
     useEffect(() => {
         getUser();
         getFollow();
+        getOrders();
     }, []);
 
     const getUser = async () => {
         axios.get(`/api/users/${id}`).then((res) => {
             setUsers(res.data);
+        });
+    };
+
+    const getOrders = async () => {
+        axios.get("/api/orders").then((res) => {
+            setOrders(res.data);
+            console.log("res.data", res.data);
         });
     };
 
@@ -35,6 +45,16 @@ const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
             .catch((err) => {
                 console.log(err);
             });
+    };
+
+    const handleRemove = async (e: any, id: number) => {
+        e.preventDefault();
+        const result = window.confirm("本当にこの投稿を削除しますか。");
+        if (result) {
+            const { error }: any = await axios.delete(`/api/orders/${id}`);
+            console.log("error", error);
+            getOrders();
+        }
     };
 
     const insertFollow = async (e: any, follow_id: number) => {
@@ -118,7 +138,41 @@ const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
                             </>
                         )}
                     </UserHeader>
-                    <UserPost>投稿表示</UserPost>
+                    <UserPost>
+                        {orders.map((order: any) => (
+                            order.requesting_user_id == id && (
+                            <ListItem key={order.id}>
+                                <Block to={`/orders/${order.id}`}>
+                                    <LeftArea
+                                        to={`/user/${order.requesting_user.id}`}
+                                    >
+                                        <ListIcon>
+                                            <img src="" />
+                                        </ListIcon>
+                                    </LeftArea>
+                                    <RightArea>
+                                        <RightAreaHeader>
+                                            <Username>
+                                                {order.requesting_user.name}
+                                            </Username>
+                                            <Date>
+                                                {formatDate(order.created_at)}
+                                            </Date>
+                                        </RightAreaHeader>
+                                        <Text>{order.content}</Text>
+                                        <RemoveText
+                                            onClick={(e) =>
+                                                handleRemove(e, order.id)
+                                            }
+                                        >
+                                            削除
+                                        </RemoveText>
+                                    </RightArea>
+                                </Block>
+                            </ListItem>
+                            )
+                        ))}
+                    </UserPost>
                 </>
             )}
         </>
@@ -139,6 +193,12 @@ const Icon = styled.figure`
     background: #555;
     border-radius: 50px;
 `;
+const ListIcon = styled.figure`
+    width: 30px;
+    height: 30px;
+    background: #555;
+    border-radius: 15px;
+`;
 const UserName = styled.p`
     margin-top: 10px;
     text-align: center;
@@ -151,6 +211,46 @@ const Introduction = styled.p`
     text-align: center;
 `;
 const FollowButton = styled.button``;
-const UserPost = styled.div`
+const UserPost = styled.ul`
     margin-top: 20px;
+`;
+
+const ListItem = styled.li`
+    position: relative;
+    border-bottom: 1px solid #555;
+`;
+const Block = styled(Link)`
+    margin-bottom: 10px;
+    padding: 10px 10px 20px 10px;
+    display: flex;
+`;
+const LeftArea = styled(Link)`
+    text-align: center;
+`;
+const RightArea = styled.div`
+    margin-left: 20px;
+`;
+const RightAreaHeader = styled.div`
+    display: flex;
+    align-items: center;
+`;
+const Username = styled.p`
+    font-size: 14px;
+    font-weight: 700;
+`;
+const Date = styled.span`
+    margin-left: 10px;
+    display: block;
+    font-size: 11px;
+`;
+const Text = styled.span`
+    margin-top: 10px;
+    display: block;
+    font-size: 14px;
+`;
+const RemoveText = styled.button`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
 `;

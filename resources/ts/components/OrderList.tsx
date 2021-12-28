@@ -61,7 +61,7 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getOrders }) => {
         getLike();
     };
 
-    const likeFunction = (id: number) => {
+    const likeFilterFunc = (id: number) => {
         const likeFilter = likes.filter((like: any) => {
             return like.order_id.id === id && like.user_id.id === user.id;
         });
@@ -69,6 +69,15 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getOrders }) => {
             return false;
         } else {
             return true;
+        }
+    };
+
+    const likeCountFunc = (id: number) => {
+        if (likes) {
+            const customisedLiked = likes.filter((like: any) => {
+                return like.order_id.id == id;
+            });
+            return customisedLiked.length;
         }
     };
 
@@ -98,19 +107,22 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getOrders }) => {
                                 </RemoveText>
                             </RightArea>
                         </Block>
-                        {likes && likeFunction(order.id) ? (
-                            <LikeButton
-                                onClick={(e) => removeLike(e, order.id)}
-                            >
-                                いいね済み
-                            </LikeButton>
-                        ) : (
-                            <LikeButton
-                                onClick={(e) => insertLike(e, order.id)}
-                            >
-                                いいね
-                            </LikeButton>
-                        )}
+                        <BottomArea>
+                            {likes && likeFilterFunc(order.id) ? (
+                                <LikeButton
+                                    onClick={(e) => removeLike(e, order.id)}
+                                >
+                                    いいね済み
+                                </LikeButton>
+                            ) : (
+                                <LikeButton
+                                    onClick={(e) => insertLike(e, order.id)}
+                                >
+                                    いいね
+                                </LikeButton>
+                            )}
+                            <LikeCount>{likeCountFunc(order.id)}</LikeCount>
+                        </BottomArea>
                     </ListItem>
                 ))}
             </List>
@@ -130,7 +142,7 @@ const ListItem = styled.li`
     border-bottom: 1px solid #555;
 `;
 const Block = styled(Link)`
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding: 10px 10px 20px 10px;
     display: flex;
 `;
@@ -170,9 +182,17 @@ const RemoveText = styled.button`
     right: 10px;
     font-size: 14px;
 `;
-const LikeButton = styled.button`
+const BottomArea = styled.div`
+    display: flex;
     position: absolute;
     bottom: 10px;
     left: 60px;
     z-index: 10;
+`;
+const LikeButton = styled.button`
+    font-size: 12px;
+`;
+const LikeCount = styled.p`
+    margin-left: 5px;
+    font-size: 12px;
 `;

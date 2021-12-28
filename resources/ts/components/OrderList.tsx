@@ -5,11 +5,11 @@ import styled from "styled-components";
 import { formatDate } from "../util/date";
 import { OrderListType } from "../type/OrderList";
 
-const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
+const OrderList: React.FC<OrderListType> = ({ user, orders, getOrders }) => {
     const [likes, setLikes] = useState<any>(null);
 
     useEffect(() => {
-        getTasks();
+        getOrders();
         getLike();
     }, []);
 
@@ -19,7 +19,7 @@ const OrderList: React.FC<OrderListType> = ({ user, orders, getTasks }) => {
         if (result) {
             const { error }: any = await axios.delete(`/api/orders/${id}`);
             console.log("error", error);
-            getTasks();
+            getOrders();
         }
     };
 

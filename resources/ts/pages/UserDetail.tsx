@@ -139,6 +139,12 @@ const Icon = styled.figure`
     background: #555;
     border-radius: 50px;
 `;
+const ListIcon = styled.figure`
+    width: 30px;
+    height: 30px;
+    background: #555;
+    border-radius: 15px;
+`;
 const UserName = styled.p`
     margin-top: 10px;
     text-align: center;
@@ -151,6 +157,46 @@ const Introduction = styled.p`
     text-align: center;
 `;
 const FollowButton = styled.button``;
-const UserPost = styled.div`
+const UserPost = styled.ul`
     margin-top: 20px;
+`;
+
+const ListItem = styled.li`
+    position: relative;
+    border-bottom: 1px solid #555;
+`;
+const Block = styled(Link)`
+    margin-bottom: 10px;
+    padding: 10px 10px 20px 10px;
+    display: flex;
+`;
+const LeftArea = styled(Link)`
+    text-align: center;
+`;
+const RightArea = styled.div`
+    margin-left: 20px;
+`;
+const RightAreaHeader = styled.div`
+    display: flex;
+    align-items: center;
+`;
+const Username = styled.p`
+    font-size: 14px;
+    font-weight: 700;
+`;
+const Date = styled.span`
+    margin-left: 10px;
+    display: block;
+    font-size: 11px;
+`;
+const Text = styled.span`
+    margin-top: 10px;
+    display: block;
+    font-size: 14px;
+`;
+const RemoveText = styled.button`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
 `;

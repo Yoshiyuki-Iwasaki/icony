@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { ModalType } from "../type/modal";
 
-const Modal: React.FC<ModalType> = ({ user, getTasks }) => {
+const Modal: React.FC<ModalType> = ({ user, getOrders }) => {
     const [content, setContent] = useState<string>("");
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,7 +17,7 @@ const Modal: React.FC<ModalType> = ({ user, getTasks }) => {
         });
         console.log("error", error);
         setContent("");
-        getTasks();
+        getOrders();
         setModalOpen(false);
     };
     const toggleOpen = () => {
@@ -71,11 +71,32 @@ const ModalButton = styled.div`
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
     background: #555;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 15px;
+        height: 1px;
+        background: #fff;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 1px;
+        height: 15px;
+        background: #fff;
+    }
 `;
 const Form = styled.form``;
 const Input = styled.input``;
-const Button = styled.input``;

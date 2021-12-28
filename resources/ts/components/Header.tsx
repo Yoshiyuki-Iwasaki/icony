@@ -17,9 +17,9 @@ const Header: React.FC<HeaderType> = ({ getUser }) => {
                 <Inner>
                     <Title to="/">Icony</Title>
                     <RightArea>
-                        <button onClick={setTheme}>
+                        <DarkmodeButton onClick={setTheme}>
                             {theme.type === "light" ? "🌚" : "🌝"}
-                        </button>
+                        </DarkmodeButton>
                     </RightArea>
                 </Inner>
             </HeaderLayout>
@@ -44,4 +44,7 @@ const Title = styled(Link)`
 `;
 const RightArea = styled.div`
     display: flex;
+`;
+const DarkmodeButton = styled.button`
+    font-size: 20px;
 `;

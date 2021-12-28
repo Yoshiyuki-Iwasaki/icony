@@ -3,21 +3,31 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { formatDate } from "../util/date";
 import { UserDetailType } from "../type/UserDetail";
 
 const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
     const { id }: any = useParams();
     const [users, setUsers] = useState<any>([]);
     const [follows, setFollows] = useState<any>([]);
+    const [orders, setOrders] = useState<any>([]);
 
     useEffect(() => {
         getUser();
         getFollow();
+        getOrders();
     }, []);
 
     const getUser = async () => {
         axios.get(`/api/users/${id}`).then((res) => {
             setUsers(res.data);
+        });
+    };
+
+    const getOrders = async () => {
+        axios.get("/api/orders").then((res) => {
+            setOrders(res.data);
+            console.log("res.data", res.data);
         });
     };
 
@@ -35,6 +45,16 @@ const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
             .catch((err) => {
                 console.log(err);
             });
+    };
+
+    const handleRemove = async (e: any, id: number) => {
+        e.preventDefault();
+        const result = window.confirm("本当にこの投稿を削除しますか。");
+        if (result) {
+            const { error }: any = await axios.delete(`/api/orders/${id}`);
+            console.log("error", error);
+            getOrders();
+        }
     };
 
     const insertFollow = async (e: any, follow_id: number) => {
@@ -118,7 +138,41 @@ const UserDetail: React.FC<UserDetailType> = ({ myUser }) => {
                             </>
                         )}
                     </UserHeader>
-                    <UserPost>投稿表示</UserPost>
+                    <UserPost>
+                        {orders.map((order: any) => (
+                            order.requesting_user_id == id && (
+                            <ListItem key={order.id}>
+                                <Block to={`/orders/${order.id}`}>
+                                    <LeftArea
+                                        to={`/user/${order.requesting_user.id}`}
+                                    >
+                                        <ListIcon>
+                                            <img src="" />
+                                        </ListIcon>
+                                    </LeftArea>
+                                    <RightArea>
+                                        <RightAreaHeader>
+                                            <Username>
+                                                {order.requesting_user.name}
+                                            </Username>
+                                            <Date>
+                                                {formatDate(order.created_at)}
+                                            </Date>
+                                        </RightAreaHeader>
+                                        <Text>{order.content}</Text>
+                                        <RemoveText
+                                            onClick={(e) =>
+                                                handleRemove(e, order.id)
+                                            }
+                                        >
+                                            削除
+                                        </RemoveText>
+                                    </RightArea>
+                                </Block>
+                            </ListItem>
+                            )
+                        ))}
+                    </UserPost>
                 </>
             )}
         </>

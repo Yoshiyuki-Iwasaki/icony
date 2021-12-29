@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { HeaderType } from '../type/header';
-import useDarkMode from "./useDarkMode";
+import useDarkMode from "../hook/useDarkMode";
 
 const Header: React.FC<HeaderType> = ({ getUser }) => {
     const [theme, setTheme] = useDarkMode();

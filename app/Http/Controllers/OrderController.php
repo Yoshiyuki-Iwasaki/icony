@@ -12,18 +12,9 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::orderByDesc('id')->get();
         return $orders->load('category','requested_user','requesting_user');
     }
-
-    public function create(Request $request)
-    {
-        $user = $request->user;
-        $order_user = User::find($user);
-        $categories = Category::all();
-        return view('orders.create', compact('order_user','user','categories'));
-    }
-
 
         /**
      * Store a newly created resource in storage.

@@ -4817,9 +4817,8 @@ var UserDetail = function UserDetail(_ref) {
               axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/users/".concat(id)).then(function (res) {
                 setUsers(res.data);
               });
-              console.log('test');
 
-            case 2:
+            case 1:
             case "end":
               return _context.stop();
           }
